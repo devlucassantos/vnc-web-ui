@@ -1,0 +1,20 @@
+.titleView {
+  display: flex;
+  margin-top: 5%;
+  margin-left: 10%;
+  align-items: center;
+}
+
+.label {
+  color: #000;
+  font-size: 32px;
+  font-weight: bold;
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+  'Liberation Sans', sans-serif;
+  letter-spacing: -0.017em;
+  position: relative;
+  left: 20px;
+  width: 200px;
+  height: auto;
+  flex-direction: column;
+}

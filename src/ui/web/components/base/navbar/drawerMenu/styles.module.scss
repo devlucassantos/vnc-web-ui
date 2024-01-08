@@ -1,0 +1,157 @@
+.drawerContent {
+  width: 340px;
+}
+
+.line {
+  position: relative;
+  left: 20px;
+  top: 100px;
+  width: 300px;
+  max-width: 100%;
+  height: 4px;
+  max-height: 100%;
+}
+
+.line::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform-origin: 0 0;
+  transform: rotate(0.382deg);
+  width: 300px;
+  height: 0;
+  outline: solid 1px #aba9a9;
+}
+.newsletter {
+  color: #000;
+  font-size: 20px;
+  font-weight: bold;
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+    'Liberation Sans', sans-serif;
+  letter-spacing: -0.017em;
+  position: relative;
+  left: 20px;
+  width: 120px;
+  height: 24px;
+  flex-direction: column;
+}
+.newsIcon {
+  position: relative;
+  left: 20px;
+  width: 36px;
+  height: 64px;
+  background-image:/* webpackIgnore: true */ url('/assets/news.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  margin-right: 16px;
+}
+.proposition {
+  color: #000;
+  font-size: 20px;
+  font-weight: bold;
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+    'Liberation Sans', sans-serif;
+  letter-spacing: -0.017em;
+  position: relative;
+  left: 20px;
+  width: 160px;
+  height: 24px;
+  flex-direction: column;
+}
+
+.lawDocumentIcon {
+  position: relative;
+  left: 20px;
+  width: 36px;
+  height: 64px;
+  background-image: url('/assets/law-document.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  margin-right: 16px;
+}
+.home {
+  color: #000;
+  font-size: 20px;
+  font-weight: bold;
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+    'Liberation Sans', sans-serif;
+  letter-spacing: -0.017em;
+  position: relative;
+  left: 20px;
+  width: 60px;
+  height: 24px;
+  flex-direction: column;
+}
+.homeIcon {
+  position: relative;
+  left: 20px;
+  width: 36px;
+  height: 64px;
+  background-image: url('/assets/home.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  margin-right: 16px;
+}
+.imageFrame {
+  position: absolute;
+  left: 20px;
+  top: 40px;
+  width: 250px;
+  height: 42px;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.vncLogo {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 250px;
+  height: 40px;
+  background-image: url('/assets/logo-blue.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.closeButton {
+  position: absolute;
+  top: 40px;
+  width: 36px;
+  height: 30px;
+  right: 12px;
+  background-image: url('/assets/close.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  cursor: pointer;
+}
+
+.homeItem {
+  position: absolute;
+  top: 140px;
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+}
+
+.propositionItem {
+  position: absolute;
+  top: 200px;
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+}
+
+.newsletterItem {
+  position: absolute;
+  top: 260px;
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+}

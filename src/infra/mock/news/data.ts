@@ -1,0 +1,58 @@
+const newsList = [
+    {
+        id: '1',
+        title: 'Projeto de Lei X',
+        content: 'Conteúdo detalhado do Projeto de Lei X sobre temas importantes para a sociedade. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit...',
+        views: 100,
+        type: 'Proposicao',
+        created_at: '2024-01-06T12:00:00Z',
+        updated_at: '2024-01-07T09:30:00Z',
+    },
+    {
+        id: '2',
+        title: 'Projeto de Lei Y',
+        content: 'Projeto de Lei Y aborda questões educacionais e propõe melhorias no sistema de ensino. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...',
+        views: 150,
+        type: 'Proposicao',
+        created_at: '2024-01-05T15:45:00Z',
+        updated_at: '2024-01-06T11:20:00Z',
+    },
+    {
+        id: '3',
+        title: 'Boletim diário',
+        content: 'Conteúdo abrangente do Projeto de Lei Z que visa melhorar os serviços de saúde no país. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...',
+        views: 80,
+        type: 'Boletim',
+        created_at: '2024-01-04T08:30:00Z',
+        updated_at: '2024-01-05T14:15:00Z',
+    },
+    {
+        id: '4',
+        title: 'Projeto de Lei W',
+        content: 'Projeto de Lei W destaca a importância da preservação ambiental e propõe ações para conservação. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...',
+        views: 120,
+        type: 'Proposicao',
+        created_at: '2024-01-03T17:00:00Z',
+        updated_at: '2024-01-04T10:45:00Z',
+    },
+    {
+        id: '5',
+        title: 'Boletim Diário',
+        content: 'Conteúdo informativo do Projeto de Lei V que aborda temas econômicos e suas implicações. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...',
+        views: 90,
+        type: 'Boletim',
+        created_at: '2024-01-02T13:20:00Z',
+        updated_at: '2024-01-03T08:55:00Z',
+    },
+    {
+        id: '6',
+        title: 'Projeto de Lei U',
+        content: 'Projeto de Lei U trata de medidas para reforçar a segurança pública e promover o bem-estar. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...',
+        views: 110,
+        type: 'Proposicao',
+        created_at: '2024-01-01T11:30:00Z',
+        updated_at: '2024-01-02T16:10:00Z',
+    },
+];
+
+export default { newsList };

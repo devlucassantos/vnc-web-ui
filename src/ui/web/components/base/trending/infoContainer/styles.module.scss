@@ -1,0 +1,41 @@
+.infoContainer {
+  margin-right: 5%;
+  margin-left: 5%;
+  margin-bottom: 5%;
+}
+
+.titleContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.title {
+  color: #000;
+  font-size: 18px;
+  font-weight: bold;
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+  'Liberation Sans', sans-serif;
+  letter-spacing: -0.017em;
+  width: 70%;
+  flex-direction: column;
+}
+
+.infoIcon {
+  width: 25px;
+  height: 25px;
+  border-radius: 6px;
+  background-image:/* webpackIgnore: true */ url('/assets/info.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.time {
+  color: #898989;
+  font-size: 14px;
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+  'Liberation Sans', sans-serif;
+  letter-spacing: -0.017em;
+  width: 50px;
+  flex-direction: column;
+}
