@@ -1,0 +1,38 @@
+import {FC, memo} from "react";
+import styles from "./styles.module.scss";
+import News from "../../../../../../core/domain/models/News";
+import {limitText} from "../../../../../../core/utils/stringUtils";
+
+interface Props {
+    className?: string;
+    news: News
+}
+
+export const BigCard: FC<Props> = memo(function BigCard({
+    news,
+    ...props
+}) {
+    return (
+        <div className={styles.card}>
+            <div className={styles.imageContainer}>
+                <div className={styles.image}></div>
+            </div>
+            <div className={styles.cardColumn}>
+                <div className={styles.titleContainer}>
+                    <div className={styles.titleContainerRow}>
+                        <div className={styles.line}></div>
+                        <div className={styles.title}>{news.title}</div>
+                    </div>
+                    <div className={styles.viewMore}>Ver mais</div>
+                </div>
+                <div className={styles.content}>{limitText(news.content, 40)}</div>
+                <div className={styles.dateRow}>
+                    <div className={styles.createdAt}>{news.createdAt}</div>
+                    {news.createdAt != news.updatedAt && <div className={styles.updatedAt}>{"Atualizado em " + news.updatedAt}</div>}
+                </div>
+            </div>
+        </div>
+    );
+});
+
+export default BigCard;

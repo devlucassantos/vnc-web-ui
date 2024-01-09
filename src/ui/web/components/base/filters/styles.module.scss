@@ -1,0 +1,33 @@
+
+.filtersRow {
+  display: flex;
+  margin-top: 2%;
+  margin-left: 10%;
+  margin-bottom: 1%;
+  gap: 8px;
+}
+
+.filterInput,
+.filterSelect {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.filterButtonBlue {
+  background-color: #0047ab;
+  color: #fff;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.filterButtonClear {
+  background-color: #fff;
+  color: #000;
+  padding: 8px 16px;
+  border: 1px solid #000;
+  border-radius: 4px;
+  cursor: pointer;
+}
