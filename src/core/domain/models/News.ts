@@ -6,7 +6,6 @@ class News extends Model {
     private _id: string;
     private _title: string;
     private _content: string;
-    private _views: number;
     private _type: string;
     private _createdAt: string;
     private _updatedAt: string;
@@ -14,7 +13,6 @@ class News extends Model {
     constructor() {
         super();
         this._id = this._title = this._content = this._type = this._createdAt = this._updatedAt = '';
-        this._views = 0;
     }
 
     get id() {
@@ -27,10 +25,6 @@ class News extends Model {
 
     get content() {
         return this._content;
-    }
-
-    get views() {
-        return this._views;
     }
 
     get type() {
@@ -53,10 +47,6 @@ class News extends Model {
         this._content = content;
     }
 
-    set setViews(views: number) {
-        this._views = views;
-    }
-
     set setType(type: string) {
         this._type = type;
     }
@@ -70,7 +60,6 @@ class News extends Model {
         dto['id'] = this._id;
         dto['title'] = this._title;
         dto['content'] = this._content;
-        dto['views'] = this._views;
         dto['type'] = this._type;
         dto['created_at'] = this._createdAt;
         dto['updated_at'] = this._updatedAt;
@@ -82,7 +71,6 @@ class News extends Model {
         obj._id = String(json['id']);
         obj._title = String(json['title']);
         obj._content = String(json['content']);
-        obj._views = Number(json['views']);
         obj._type = String(json['type']);
         obj._createdAt = formatCustomDate(String(json['created_at']));
         obj._updatedAt = formatCustomDate(String(json['updated_at']));
