@@ -1,7 +1,7 @@
 import {FC, memo} from "react";
 import styles from "./styles.module.scss";
 import TimeLineIndicator from "../indicator";
-import SmallCard from "../../card/smallCard";
+import SmallCard from "../../../news/cards/smallCard";
 import News from "../../../../../../core/domain/models/News";
 
 interface Props {

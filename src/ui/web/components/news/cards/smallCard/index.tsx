@@ -1,29 +1,32 @@
 import {FC, memo} from "react";
 import styles from "./styles.module.scss";
 import News from "../../../../../../core/domain/models/News";
-import {limitText} from "../../../../../../core/utils/stringUtils";
+import {limitText} from "@utils/stringUtils";
+import {Link} from "react-router-dom";
 
 interface Props {
     className?: string;
-    news: News
+    news: News;
 }
 
-export const BigCard: FC<Props> = memo(function BigCard({
+export const SmallCard: FC<Props> = memo(function SmallCard({
     news,
     ...props
 }) {
     return (
-        <div className={styles.card}>
-            <div className={styles.imageContainer}>
-                <div className={styles.image}></div>
+        <div className={styles.smallCard}>
+            <div className={styles.imageView}>
+                <div className={styles.image} />
             </div>
-            <div className={styles.cardColumn}>
-                <div className={styles.titleContainer}>
-                    <div className={styles.titleContainerRow}>
-                        <div className={styles.line}></div>
+            <div className={styles.column}>
+                <div className={styles.titleRow}>
+                    <div className={styles.titleView}>
+                        <div className={styles.line}/>
                         <div className={styles.title}>{news.title}</div>
                     </div>
-                    <div className={styles.viewMore}>Ver mais</div>
+                    <Link className={styles.viewMore} to={(news.type === "Proposição" ? "/detalhes-da-proposicao/" : "/detalhes-do-boletim/") + news.id}>
+                        Ver mais
+                    </Link>
                 </div>
                 <div className={styles.content}>{limitText(news.content, 40)}</div>
                 <div className={styles.dateRow}>
@@ -35,4 +38,4 @@ export const BigCard: FC<Props> = memo(function BigCard({
     );
 });
 
-export default BigCard;
+export default SmallCard;

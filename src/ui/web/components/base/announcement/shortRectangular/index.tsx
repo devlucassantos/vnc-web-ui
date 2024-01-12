@@ -5,7 +5,7 @@ interface Props {
     className?: string;
 }
 
-export const RectangularAnnouncement: FC<Props> = memo(function RectangularAnnouncement(props = {}) {
+export const ShortRectangularAnnouncement: FC<Props> = memo(function ShortRectangularAnnouncement(props = {}) {
     return (
         <div className={styles.container}>
             <div className={styles.image}></div>
@@ -13,4 +13,4 @@ export const RectangularAnnouncement: FC<Props> = memo(function RectangularAnnou
     );
 });
 
-export default RectangularAnnouncement;
+export default ShortRectangularAnnouncement;
