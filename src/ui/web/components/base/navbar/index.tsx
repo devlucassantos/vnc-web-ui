@@ -20,15 +20,13 @@ export const Navbar: FC<Props> = memo(function Navbar(props = {}) {
     };
 
     return (
-        <div>
-            <div className={styles.navbar}>
-                <div className={styles.iconMenu} onClick={handleDrawerOpen} >
-                    <MenuIcon className={styles.icon} />
-                </div>
-                <Link to="/">
-                    <div className={styles.logoWhite} />
-                </Link>
+        <div className={styles.navbar}>
+            <div className={styles.iconMenu} onClick={handleDrawerOpen} >
+                <MenuIcon className={styles.icon} />
             </div>
+            <Link to="/">
+                <div className={styles.logoWhite} />
+            </Link>
             <DrawerMenu isOpen={isDrawerOpen} onClose={handleDrawerClose} />
         </div>
     );

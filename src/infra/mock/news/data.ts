@@ -1,4 +1,4 @@
-const newsList = [
+export const newsList = [
     {
         id: '1',
         title: 'Projeto de Lei X',
@@ -55,4 +55,26 @@ const newsList = [
     },
 ];
 
-export default { newsList };
+export const newsletterList = {
+    content: "O presidente enviou ao Congresso Nacional um projeto de lei que permite a concessão de descontos fiscais.  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua... ",
+    created_at: "2024-01-02T16:10:00Z",
+    id: "7963a6dd-f0b8-4065-8e56-6d2a79626db7",
+    propositions: [
+        {
+            code: 9465723,
+            content: "O presente requerimento foi elaborado pelos deputados 1...",
+            created_at: "2023-08-09T14:55:00Z",
+            id: "15245a3a-8159-4e5b-b455-b11ad73b500e",
+            image_url: "https://www.vnc.com.br/news/proposition/image/87624.jpg",
+            original_text_url: "https://www.camara.leg.br/proposicoesWeb/prop_mostrarintegra?codteor=4865485",
+            submitted_at: "2024-01-02T16:10:00Z",
+            title: "Requerimento de Votação Nominal-Destaque de Emenda",
+            updated_at: "2024-01-02T16:10:00Z"
+        }
+    ],
+    reference_date: "2024-01-02T16:10:00Z",
+    title: "Proposta inovadora busca impulsionar o crescimento empresarial na cidade de Arapiraca",
+    updated_at: "2024-01-02T16:10:00Z"
+};
+
+export default { newsletterList, newsList };

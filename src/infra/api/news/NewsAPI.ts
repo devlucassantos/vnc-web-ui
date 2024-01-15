@@ -1,22 +1,19 @@
 import News from "../../../core/domain/models/News";
 import DTO from "../../../core/domain/types/http/DTO";
-import newsMockData from "../../mock/news/data";
+import newsMockData, {newsList} from "../../mock/news/data";
 import NewsAdapter from "../../../core/interfaces/adapters/NewsAdapter";
 import {BackendClient} from "../clients/BackendClient";
+import {NewsFilters} from "@typing/http/Filters";
+import {Pagination} from "@models/Pagination";
 
 
 class NewsAPI implements NewsAdapter {
-    async getNews(): Promise<News[]> {
+    async getNews(queryFilters: NewsFilters): Promise<Pagination<News>> {
 
        try {
-           const response = await BackendClient.get(`/news`);
-           const data = response.data.data
+           const response = await BackendClient.get(`/news`, { params: queryFilters });
 
-           const newsResponse = await Promise.all((data as DTO[]).map(async (news: DTO<any>) => {
-               return News.fromJSON(news);
-           }));
-
-           return newsResponse;
+           return Pagination.fromJSON(response.data, News.fromJSON);
        } catch (error) {
            throw error;
        }
