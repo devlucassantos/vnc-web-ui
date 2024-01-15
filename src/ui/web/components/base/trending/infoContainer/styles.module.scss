@@ -1,24 +1,34 @@
-.infoContainer {
-  margin-right: 5%;
-  margin-left: 5%;
-  margin-bottom: 5%;
-}
-
 .titleContainer {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
+  padding-top: 5%;
+  padding-bottom: 5%;
+}
+
+.borderTop {
+  border-top: 1px solid #eee;
+}
+
+.trendingNumber {
+  color: #999;
+  font-size: 18px;
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+  'Liberation Sans', sans-serif;
 }
 
 .title {
-  color: #000;
-  font-size: 18px;
+  color: #0047ab;
+  font-size: 16px;
   font-weight: bold;
   font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
   'Liberation Sans', sans-serif;
+  text-align: justify;
   letter-spacing: -0.017em;
-  width: 70%;
+  width: 90%;
   flex-direction: column;
+  cursor: pointer;
 }
 
 .infoIcon {

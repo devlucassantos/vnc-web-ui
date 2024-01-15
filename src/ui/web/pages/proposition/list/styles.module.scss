@@ -51,6 +51,34 @@
   background-size: contain;
 }
 
+.propositionsContainer {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  width: 70%;
+  height: auto;
+  margin-bottom: 1%;
+  margin-top: 3%;
+}
+
+.propositionsLeftColumn {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  min-height: 70vh;
+}
+
+.propositionsRightColumn {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  width: 30%;
+  height: auto;
+  float: right;
+}
+
 :where(.resets),
 :where(.resets) * {
   box-sizing: border-box;

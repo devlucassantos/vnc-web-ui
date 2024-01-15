@@ -1,24 +1,31 @@
 import {FC, memo} from "react";
 import styles from "./styles.module.scss";
-import {TrendingRectangleIcon} from "../icon/TrendingRectangleIcon";
 import TrendingInfoContainer from "./infoContainer";
+import News from "@models/News";
 
 interface Props {
     className?: string;
+    trendingNewsList: News[];
 }
 
-export const TrendingContainer: FC<Props> = memo(function TrendingContainer(props = {}) {
+export const TrendingContainer: FC<Props> = memo(function TrendingContainer({
+    trendingNewsList,
+    ...props
+}) {
     return (
         <div className={styles.trendingContainer}>
             <div className={styles.titleContainer}>
-                <TrendingRectangleIcon className={styles.icon} />
-                <div className={styles.title}>Destaques</div>
+                <h2 className={styles.title}>Mais lidas</h2>
             </div>
-            <div className={styles.trendingInfoContainer}>
-                {[...Array(5)].map((_, index) => (
-                    <TrendingInfoContainer key={index} />
-                ))}
-            </div>
+            {trendingNewsList &&
+                <>
+                    <div className={styles.trendingInfoContainer}>
+                        {trendingNewsList?.map((trendingNews, index) => (
+                            <TrendingInfoContainer key={index} trendingNews={trendingNews} index={index} isFirstItem={index === 0} />
+                        ))}
+                    </div>
+                </>
+            }
         </div>
     );
 });
