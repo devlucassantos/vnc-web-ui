@@ -6,6 +6,7 @@ import {NewsletterListPage} from "../pages/newsletter/list";
 import {PropositionDetailsPage} from "../pages/proposition/details";
 import {NewsletterDetailsPage} from "@pages/newsletter/details";
 import {TrendingPage} from "@pages/trending";
+import {OriginalPropositionPage} from "@pages/proposition/original";
 
 interface Props {
     className?: string;
@@ -21,6 +22,7 @@ export const NavigationRoutes: FC<Props> = memo(function NavigationRoutes(props 
                 <Route path="/trendings" element={<TrendingPage />} />
                 <Route path="/detalhes-da-proposicao/:id" element={<PropositionDetailsPage />} />
                 <Route path="/detalhes-do-boletim/:id" element={<NewsletterDetailsPage />} />
+                <Route path="/proposicao-original" element={<OriginalPropositionPage />} />
             </Routes>
         </BrowserRouter>
     );

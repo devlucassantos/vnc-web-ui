@@ -1,4 +1,4 @@
-import {FC, memo} from "react";
+import React, {FC, memo} from "react";
 import styles from "./styles.module.scss";
 import Proposition from "../../../../../core/domain/models/Proposition";
 import {Link} from "react-router-dom";
@@ -20,7 +20,9 @@ export const PropositionDetailsCard: FC<Props> = memo(function PropositionDetail
                     <div className={styles.line} />
                     <div className={styles.title}>{proposition.title}</div>
                 </div>
-                <div className={styles.viewOriginalProposition}>Ver proposição original</div>
+                <Link className={styles.viewOriginalProposition} to="/proposicao-original">
+                    <div>Ver proposição original</div>
+                </Link>
             </div>
             <div className={styles.createdAt}>
                 {proposition.createdAt}{proposition.createdAt != proposition.updatedAt && " - Atualizado em " + proposition.updatedAt}
