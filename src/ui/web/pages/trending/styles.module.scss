@@ -31,7 +31,7 @@
 .filtersRow {
   display: flex;
   margin-top: 2%;
-  margin-bottom: 1%;
+  margin-bottom: 2%;
   gap: 8px;
 }
 
@@ -41,27 +41,32 @@
   align-items: center;
 }
 
-.newsletterIcon {
+.trendingsIcon {
   position: relative;
-  width: 40px;
-  height: 40px;
-  background-image: url('/assets/news.png');
+  width: 36px;
+  height: 64px;
+  background-image: url('/assets/ratings.png');
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
 }
 
-.newslettersContainer {
+.pagination {
+  margin-top: 2%;
+  margin-bottom: 2%;
+}
+
+.trendingNewsContainer {
   position: relative;
   display: flex;
   flex-direction: row;
   width: 70%;
   height: auto;
-  margin-bottom: 1%;
   margin-top: 3%;
+  margin-bottom: 1%;
 }
 
-.newslettersLeftColumn {
+.trendingNewsLeftColumn {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -69,7 +74,7 @@
   min-height: 70vh;
 }
 
-.newslettersRightColumn {
+.trendingNewsRightColumn {
   position: relative;
   display: flex;
   flex-direction: column;

@@ -11,30 +11,49 @@ import ShortRectangularAnnouncement from "../../../components/base/announcement/
 import {useParams} from "react-router-dom";
 import Proposition from "../../../../../core/domain/models/Proposition";
 import LongRectangularAnnouncement from "@components/base/announcement/longRectangular";
+import {NewsFilters} from "@typing/http/Filters";
+import News from "@models/News";
 
 interface Props {
     className?: string;
 }
 
 const propositionService = DIContainer.getPropositionUseCase();
+const trendingNewsService = DIContainer.getTrendingNewsUseCase();
 
 export const PropositionDetailsPage: FC<Props> = memo(function PropositionDetailsPage(props = {}) {
     const {id} = useParams();
     const [proposition, setProposition] = useState<Proposition>();
+    const [trendingNewsList, setTrendingNews] = useState<News[]>([]);
+
+    const findProposition = async () => {
+        try {
+            if (id) {
+                const data = await propositionService.getPropositionByID(id);
+                setProposition(data);
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    };
+
+    const fetchTrendingNews = async (page?: number) => {
+        try {
+            const queryFilters: NewsFilters = {
+                type: "Proposição",
+                itemsPerPage: 5
+            };
+
+            const pagination = await trendingNewsService.getTrendingNews(queryFilters);
+            setTrendingNews(pagination.data);
+        } catch (error) {
+            console.log(error)
+        }
+    };
 
     useEffect(() => {
-        const findProposition = async () => {
-            try {
-                if (id) {
-                    const data = await propositionService.getPropositionByID(id);
-                    setProposition(data);
-                }
-            } catch (error) {
-                console.log(error)
-            }
-        };
-
         findProposition();
+        fetchTrendingNews();
     }, []);
 
     return (
@@ -49,7 +68,7 @@ export const PropositionDetailsPage: FC<Props> = memo(function PropositionDetail
                         {proposition && <PropositionDetailsCard proposition={proposition}/>}
                     </div>
                     <div className={styles.detailsRightColumn}>
-                        <TrendingContainer/>
+                        <TrendingContainer trendingNewsList={trendingNewsList} />
                         <ShortRectangularAnnouncement/>
                     </div>
                 </div>

@@ -3,78 +3,61 @@ import type {FC} from 'react';
 
 import style from './styles.module.scss';
 import Navbar from "../../components/base/navbar";
-import BigCard from "../../components/news/cards/bigCard";
 import TimeLine from "../../components/base/timeLine";
 import {Filters} from "../../components/base/filters";
 import DIContainer from "../../dicontainer";
 import News from "../../../../core/domain/models/News";
 import {NewsFilters} from "@typing/http/Filters";
-import TrendingContainer from "@components/base/trending";
 import ShortRectangularAnnouncement from "@components/base/announcement/shortRectangular";
 import CustomPagination from "@components/base/customPagination";
+import {PageTitle} from "@components/base/pageTitle";
 
 interface Props {
     className?: string;
 }
 
-const newsService = DIContainer.getNewsUseCase();
 const trendingNewsService = DIContainer.getTrendingNewsUseCase();
 
-export const Home: FC<Props> = memo(function Home(props = {}) {
-    const [newsList, setNews] = useState<News[]>([]);
+export const TrendingPage: FC<Props> = memo(function TrendingPage(props = {}) {
     const [trendingNewsList, setTrendingNews] = useState<News[]>([]);
     const [maxPageCount, setMaxPageCount] = useState<number>(0);
 
-    const fetchNews = async (page?: number) => {
+    const fetchTrendingNews = async (page?: number) => {
         try {
             const queryFilters: NewsFilters = {
                 page: page,
                 itemsPerPage: 15
             };
 
-            const pagination = await newsService.getNews(queryFilters);
-            setNews(pagination.data);
+            const pagination = await trendingNewsService.getTrendingNews(queryFilters);
+            setTrendingNews(pagination.data);
             setMaxPageCount(pagination.maxPageCount);
         } catch (error) {
             console.log(error)
         }
     };
 
-    const fetchTrendingNews = async () => {
-        try {
-            const queryFilters: NewsFilters = {
-                itemsPerPage: 5
-            };
-
-            const pagination = await trendingNewsService.getTrendingNews(queryFilters);
-            setTrendingNews(pagination.data);
-        } catch (error) {
-            console.log(error)
-        }
-    };
-
     useEffect(() => {
-        fetchNews();
         fetchTrendingNews();
     }, []);
 
     const actionOnChangePagination = (page: number) => {
-        fetchNews(page);
+        fetchTrendingNews(page);
     };
 
     return (
         <div className={`${style.resets} ${style.root} ${style.background}`}>
             <Navbar/>
             <div className={style.body}>
+                <PageTitle iconStyle={style.trendingsIcon} titleViewStyle={style.titleView} label="Trendings"/>
                 <Filters filtersRowStyle={style.filtersRow}/>
-                {newsList.length > 0 && <BigCard news={newsList[0]}/>}
-                <div className={style.newsContainer}>
-                    <div className={style.newsLeftColumn}>
-                        {<TimeLine newsList={newsList.slice(1)} />}
+                <div className={style.trendingNewsContainer}>
+                    <div className={style.trendingNewsLeftColumn}>
+                        {<TimeLine newsList={trendingNewsList} />}
                         {maxPageCount != 0 && <CustomPagination count={maxPageCount} actionOnChange={actionOnChangePagination} />}
                     </div>
-                    <div className={style.newsRightColumn}>
-                        <TrendingContainer trendingNewsList={trendingNewsList} />
+                    <div className={style.trendingNewsRightColumn}>
+                        <ShortRectangularAnnouncement/>
                         <ShortRectangularAnnouncement/>
                     </div>
                 </div>

@@ -1,7 +1,6 @@
 import { memo } from 'react';
 import type { FC } from 'react';
 
-import resets from '../_resets.module.scss';
 import styles from './styles.module.scss';
 import {Drawer} from "@mui/material";
 import {Link} from "react-router-dom";
@@ -37,6 +36,12 @@ export const DrawerMenu: FC<Props> = memo(function DrawerMenu({
                   <div className={styles.newsletterItem}>
                       <div className={styles.newsIcon}></div>
                       <div className={styles.newsletter}>Boletins</div>
+                  </div>
+              </Link>
+              <Link to="/trendings" >
+                  <div className={styles.trendingsItem}>
+                      <div className={styles.trendingsIcon}></div>
+                      <div className={styles.trendings}>Trendings</div>
                   </div>
               </Link>
               <div className={styles.imageFrame}>
