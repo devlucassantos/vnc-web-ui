@@ -13,6 +13,7 @@
     "@emotion/styled": "^11.11.0",
     "@mui/material": "^5.15.3",
     "@react-pdf-viewer/core": "^3.12.0",
+    "@react-pdf-viewer/default-layout": "^3.12.0",
     "@types/react-router-dom": "^5.3.3",
     "axios": "^1.6.5",
     "cors": "^2.8.5",

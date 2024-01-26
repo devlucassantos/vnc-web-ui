@@ -8,7 +8,7 @@ import {PageTitle} from "../../../components/base/pageTitle";
 import PropositionDetailsCard from "../../../components/proposition/details";
 import TrendingContainer from "../../../components/base/trending";
 import ShortRectangularAnnouncement from "../../../components/base/announcement/shortRectangular";
-import {useParams} from "react-router-dom";
+import {useLocation, useParams} from "react-router-dom";
 import Proposition from "../../../../../core/domain/models/Proposition";
 import LongRectangularAnnouncement from "@components/base/announcement/longRectangular";
 import {NewsFilters} from "@typing/http/Filters";
@@ -19,25 +19,12 @@ interface Props {
     className?: string;
 }
 
-const propositionService = DIContainer.getPropositionUseCase();
 const trendingNewsService = DIContainer.getTrendingNewsUseCase();
 
 export const OriginalPropositionPage: FC<Props> = memo(function OriginalPropositionPage(props = {}) {
-    // const {id} = useParams();
-    // const [proposition, setProposition] = useState<Proposition>();
+    const {codteor} = useParams();
+
     const [trendingNewsList, setTrendingNews] = useState<News[]>([]);
-
-    // const findProposition = async () => {
-    //     try {
-    //         if (id) {
-    //             const data = await propositionService.getPropositionByID(id);
-    //             setProposition(data);
-    //         }
-    //     } catch (error) {
-    //         console.log(error)
-    //     }
-    // };
-
     const fetchTrendingNews = async (page?: number) => {
         try {
             const queryFilters: NewsFilters = {
@@ -53,7 +40,6 @@ export const OriginalPropositionPage: FC<Props> = memo(function OriginalProposit
     };
 
     useEffect(() => {
-        // findProposition();
         fetchTrendingNews();
     }, []);
 
@@ -66,7 +52,7 @@ export const OriginalPropositionPage: FC<Props> = memo(function OriginalProposit
                            label="Proposição Original"/>
                 <div className={styles.detailsContainer}>
                     <div className={styles.detailsLeftColumn}>
-                        <PdfViewer pdfUrl={"https://www.camara.leg.br/proposicoesWeb/prop_mostrarintegra?codteor=2383319"} />
+                        <PdfViewer pdfUrl={`/pdf?codteor=${codteor}`} />
                     </div>
                     <div className={styles.detailsRightColumn}>
                         <TrendingContainer trendingNewsList={trendingNewsList} />

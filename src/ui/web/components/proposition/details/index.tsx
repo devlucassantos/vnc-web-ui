@@ -1,7 +1,8 @@
-import React, {FC, memo} from "react";
+import React, {FC, memo, useState} from "react";
 import styles from "./styles.module.scss";
 import Proposition from "../../../../../core/domain/models/Proposition";
 import {Link} from "react-router-dom";
+import DeputyModal from "@components/proposition/details/deputy";
 
 interface Props {
     className?: string;
@@ -12,6 +13,10 @@ export const PropositionDetailsCard: FC<Props> = memo(function PropositionDetail
     proposition,
     ...props
 }) {
+    const codteor = proposition.originalTextUrl.split('codteor=')[1];
+    const [modalOpen, setModalOpen] = useState(false);
+    const openModal = () => setModalOpen(true);
+    const closeModal = () => setModalOpen(false);
 
     return (
         <div className={styles.card}>
@@ -20,7 +25,7 @@ export const PropositionDetailsCard: FC<Props> = memo(function PropositionDetail
                     <div className={styles.line} />
                     <div className={styles.title}>{proposition.title}</div>
                 </div>
-                <Link className={styles.viewOriginalProposition} to="/proposicao-original">
+                <Link className={styles.viewOriginalProposition} to={"/proposicao-original/" + codteor} >
                     <div>Ver proposição original</div>
                 </Link>
             </div>
@@ -34,7 +39,10 @@ export const PropositionDetailsCard: FC<Props> = memo(function PropositionDetail
                 <div className={styles.deputiesColumn}>
                     <div className={styles.deputiesLabel}>Deputados:</div>
                     {proposition.deputies?.map((deputy, index) => (
-                        <div key={index} className={styles.deputyNameLabel}>- {deputy.name}</div>
+                        <div onMouseEnter={() => setModalOpen(true)} key={index} className={styles.deputyNameLabel}>
+                            - {deputy.name}
+                            {modalOpen && <DeputyModal key={index} deputy={deputy} closeModal={closeModal} />}
+                        </div>
                     ))}
                 </div>
                 <div className={styles.organizationsColumn}>

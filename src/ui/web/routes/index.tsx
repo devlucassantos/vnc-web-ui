@@ -22,7 +22,7 @@ export const NavigationRoutes: FC<Props> = memo(function NavigationRoutes(props 
                 <Route path="/trendings" element={<TrendingPage />} />
                 <Route path="/detalhes-da-proposicao/:id" element={<PropositionDetailsPage />} />
                 <Route path="/detalhes-do-boletim/:id" element={<NewsletterDetailsPage />} />
-                <Route path="/proposicao-original" element={<OriginalPropositionPage />} />
+                <Route path="/proposicao-original/:codteor" element={<OriginalPropositionPage />} />
             </Routes>
         </BrowserRouter>
     );
