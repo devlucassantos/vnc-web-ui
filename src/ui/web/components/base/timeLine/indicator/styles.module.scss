@@ -11,6 +11,7 @@
   width: 0px;
   height: 125%;
   outline: solid 1px #0047ab;
+  flex-shrink: 0;
 }
 
 .smallLine {
@@ -18,19 +19,20 @@
   width: 0px;
   height: 100%;
   outline: solid 1px #0047ab;
+  flex-shrink: 0;
 }
 
 .ellipse {
-  position: absolute;
+  position: relative;
   left: 50%;
-  transform: translate(-50%, -50%);
-  top: 10px;
-  width: 30px;
-  height: 24px;
+  transform: translate(-50%, -10%);
+  width: 1.7vw;
+  height: 1.3vw;
   overflow: visible;
 }
 
 .icon {
   width: 100%;
   height: 100%;
+  overflow: visible;
 }

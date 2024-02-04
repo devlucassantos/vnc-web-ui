@@ -32,7 +32,7 @@
   display: flex;
   margin-top: 2%;
   margin-bottom: 1%;
-  gap: 8px;
+  gap: 1rem;
 }
 
 .titleView {
@@ -45,7 +45,7 @@
   position: relative;
   width: 40px;
   height: 40px;
-  background-image: url('/assets/law-document.png');
+  background-image: url('/src/ui/web/assets/law-document.png');
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -77,36 +77,4 @@
   width: 30%;
   height: auto;
   float: right;
-}
-
-:where(.resets),
-:where(.resets) * {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  background: none;
-  border: none;
-  flex-shrink: 0;
-  text-decoration: none;
-  min-width: 0;
-  overflow-wrap: anywhere;
-}
-
-:where(.resets) ul,
-:where(.resets) ol {
-  text-indent: 0;
-  padding-inline-start: 1.5em;
-}
-
-:where(.resets) p:empty::before {
-  content: '';
-  display: inline-block;
-}
-
-:where(.resets) img {
-  object-fit: contain;
-}
-
-:where(.resets) svg {
-  overflow: visible;
 }

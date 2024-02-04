@@ -13,6 +13,7 @@ import Proposition from "../../../../../core/domain/models/Proposition";
 import LongRectangularAnnouncement from "@components/base/announcement/longRectangular";
 import {NewsFilters} from "@typing/http/Filters";
 import News from "@models/News";
+import NoResultMessage from "@components/base/noResultMessage";
 
 interface Props {
     className?: string;
@@ -63,15 +64,21 @@ export const PropositionDetailsPage: FC<Props> = memo(function PropositionDetail
                 <LongRectangularAnnouncement/>
                 <PageTitle iconStyle={styles.infoIcon} titleViewStyle={styles.titleView}
                            label="Detalhes da Proposição"/>
-                <div className={styles.detailsContainer}>
-                    <div className={styles.detailsLeftColumn}>
-                        {proposition && <PropositionDetailsCard proposition={proposition}/>}
+                {proposition ? (
+                    <div className={styles.detailsContainer}>
+                        <div className={styles.detailsLeftColumn}>
+                            {proposition && <PropositionDetailsCard proposition={proposition}/>}
+                        </div>
+                        <div className={styles.detailsRightColumn}>
+                            <TrendingContainer trendingNewsList={trendingNewsList} />
+                            <ShortRectangularAnnouncement/>
+                        </div>
                     </div>
-                    <div className={styles.detailsRightColumn}>
-                        <TrendingContainer trendingNewsList={trendingNewsList} />
-                        <ShortRectangularAnnouncement/>
+                ) : (
+                    <div className={styles.noResultContainer}>
+                        <NoResultMessage />
                     </div>
-                </div>
+                )}
             </div>
         </div>
     );

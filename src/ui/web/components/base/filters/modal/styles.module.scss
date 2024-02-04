@@ -1,0 +1,132 @@
+.modal {
+  position: fixed;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: auto;
+  height: auto;
+  max-width: 50%;
+  padding-top: 1%;
+  padding-left: 1%;
+  padding-right: 1%;
+  z-index: 1000;
+  text-align: center;
+  transition: visibility 0s, opacity 0.5s linear;
+  visibility: visible;
+  opacity: 1;
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 0px 4px 4px 0px #00000040;
+}
+
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 999;
+  background-color: rgba(128, 128, 128, 0.5);
+}
+
+.modalContent {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.modalFields {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2em;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.dateColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.marginBottom1 {
+  margin-bottom: 1em;
+}
+
+.modalTitle {
+  width: 50%;
+  display: flex;
+  align-items: center;
+}
+
+.titleLabel {
+  font-weight: bold;
+}
+
+.closeButtonDiv {
+  width: 50%;
+  z-index: 1;
+  display: flex;
+  justify-content: end;
+}
+
+.closeButton {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+}
+
+.filterIcon {
+  width: 16px;
+  height: 16px;
+  margin-left: 4px;
+}
+
+.filterDate,
+.filterSelect {
+  width: 24vw;
+}
+
+.buttonsRow {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  margin-bottom: 1em;
+}
+
+.filterButton {
+  background-color: #0047ab !important;
+  color: #fff !important;
+  border: none !important;
+  border-radius: 4px;
+  cursor: pointer;
+  gap: 0.5rem;
+  text-transform: none !important;
+  font-size: 1rem !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+.clearButton {
+  background-color: #fff !important;
+  color: #000 !important;
+  border: 1px solid #000 !important;
+  border-radius: 4px;
+  cursor: pointer;
+  gap: 0.5rem;
+  text-transform: none !important;
+  font-family: sans-serif !important;
+  font-size: 1rem !important;
+  line-height: 1.5 !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+.clearButtonLabel {
+  padding-top: 2px;
+}

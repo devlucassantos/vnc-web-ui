@@ -2,7 +2,7 @@ import React, {FC, memo, useState} from "react";
 import styles from "./styles.module.scss";
 import Proposition from "../../../../../core/domain/models/Proposition";
 import {Link} from "react-router-dom";
-import DeputyModal from "@components/proposition/details/deputy";
+import DeputyCard from "@components/proposition/details/deputy/card";
 
 interface Props {
     className?: string;
@@ -14,9 +14,6 @@ export const PropositionDetailsCard: FC<Props> = memo(function PropositionDetail
     ...props
 }) {
     const codteor = proposition.originalTextUrl.split('codteor=')[1];
-    const [modalOpen, setModalOpen] = useState(false);
-    const openModal = () => setModalOpen(true);
-    const closeModal = () => setModalOpen(false);
 
     return (
         <div className={styles.card}>
@@ -39,10 +36,7 @@ export const PropositionDetailsCard: FC<Props> = memo(function PropositionDetail
                 <div className={styles.deputiesColumn}>
                     <div className={styles.deputiesLabel}>Deputados:</div>
                     {proposition.deputies?.map((deputy, index) => (
-                        <div onMouseEnter={() => setModalOpen(true)} key={index} className={styles.deputyNameLabel}>
-                            - {deputy.name}
-                            {modalOpen && <DeputyModal key={index} deputy={deputy} closeModal={closeModal} />}
-                        </div>
+                        <DeputyCard key={index} deputy={deputy} />
                     ))}
                 </div>
                 <div className={styles.organizationsColumn}>

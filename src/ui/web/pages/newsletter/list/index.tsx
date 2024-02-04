@@ -12,6 +12,8 @@ import {NewsFilters} from "@typing/http/Filters";
 import CustomPagination from "@components/base/customPagination";
 import TrendingContainer from "@components/base/trending";
 import ShortRectangularAnnouncement from "@components/base/announcement/shortRectangular";
+import NoResultMessage from "@components/base/noResultMessage";
+import { format } from 'date-fns';
 
 interface Props {
     className?: string;
@@ -24,13 +26,19 @@ export const NewsletterListPage: FC<Props> = memo(function NewsletterListPage(pr
     const [newsList, setNews] = useState<News[]>([]);
     const [trendingNewsList, setTrendingNews] = useState<News[]>([]);
     const [maxPageCount, setMaxPageCount] = useState<number>(0);
+    const [content, setContent] = useState<string>('');
+    const [startDate, setStartDate] = useState<Date | null>(null);
+    const [endDate, setEndDate] = useState<Date | null>(null);
 
     const fetchNews = async (page?: number) => {
         try {
             const queryFilters: NewsFilters = {
                 page: page,
                 type: 'Boletim',
-                itemsPerPage: 15
+                itemsPerPage: 15,
+                content: content,
+                startDate: startDate ? format(startDate, 'yyyy-MM-dd') : '',
+                endDate: endDate ? format(endDate, 'yyyy-MM-dd') : '',
             };
 
             const pagination = await newsService.getNews(queryFilters);
@@ -64,22 +72,38 @@ export const NewsletterListPage: FC<Props> = memo(function NewsletterListPage(pr
         fetchNews(page);
     };
 
+    const handleFilterClick = () => {
+        fetchNews();
+    };
+
     return (
         <div className={`${styles.resets} ${styles.root} ${styles.background}`}>
             <Navbar/>
             <div className={styles.body}>
                 <PageTitle iconStyle={styles.newsletterIcon} titleViewStyle={styles.titleView} label="Boletins"/>
-                <Filters filtersRowStyle={styles.filtersRow}/>
-                <div className={styles.newslettersContainer}>
-                    <div className={styles.newslettersLeftColumn}>
-                        {newsList.length > 0 && <TimeLine newsList={newsList} />}
-                        {maxPageCount != 0 && <CustomPagination count={maxPageCount} actionOnChange={actionOnChangePagination} />}
+                <Filters
+                    filtersRowStyle={styles.filtersRow}
+                    startDate={startDate}
+                    endDate={endDate}
+                    onContentChange={(value) => setContent(value)}
+                    onStartDateChange={(value) => setStartDate(value)}
+                    onEndDateChange={(value) => setEndDate(value)}
+                    onFilterClick={handleFilterClick}
+                />
+                {newsList?.length > 0 ? (
+                    <div className={styles.newslettersContainer}>
+                        <div className={styles.newslettersLeftColumn}>
+                            <TimeLine newsList={newsList} />
+                            {maxPageCount != 0 && <CustomPagination count={maxPageCount} actionOnChange={actionOnChangePagination} />}
+                        </div>
+                        <div className={styles.newslettersRightColumn}>
+                            <TrendingContainer trendingNewsList={trendingNewsList} />
+                            <ShortRectangularAnnouncement/>
+                        </div>
                     </div>
-                    <div className={styles.newslettersRightColumn}>
-                        <TrendingContainer trendingNewsList={trendingNewsList} />
-                        <ShortRectangularAnnouncement/>
-                    </div>
-                </div>
+                ) : (
+                    <NoResultMessage />
+                )}
             </div>
         </div>
     );

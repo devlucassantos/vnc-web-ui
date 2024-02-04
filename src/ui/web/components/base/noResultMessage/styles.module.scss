@@ -1,0 +1,19 @@
+.noResultMessage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 60vh;
+  width: 72%;
+}
+
+.icon {
+  font-size: 6rem;
+  color: #333;
+}
+
+.message {
+  font-size: 2rem;
+  color: #666;
+  margin-top: 2%;
+}

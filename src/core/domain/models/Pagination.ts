@@ -22,7 +22,7 @@ class Pagination<T extends Model> {
             Number(json['page']),
             Number(json['itens_per_page']),
             Number(json['total']),
-            (json['data'] as DTO[]).map(itemFactory)
+            (json['data'] as DTO[])?.map(itemFactory)
         );
     }
 

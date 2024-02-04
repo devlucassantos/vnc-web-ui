@@ -7,6 +7,7 @@ import {PropositionDetailsPage} from "../pages/proposition/details";
 import {NewsletterDetailsPage} from "@pages/newsletter/details";
 import {TrendingPage} from "@pages/trending";
 import {OriginalPropositionPage} from "@pages/proposition/original";
+import NotFoundPage from "@components/base/notFound";
 
 interface Props {
     className?: string;
@@ -23,6 +24,7 @@ export const NavigationRoutes: FC<Props> = memo(function NavigationRoutes(props 
                 <Route path="/detalhes-da-proposicao/:id" element={<PropositionDetailsPage />} />
                 <Route path="/detalhes-do-boletim/:id" element={<NewsletterDetailsPage />} />
                 <Route path="/proposicao-original/:codteor" element={<OriginalPropositionPage />} />
+                <Route path="*" element={<NotFoundPage />} />
             </Routes>
         </BrowserRouter>
     );
