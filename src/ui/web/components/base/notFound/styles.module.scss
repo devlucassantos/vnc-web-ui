@@ -7,14 +7,15 @@
 }
 
 .notFound img {
-  height: 70vh;
-  width: 50vw;
+  width: 60%;
+  background-size: cover;
 }
 
 .notFound button {
-  padding: 12px 15px;
+  padding: 12px 20px;
   background-color: #0047ab;
   border: none;
   border-radius: 12px;
   color: #FFF;
+  font-size: 1rem;
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from "./styles.module.scss";
-import image from '@assets/not-found.svg';
+import image from '@assets/not-found.png';
 import {Link} from "react-router-dom";
 
 const NotFoundPage = () => {

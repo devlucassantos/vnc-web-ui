@@ -16,7 +16,7 @@ export const BigCard: FC<Props> = memo(function BigCard({
     return (
         <div className={styles.card}>
             <div className={styles.imageContainer}>
-                <div className={styles.image} />
+                <img className={styles.image} src="/src/ui/web/assets/img.png" />
             </div>
             <div className={styles.cardColumn}>
                 <div className={styles.titleContainer}>
