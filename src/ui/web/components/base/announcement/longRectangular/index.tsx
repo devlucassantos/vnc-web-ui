@@ -12,7 +12,7 @@ export const LongRectangularAnnouncement: FC<Props> = memo(function LongRectangu
                 <div className={styles.advertisingGrayRectangle}/>
                 <div className={styles.advertisingLabel}>Publicidade</div>
             </div>
-            <div className={styles.imageAd}></div>
+            <img className={styles.imageAd} src="/src/ui/web/assets/vnc-long-rectangular-ad.jpeg" />
         </div>
     );
 });

@@ -1,7 +1,8 @@
-import {FC, memo} from "react";
+import React, {FC, memo, useState} from "react";
 import styles from "./styles.module.scss";
 import Proposition from "../../../../../core/domain/models/Proposition";
 import {Link} from "react-router-dom";
+import DeputyCard from "@components/proposition/details/deputy/card";
 
 interface Props {
     className?: string;
@@ -12,6 +13,7 @@ export const PropositionDetailsCard: FC<Props> = memo(function PropositionDetail
     proposition,
     ...props
 }) {
+    const codteor = proposition.originalTextUrl.split('codteor=')[1];
 
     return (
         <div className={styles.card}>
@@ -20,7 +22,9 @@ export const PropositionDetailsCard: FC<Props> = memo(function PropositionDetail
                     <div className={styles.line} />
                     <div className={styles.title}>{proposition.title}</div>
                 </div>
-                <div className={styles.viewOriginalProposition}>Ver proposição original</div>
+                <Link className={styles.viewOriginalProposition} to={"/proposicao-original/" + codteor} >
+                    <div>Ver proposição original</div>
+                </Link>
             </div>
             <div className={styles.createdAt}>
                 {proposition.createdAt}{proposition.createdAt != proposition.updatedAt && " - Atualizado em " + proposition.updatedAt}
@@ -32,7 +36,7 @@ export const PropositionDetailsCard: FC<Props> = memo(function PropositionDetail
                 <div className={styles.deputiesColumn}>
                     <div className={styles.deputiesLabel}>Deputados:</div>
                     {proposition.deputies?.map((deputy, index) => (
-                        <div key={index} className={styles.deputyNameLabel}>- {deputy.name}</div>
+                        <DeputyCard key={index} deputy={deputy} />
                     ))}
                 </div>
                 <div className={styles.organizationsColumn}>

@@ -24,5 +24,24 @@ export default defineConfig(({ mode }) => {
     define: {
       'process.env': definedEnv,
     },
+    server: {
+      middleware: [
+        (req, res, next) => {
+          res.setHeader('Access-Control-Allow-Origin', '*');
+          res.setHeader('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE');
+          res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+          next();
+        },
+      ],
+      proxy: {
+        "/pdf": {
+          target: "https://www.camara.leg.br/proposicoesWeb/prop_mostrarintegra",
+          changeOrigin: true,
+          followRedirects: true,
+          rewrite: (path) => path.replace(/^\/pdf/, ''),
+          secure: false
+        },
+      },
+    },
   };
 });

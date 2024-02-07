@@ -15,9 +15,9 @@
 }
 
 .image {
+  width: 100%;
   height: 100%;
   border-radius: 10px;
-  background-image: url('/assets/img.png');
   background-size: cover;
 }
 
@@ -38,7 +38,7 @@
 .titleView {
   display: flex;
   flex-direction: row;
-  width: 80%;
+  width: 85%;
 }
 
 .line {
@@ -57,9 +57,10 @@
   letter-spacing: -0.017em;
   text-align: justify;
   height: auto;
-  width: 105%;
+  width: 100%;
   margin-left: 5px;
   overflow-y: auto;
+  padding-right: 2%;
 }
 
 .viewMore {
@@ -70,10 +71,11 @@
   'Liberation Sans', sans-serif;
   letter-spacing: -0.017em;
   text-align: right;
-  width: 20%;
+  width: 15%;
   height: 30px;
   padding-right: 3%;
   margin-top: 2px;
+  text-decoration: none;
 }
 
 .content {

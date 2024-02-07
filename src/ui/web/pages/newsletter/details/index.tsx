@@ -13,6 +13,7 @@ import LongRectangularAnnouncement from "@components/base/announcement/longRecta
 import NewsletterDetailsCard from "@components/newsletter/details";
 import News from "@models/News";
 import {NewsFilters} from "@typing/http/Filters";
+import NoResultMessage from "@components/base/noResultMessage";
 
 interface Props {
     className?: string;
@@ -62,6 +63,7 @@ export const NewsletterDetailsPage: FC<Props> = memo(function NewsletterDetailsP
             <div className={styles.body}>
                 <LongRectangularAnnouncement/>
                 <PageTitle iconStyle={styles.infoIcon} titleViewStyle={styles.titleView} label="Detalhes do Boletim"/>
+                {newsletter ? (
                 <div className={styles.detailsContainer}>
                     <div className={styles.detailsLeftColumn}>
                         {newsletter && <NewsletterDetailsCard newsletter={newsletter}/>}
@@ -71,6 +73,11 @@ export const NewsletterDetailsPage: FC<Props> = memo(function NewsletterDetailsP
                         <ShortRectangularAnnouncement/>
                     </div>
                 </div>
+                ) : (
+                    <div className={styles.noResultContainer}>
+                        <NoResultMessage />
+                    </div>
+                )}
             </div>
         </div>
     );

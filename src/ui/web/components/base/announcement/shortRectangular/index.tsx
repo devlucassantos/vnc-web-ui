@@ -8,7 +8,7 @@ interface Props {
 export const ShortRectangularAnnouncement: FC<Props> = memo(function ShortRectangularAnnouncement(props = {}) {
     return (
         <div className={styles.container}>
-            <div className={styles.image}></div>
+            <img className={styles.image} src="/src/ui/web/assets/vnc-short-rectangular-ad.jpeg" />
         </div>
     );
 });

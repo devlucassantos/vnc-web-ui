@@ -1,45 +1,82 @@
-import {FC, memo} from "react";
+import React, {FC, memo, useState} from 'react';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
 import styles from './styles.module.scss';
+import FiltersModal from "@components/base/filters/modal";
+import {FaFilter, FaSearch} from "react-icons/fa";
+import Party from "@models/Party";
+import Deputy from "@models/Deputy";
+import Organization from "@models/Organization";
 
 interface Props {
     className?: string;
-    filtersRowStyle: any
+    filtersRowStyle: any;
+    startDate: Date | null;
+    endDate: Date | null;
+    party?: Party | null;
+    deputy?: Deputy | null;
+    organization?: Organization | null;
+    onContentChange: (value: string) => void;
+    onStartDateChange: (value: Date | null) => void;
+    onEndDateChange: (value: Date | null) => void;
+    onPartyChange?: (value: Party | null) => void;
+    onDeputyChange?: (value: Deputy | null) => void;
+    onOrganizationChange?: (value: Organization | null) => void;
+    onFilterClick: () => void;
 }
 
-export const Filters: FC<Props> = memo(function Navbar({
+export const Filters: FC<Props> = memo(function Filters({
     filtersRowStyle,
+    startDate,
+    endDate,
+    party,
+    deputy,
+    organization,
+    onContentChange,
+    onStartDateChange,
+    onEndDateChange,
+    onPartyChange,
+    onDeputyChange,
+    onOrganizationChange,
+    onFilterClick,
     ...props
 }) {
-    const partyOptions = ['PT', 'PSDB', 'MDB', 'PSL', 'DEM'];
-    const deputyOptions = ['João Silva', 'Maria Oliveira', 'Carlos Souza', 'Ana Santos'];
-
+    const [modalOpen, setModalOpen] = useState(false);
+    const openModal = () => setModalOpen(true);
+    const closeModal = () => setModalOpen(false);
     return (
         <div className={filtersRowStyle}>
-            <input type="text" placeholder="Conteúdo" className={styles.filterInput} />
-            <input type="date" placeholder="Data Inicial" className={styles.filterInput} />
-            <input type="date" placeholder="Data Final" className={styles.filterInput} />
-            <select className={styles.filterSelect} defaultValue="" placeholder="Partido">
-                <option value="" disabled hidden>
-                    Selecione um partido
-                </option>
-                {partyOptions.map((party, index) => (
-                    <option key={index} value={party}>
-                        {party}
-                    </option>
-                ))}
-            </select>
-            <select className={styles.filterSelect} defaultValue="" placeholder="Deputado">
-                <option value="" disabled hidden>
-                    Selecione um deputado
-                </option>
-                {deputyOptions.map((deputy, index) => (
-                    <option key={index} value={deputy}>
-                        {deputy}
-                    </option>
-                ))}
-            </select>
-            <button className={styles.filterButtonBlue}>Filtrar</button>
-            <button className={styles.filterButtonClear}>Limpar</button>
+            <TextField
+                label="Conteudo"
+                size="small"
+                className={styles.filterInput}
+                onChange={(e) => onContentChange(e.target.value)}
+            />
+            <Button variant="contained" className={styles.buttonBlue} onClick={onFilterClick}>
+                <FaSearch/>
+                Pesquisar
+            </Button>
+            <Button variant="contained" className={styles.buttonBlue} onClick={openModal}>
+                <FaFilter/>
+                Filtrar
+            </Button>
+            {
+                modalOpen &&
+                <FiltersModal
+                    closeModal={closeModal}
+                    startDate={startDate}
+                    endDate={endDate}
+                    party={party}
+                    deputy={deputy}
+                    organization={organization}
+                    onFilterClick={onFilterClick}
+                    onStartDateChange={onStartDateChange}
+                    onEndDateChange={onEndDateChange}
+                    onPartyChange={onPartyChange}
+                    onDeputyChange={onDeputyChange}
+                    onOrganizationChange={onOrganizationChange}
+                />
+            }
         </div>
     );
 });

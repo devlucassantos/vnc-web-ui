@@ -1,6 +1,4 @@
 import News from "../../../core/domain/models/News";
-import DTO from "../../../core/domain/types/http/DTO";
-import newsMockData, {newsList} from "../../mock/news/data";
 import NewsAdapter from "../../../core/interfaces/adapters/NewsAdapter";
 import {BackendClient} from "../clients/BackendClient";
 import {NewsFilters} from "@typing/http/Filters";

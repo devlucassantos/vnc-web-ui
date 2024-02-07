@@ -6,6 +6,8 @@ import {NewsletterService} from "@services/NewsletterService";
 import NewsletterAPI from "@api/news/NewsletterAPI";
 import {TrendingNewsService} from "@services/TrendingNewsService";
 import TrendingNewsAPI from "@api/news/TrendingNewsAPI";
+import {ResourceService} from "@services/ResourceService";
+import ResourceAPI from "@api/resources/ResourceAPI";
 
 
 class DIContainer {
@@ -23,6 +25,10 @@ class DIContainer {
 
     static getTrendingNewsUseCase() {
         return new TrendingNewsService(new TrendingNewsAPI())
+    }
+
+    static getResourceUseCase() {
+        return new ResourceService(new ResourceAPI())
     }
 }
 

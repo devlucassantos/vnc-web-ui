@@ -16,7 +16,7 @@ export const SmallCard: FC<Props> = memo(function SmallCard({
     return (
         <div className={styles.smallCard}>
             <div className={styles.imageView}>
-                <div className={styles.image} />
+                <img className={styles.image} src="/src/ui/web/assets/img.png" />
             </div>
             <div className={styles.column}>
                 <div className={styles.titleRow}>
