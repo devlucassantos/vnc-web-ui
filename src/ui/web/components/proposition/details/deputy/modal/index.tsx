@@ -38,7 +38,7 @@ class DeputyModal extends React.Component<{ deputy: Deputy, closeModal: any }> {
                                     <img className={styles.partyImage} src={deputy.party.imageUrl} alt={deputy.party.name} />
                                 </div>
                             </div>
-                            {deputy.party.id != deputy.partyInTheProposal.id &&
+                            {deputy.partyInTheProposal && deputy.party.id != deputy.partyInTheProposal.id &&
                                 <div className={styles.infoContainer}>
                                     <div className={styles.infoColumn}>
                                         <h3 className={styles.infoLabel}>Dados do partido na proposição</h3>

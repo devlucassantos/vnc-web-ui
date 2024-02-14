@@ -20,7 +20,9 @@ export const PropositionDetailsCard: FC<Props> = memo(function PropositionDetail
             <div className={styles.titleContainer}>
                 <div className={styles.titleContainerRow}>
                     <div className={styles.line} />
-                    <div className={styles.title}>{proposition.title}</div>
+                    <Link className={styles.title} to={"/proposicao-original/" + codteor} >
+                        <div>{proposition.title}</div>
+                    </Link>
                 </div>
                 <Link className={styles.viewOriginalProposition} to={"/proposicao-original/" + codteor} >
                     <div>Ver proposição original</div>
@@ -49,8 +51,8 @@ export const PropositionDetailsCard: FC<Props> = memo(function PropositionDetail
             {proposition.newsletter && (
                 <div className={styles.newsletterColumn}>
                     <div className={styles.followNewsLabel}>Acompanhe as outras notícias do dia:</div>
-                    <Link to={"/detalhes-do-boletim/" + proposition.newsletter.id}>
-                        <div className={styles.newsletterTitleLabel}>- {proposition.newsletter.title}</div>
+                    <Link className={styles.newsletterTitleLabel} to={"/detalhes-do-boletim/" + proposition.newsletter.id}>
+                        - {proposition.newsletter.title}
                     </Link>
                 </div>
             )}

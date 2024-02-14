@@ -5,7 +5,8 @@
 
 .body {
   position: relative;
-  left: 4.5%;
+  left: 15%;
+  width: 70%;
   overflow: hidden;
   height: auto;
 }
@@ -14,9 +15,8 @@
   position: relative;
   display: flex;
   flex-direction: row;
-  width: 70%;
+  width: 100%;
   height: auto;
-  margin-left: 10%;
   margin-top: 2%;
   margin-bottom: 1%;
 }
@@ -42,7 +42,6 @@
 .titleView {
   display: flex;
   margin-top: 2%;
-  margin-left: 10%;
   align-items: center;
   height: 5%;
 }
@@ -61,7 +60,6 @@
 .noResultContainer {
   width: 100%;
   height: auto;
-  margin-left: 10%;
   margin-top: 2%;
   margin-bottom: 1%;
 }
@@ -74,4 +72,40 @@
   flex-shrink: 0;
   text-decoration: none;
   overflow-wrap: anywhere;
+}
+
+@media screen and (max-width: 1500px) {
+  .body {
+    left: 10%;
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 1300px) {
+  .body {
+    left: 3%;
+    width: 94%;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .detailsLeftColumn {
+    width: 100%;
+  }
+
+  .detailsRightColumn {
+    display: none;
+  }
+
+  .body {
+    left: 1%;
+    width: 98%;
+  }
+}
+
+
+@media screen and (max-width: 280px) {
+  .infoIcon {
+    display: none;
+  }
 }

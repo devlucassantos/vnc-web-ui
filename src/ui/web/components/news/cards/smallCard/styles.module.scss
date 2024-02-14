@@ -9,7 +9,7 @@
 }
 
 .imageView {
-  width: 15%;
+  width: 20%;
   border-radius: 10px;
   background-color: #fff;
 }
@@ -24,21 +24,24 @@
 .column {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: normal;
   width: 85%;
+  gap: 0.5vw;
 }
 
 .titleRow {
-  margin-left: 2%;
-  margin-top: 10px;
+  margin-left: 1%;
+  margin-top: 0.5%;
   display: flex;
   width: 98%;
+  text-decoration: none;
+  padding-right: 1%;
 }
 
 .titleView {
   display: flex;
   flex-direction: row;
-  width: 85%;
+  width: 100%;
 }
 
 .line {
@@ -50,7 +53,7 @@
 
 .title {
   color: #000;
-  font-size: 1.2rem;
+  font-size: calc(0.9rem + 0.3vw);
   font-weight: bold;
   font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
   'Liberation Sans', sans-serif;
@@ -59,38 +62,29 @@
   height: auto;
   width: 100%;
   margin-left: 5px;
-  overflow-y: auto;
-  padding-right: 2%;
 }
 
-.viewMore {
+.title:hover {
   color: #0047ab;
-  font-size: 1.0rem;
-  font-weight: bold;
-  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
-  'Liberation Sans', sans-serif;
-  letter-spacing: -0.017em;
-  text-align: right;
-  width: 15%;
-  height: 30px;
-  padding-right: 3%;
-  margin-top: 2px;
-  text-decoration: none;
+  text-decoration: underline;
 }
 
 .content {
-  display: flex;
   color: #000;
-  font-size: 1rem;
+  font-size: calc(0.7rem + 0.3vw);
   font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
   'Liberation Sans', sans-serif;
   letter-spacing: -0.017em;
-  width: 95%;
+  width: 97%;
   height: auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
   text-align: justify;
-  margin-left: 2%;
+  margin-left: 1%;
   margin-top: 1%;
-  overflow-y: auto;
 }
 
 .dateRow {
@@ -100,18 +94,17 @@
   align-items: end;
   width: 100%;
   height: auto;
-  margin-top: 8px;
 }
 
 .createdAt {
   color: #000;
-  font-size: 0.9rem;
+  font-size: calc(0.8rem + 0.1vw);
   font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
   'Liberation Sans', sans-serif;
   letter-spacing: -0.017em;
   width: 50%;
-  height: 24px;
-  padding-left: 2%;
+  height: auto;
+  padding-left: 1%;
 }
 
 .updatedAt {
@@ -121,7 +114,91 @@
   'Liberation Sans', sans-serif;
   letter-spacing: -0.017em;
   width: 50%;
-  height: 24px;
+  height: auto;
   text-align: right;
-  padding-right: 3%;
+  padding-right: 2%;
+}
+
+@media screen and (max-width: 1000px) {
+  .smallCard {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .title {
+    font-size: calc(0.9rem + 0.6vw);
+  }
+
+  .content {
+    font-size: calc(0.8rem + 0.4vw);
+  }
+
+  .createdAt {
+    font-size: calc(0.8rem + 0.2vw);
+  }
+
+  .updatedAt {
+    font-size: calc(0.8rem + 0.2vw);
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .imageView {
+    width: 30%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .imageView {
+    width: 40%;
+  }
+
+}
+
+
+@media screen and (max-width: 500px) {
+  .content {
+    display: none;
+  }
+
+  .column {
+    width: 100%;
+    gap: 0.5rem;
+    justify-content: normal;
+    padding: 0;
+  }
+
+  .imageView {
+    min-width: 30%;
+  }
+
+  .title {
+    font-size: calc(1rem + 0.5vw);
+  }
+
+  .createdAt {
+    font-size: calc(0.9rem + 0.1vw);
+  }
+
+  .updatedAt {
+    font-size: calc(0.9rem + 0.1vw);
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .imageView {
+    min-width: 45%;
+  }
+
+  .title {
+    font-size: calc(0.8rem + 0.5vw);
+  }
+
+  .createdAt {
+    font-size: calc(0.8rem + 0.1vw);
+  }
+
+  .updatedAt {
+    font-size: calc(0.8rem + 0.1vw);
+  }
 }
