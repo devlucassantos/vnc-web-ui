@@ -19,3 +19,23 @@
   color: #FFF;
   font-size: 1rem;
 }
+
+@media screen and (max-width: 1000px) {
+  .notFound img {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .notFound button {
+    font-size: 0.8rem;
+  }
+
+  .notFound img {
+    height: 30%;
+  }
+
+  .notFound {
+    overflow-x: auto;
+  }
+}

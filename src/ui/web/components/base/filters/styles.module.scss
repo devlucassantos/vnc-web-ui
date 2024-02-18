@@ -1,13 +1,15 @@
 .filtersRow {
   display: flex;
-  margin-top: 2%;
-  margin-left: 10%;
-  margin-bottom: 1%;
-  gap: 8px;
 }
 
 .filterInput {
-  width: 15vw;
+  width: 280px;
+}
+
+.buttonsContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
 }
 
 .buttonBlue {
@@ -19,4 +21,38 @@
   gap: 0.5rem;
   text-transform: none !important;
   font-size: 1rem !important;
+}
+
+
+@media screen and (max-width: 600px) {
+  .filtersRow {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .filterInput {
+    width: 100%;
+  }
+
+  .buttonsContainer {
+    gap: 0.5rem;
+  }
+
+  .buttonBlue {
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 280px) {
+  .buttonBlue {
+    font-size: 1rem !important;
+  }
+
+  .buttonsContainer {
+    flex-direction: column;
+  }
+
+  .buttonBlue {
+    width: 100%;
+  }
 }

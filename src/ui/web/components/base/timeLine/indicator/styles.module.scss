@@ -25,9 +25,9 @@
 .ellipse {
   position: relative;
   left: 50%;
-  transform: translate(-50%, -10%);
-  width: 1.7vw;
-  height: 1.3vw;
+  transform: translate(-50%, -20%);
+  width: 26px;
+  height: 20px;
   overflow: visible;
 }
 
@@ -35,4 +35,10 @@
   width: 100%;
   height: 100%;
   overflow: visible;
+}
+
+@media screen and (max-width: 1000px) {
+  .timeLine {
+    display: none;
+  }
 }

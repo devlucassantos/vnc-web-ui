@@ -3,7 +3,7 @@
   top: 30%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: auto;
+  width: 24%;
   height: auto;
   max-width: 50%;
   padding-top: 1%;
@@ -87,7 +87,7 @@
 
 .filterDate,
 .filterSelect {
-  width: 24vw;
+  width: 100%;
 }
 
 .buttonsRow {
@@ -129,4 +129,40 @@
 
 .clearButtonLabel {
   padding-top: 2px;
+}
+
+@media screen and (max-width: 1000px) {
+  .modal {
+    width: 50%;
+    height: auto;
+  }
+}
+
+
+@media screen and (max-width: 500px) {
+  .modal {
+    max-width: 70%;
+    width: 70%;
+    height: auto;
+    padding-top: 2%;
+    padding-left: 2%;
+    padding-right: 2%;
+  }
+}
+
+@media screen and (max-width: 330px) {
+  .modal {
+    max-width: 90%;
+    width: 90%;
+    height: auto;
+    padding-top: 2%;
+    padding-left: 2%;
+    padding-right: 2%;
+  }
+}
+
+@media screen and (max-width: 250px) {
+  .buttonsRow {
+    flex-direction: column;
+  }
 }

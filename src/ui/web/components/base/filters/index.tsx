@@ -45,21 +45,23 @@ export const Filters: FC<Props> = memo(function Filters({
     const openModal = () => setModalOpen(true);
     const closeModal = () => setModalOpen(false);
     return (
-        <div className={filtersRowStyle}>
+        <div className={`${filtersRowStyle} ${styles.filtersRow}`}>
             <TextField
                 label="Conteudo"
                 size="small"
                 className={styles.filterInput}
                 onChange={(e) => onContentChange(e.target.value)}
             />
-            <Button variant="contained" className={styles.buttonBlue} onClick={onFilterClick}>
-                <FaSearch/>
-                Pesquisar
-            </Button>
-            <Button variant="contained" className={styles.buttonBlue} onClick={openModal}>
-                <FaFilter/>
-                Filtrar
-            </Button>
+            <div className={styles.buttonsContainer}>
+                <Button variant="contained" className={styles.buttonBlue} onClick={onFilterClick}>
+                    <FaSearch />
+                    Pesquisar
+                </Button>
+                <Button variant="contained" className={styles.buttonBlue} onClick={openModal}>
+                    <FaFilter />
+                    Filtrar
+                </Button>
+            </div>
             {
                 modalOpen &&
                 <FiltersModal

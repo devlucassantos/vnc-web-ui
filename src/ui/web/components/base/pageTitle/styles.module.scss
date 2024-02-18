@@ -7,7 +7,13 @@
   letter-spacing: -0.017em;
   position: relative;
   left: 20px;
-  width: auto;
+  width: 100%;
   height: auto;
   flex-direction: column;
+}
+
+@media screen and (max-width: 280px) {
+  .label {
+    left: 0;
+  }
 }

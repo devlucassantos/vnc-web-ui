@@ -42,6 +42,13 @@
   height: auto;
   width: 105%;
   margin-left: 5px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.title:hover {
+  color: #0047ab;
+  text-decoration: underline;
 }
 
 .authors {
@@ -66,11 +73,15 @@
   font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
   'Liberation Sans', sans-serif;
   letter-spacing: -0.017em;
-  width: 20%;
-  height: 30px;
+  width: 21%;
+  height: auto;
   text-align: right;
-  margin-top: 5px;
-  cursor: pointer;
+  margin-top: 0.4rem;
+  text-decoration: none;
+}
+
+.viewOriginalProposition:hover {
+  text-decoration: underline;
 }
 
 .content {
@@ -95,7 +106,7 @@
   'Liberation Sans', sans-serif;
   letter-spacing: -0.017em;
   width: auto;
-  height: 24px;
+  height: auto;
   padding-left: 3%;
   margin-top: 16px;
 }
@@ -107,7 +118,7 @@
   'Liberation Sans', sans-serif;
   letter-spacing: -0.017em;
   width: auto;
-  height: 24px;
+  height: auto;
   padding-left: 3%;
   margin-top: 16px;
 }
@@ -157,7 +168,7 @@
   font-weight: bold;
   letter-spacing: -0.017em;
   width: auto;
-  height: 24px;
+  height: auto;
   text-align: left;
 }
 
@@ -174,18 +185,6 @@
   cursor: pointer;
 }
 
-.organizationsLabel {
-  color: #000;
-  font-size: 1.1rem;
-  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
-  'Liberation Sans', sans-serif;
-  font-weight: bold;
-  letter-spacing: -0.017em;
-  width: auto;
-  height: 24px;
-  text-align: left;
-}
-
 .newsletterTitleLabel {
   color: #1976D2;
   font-size: 1.1rem;
@@ -199,6 +198,11 @@
   margin-bottom: 16px;
   margin-right: 3%;
   cursor: pointer;
+  text-decoration: none;
+}
+
+.newsletterTitleLabel:hover {
+  text-decoration: underline;
 }
 
 .followNewsLabel {
@@ -233,4 +237,15 @@
 
 .deputyCard:hover {
   background-color: #f0f0f0;
+}
+
+
+@media screen and (max-width: 500px) {
+  .viewOriginalProposition {
+    display: none;
+  }
+
+  .titleContainerRow {
+    width: 95%;
+  }
 }

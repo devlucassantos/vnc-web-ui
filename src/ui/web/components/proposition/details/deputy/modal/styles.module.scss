@@ -131,3 +131,29 @@
   object-fit: cover;
   object-position: center;
 }
+
+@media screen and (max-width: 1300px) {
+  .modal {
+    width: 40%;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .modal {
+    width: 50%;
+  }
+}
+
+
+@media screen and (max-width: 600px) {
+  .modal {
+    width: 70%;
+    padding: 2%;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .modal {
+    width: 85%;
+  }
+}

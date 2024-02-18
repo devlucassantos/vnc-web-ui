@@ -153,6 +153,11 @@
   height: auto;
   margin-top: 16px;
   cursor: pointer;
+  text-decoration: none;
+}
+
+.propositionTitleLabel:hover {
+  text-decoration: underline;
 }
 
 .organizationsColumn {

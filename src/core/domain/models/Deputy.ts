@@ -11,7 +11,7 @@ class Deputy extends Model {
     private _electoralName: string;
     private _imageUrl: string;
     private _party: Party;
-    private _partyInTheProposal: Party;
+    private _partyInTheProposal: Party | null;
     private _createdAt: string;
     private _updatedAt: string;
 
@@ -104,7 +104,7 @@ class Deputy extends Model {
         dto['electoral_name'] = this._electoralName;
         dto['image_url'] = this._imageUrl;
         dto['party'] = this._party.toJSON();
-        dto['party_in_the_proposal'] = this._partyInTheProposal.toJSON();
+        dto['party_in_the_proposal'] = this._partyInTheProposal?.toJSON();
         return dto;
     }
 
@@ -117,7 +117,7 @@ class Deputy extends Model {
         obj._electoralName = String(json['electoral_name']);
         obj._imageUrl = String(json['image_url']);
         obj._party = Party.fromJSON(json['party']);
-        obj._partyInTheProposal = Party.fromJSON(json['party_in_the_proposal']);
+        obj._partyInTheProposal = json['party_in_the_proposal'] ? Party.fromJSON(json['party_in_the_proposal']) : null;
         obj._createdAt = formatCustomDate(String(json['created_at']));
         obj._updatedAt = formatCustomDate(String(json['updated_at']));
         return obj;
