@@ -20,7 +20,7 @@
 .titleContainerRow {
   display: flex;
   flex-direction: row;
-  width: 92%;
+  width: auto;
   margin-left: 3%;
   padding-right: 3%;
   margin-top: 16px;
@@ -98,8 +98,7 @@
   letter-spacing: -0.017em;
   width: auto;
   height: 24px;
-  padding-left: 3%;
-  margin-top: 16px;
+  margin-right: 4px;
 }
 
 .submittedAt {
@@ -119,7 +118,7 @@
   flex-direction: column;
   width: 94%;
   height: auto;
-  margin-bottom: 5%;
+  margin-bottom: 3%;
   margin-left: 3%;
   margin-right: 3%;
 }
@@ -143,12 +142,19 @@
   height: 24px;
 }
 
-.propositionTitleLabel {
-  color: #1976D2;
-  font-size: 1.1rem;
+.ratingContainer {
+  display: flex;
+  align-items: center;
+}
+
+.propositionArticleTitleLabel {
+  color: #000;
+  font-size: 1.2rem;
   font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
   'Liberation Sans', sans-serif;
+  font-weight: bold;
   letter-spacing: -0.017em;
+  text-align: justify;
   width: auto;
   height: auto;
   margin-top: 16px;
@@ -156,18 +162,32 @@
   text-decoration: none;
 }
 
-.propositionTitleLabel:hover {
-  text-decoration: underline;
+.propositionArticleTitleLabel:hover {
+  color: #0047ab;
 }
 
-.organizationsColumn {
+.propositionArticleContent {
+  color: #000;
+  font-size: 1.0rem;
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+  'Liberation Sans', sans-serif;
+  letter-spacing: -0.017em;
+  text-align: justify;
+  width: auto;
+  height: auto;
+  margin-top: 16px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.externalAuthorsColumn {
   display: flex;
   flex-direction: column;
   width: 50%;
   height: auto;
 }
 
-.organizationsLabel {
+.externalAuthorsLabel {
   color: #000;
   font-size: 1.1rem;
   font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
@@ -179,7 +199,7 @@
   text-align: left;
 }
 
-.organizationNameLabel {
+.externalAuthorNameLabel {
   color: #1976D2;
   font-size: 1.1rem;
   font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',

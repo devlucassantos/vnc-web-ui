@@ -17,7 +17,7 @@ Para executar as configurações apropriadas da aplicação você precisará seg
 
 Pronto! O projeto está configurado. A partir de agora, toda vez que quiser iniciar o projeto basta executar o comando `npm run dev`. Dessa forma, o projeto estará disponível no endereço `http://localhost:3000`.
 
-## Você Na Câmara (VNC)
+## Você na Câmara (VNC)
 
 Você na Câmara (VNC) é uma plataforma de notícias que busca simplificar as proposições que tramitam pela Câmara dos
 Deputados do Brasil visando sintetizar as ideias destas proposições por meio do uso da Inteligência Artificial (IA)

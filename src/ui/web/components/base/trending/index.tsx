@@ -1,29 +1,29 @@
 import {FC, memo} from "react";
 import styles from "./styles.module.scss";
 import TrendingInfoContainer from "./infoContainer";
-import News from "@models/News";
+import Article from "@models/Article";
 
 interface Props {
     className?: string;
-    trendingNewsList: News[];
+    trendingArticleList: Article[];
+    color?: string;
 }
 
 export const TrendingContainer: FC<Props> = memo(function TrendingContainer({
-    trendingNewsList,
+    trendingArticleList,
+    color = '#0047ab',
     ...props
 }) {
     return (
         <div className={styles.trendingContainer}>
-            <div className={styles.titleContainer}>
-                <h2 className={styles.title}>Mais lidas</h2>
-            </div>
-            {trendingNewsList &&
+            {trendingArticleList &&
                 <>
-                    <div className={styles.trendingInfoContainer}>
-                        {trendingNewsList?.map((trendingNews, index) => (
-                            <TrendingInfoContainer key={index} trendingNews={trendingNews} index={index} isFirstItem={index === 0} />
-                        ))}
-                    </div>
+                    {trendingArticleList?.map((trendingArticle, index) => (
+                        <div key={index} className={styles.trendingItem}>
+                            <TrendingInfoContainer key={index} trendingArticle={trendingArticle} index={index} color={color}/>
+                            {index !== trendingArticleList.length - 1 && <div className={styles.divider} />}
+                        </div>
+                    ))}
                 </>
             }
         </div>

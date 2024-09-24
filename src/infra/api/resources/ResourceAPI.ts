@@ -8,7 +8,11 @@ class ResourceAPI implements ResourceAdapter {
     async getResources(): Promise<Resource> {
 
        try {
-           const response = await BackendClient.get(`/resources`);
+           const response = await BackendClient.get(`/resources`, {
+               headers: {
+                   Authorization: undefined,
+               },
+           });
 
            return Resource.fromJSON(response?.data as DTO);
        } catch (error) {

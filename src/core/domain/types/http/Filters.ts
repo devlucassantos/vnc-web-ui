@@ -1,5 +1,5 @@
-export interface NewsFilters {
-    type?: string;
+export interface ArticleFilters {
+    typeId?: string;
     page?: number;
     itemsPerPage?: number;
     content?: string;
@@ -7,5 +7,10 @@ export interface NewsFilters {
     endDate?: string;
     partyId?: string;
     deputyId?: string;
-    organizationId?: string;
+    externalAuthorId?: string;
+}
+
+export interface ArticleTypeFilters {
+    ids?: string;
+    itemsPerPage?: number;
 }

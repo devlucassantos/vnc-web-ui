@@ -1,30 +1,34 @@
-import React, {FC, memo, useEffect, useState} from 'react';
+import React, {FC, memo, useContext, useEffect, useState} from 'react';
 import Deputy from "@models/Deputy";
 import styles from "./styles.module.scss";
-import {FaTimes, FaFilter, FaBroom, FaTrash} from "react-icons/fa";
+import {FaTimes, FaFilter, FaTrash} from "react-icons/fa";
 import {DatePicker, LocalizationProvider} from "@mui/x-date-pickers";
 import {AdapterDateFns} from "@mui/x-date-pickers/AdapterDateFns";
 import {Autocomplete} from "@mui/material";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import DIContainer from "@web/dicontainer";
-import Resource from "@models/Resource";
 import Party from "@models/Party";
-import Organization from "@models/Organization";
+import ExternalAuthor from "@models/ExternalAuthor";
+import {ResourceContext, ResourceContextType} from "@web/providers/resourceProvider";
+import ArticleType from "@models/ArticleType";
+import articleType from "@models/ArticleType";
 
 interface Props {
     className?: string;
     closeModal: any;
     startDate: Date | null;
     endDate: Date | null;
+    articleType?: ArticleType | null;
     party?: Party | null;
     deputy?: Deputy | null;
-    organization?: Organization | null;
+    externalAuthor?: ExternalAuthor | null;
     onStartDateChange: (value: Date | null) => void;
     onEndDateChange: (value: Date | null) => void;
+    onArticleTypeChange?: (value: ArticleType | null) => void;
     onPartyChange?: (value: Party | null) => void;
     onDeputyChange?: (value: Deputy | null) => void;
-    onOrganizationChange?: (value: Organization | null) => void;
+    onExternalAuthorChange?: (value: ExternalAuthor | null) => void;
     onFilterClick: () => void;
 }
 
@@ -34,42 +38,46 @@ export const FiltersModal: FC<Props> = memo(function FiltersModal({
     closeModal,
     startDate,
     endDate,
+    articleType,
     party,
     deputy,
-    organization,
+    externalAuthor,
     onStartDateChange,
     onEndDateChange,
+    onArticleTypeChange,
     onPartyChange,
     onDeputyChange,
-    onOrganizationChange,
+    onExternalAuthorChange,
     onFilterClick,
     ...props
 }) {
     const [applyFilters, setApplyFilters] = useState<boolean>(false);
-    const [resource, setResource] = useState<Resource | null>(null);
-    const fetchResources = async () => {
-        try {
-            const resource = await resourceService.getResources();
-            setResource(resource);
-        } catch (error) {
-            console.log(error)
-        }
-    };
+    const resourceContext = useContext(ResourceContext);
+    const { resource, fetchResources } = resourceContext ?? {
+        resource: null,
+        fetchResources: () => {},
+    } as ResourceContextType;
+    const [isFirstRender, setIsFirstRender] = useState(true);
 
     useEffect(() => {
         fetchResources();
     }, []);
 
     useEffect(() => {
-        onFilterClick();
+        if (!isFirstRender) {
+            onFilterClick();
+        } else {
+            setIsFirstRender(false);
+        }
     }, [applyFilters]);
 
     const clearFilters = () => {
         onStartDateChange(null);
         onEndDateChange(null);
+        onArticleTypeChange ? onArticleTypeChange(null) : null;
         onPartyChange ? onPartyChange(null) : null;
         onDeputyChange ? onDeputyChange(null) : null;
-        onOrganizationChange ? onOrganizationChange(null) : null;
+        onExternalAuthorChange ? onExternalAuthorChange(null) : null;
         setApplyFilters(true)
     };
 
@@ -120,6 +128,27 @@ export const FiltersModal: FC<Props> = memo(function FiltersModal({
                                 />
                             </div>
                         </LocalizationProvider>
+                        {onArticleTypeChange &&
+                            <Autocomplete
+                                disablePortal
+                                options={resource ? resource.articleTypes : []}
+                                getOptionLabel={(articleType) => articleType.description}
+                                getOptionKey={(articleType: articleType) => articleType.id}
+                                isOptionEqualToValue={(option, value) => option.id === value.id}
+                                className={styles.filterSelect}
+                                size="small"
+                                renderInput={(params: any) =>
+                                    <TextField
+                                        {...params}
+                                        label="Tipo de artigo"/>
+                                }
+                                value={articleType}
+                                onChange={(event, selectedArticleType) => onArticleTypeChange(selectedArticleType)}
+                                ListboxProps={{
+                                    style: { textAlign: 'left' },
+                                }}
+                            />
+                        }
                         {onPartyChange &&
                             <Autocomplete
                                 disablePortal
@@ -136,13 +165,16 @@ export const FiltersModal: FC<Props> = memo(function FiltersModal({
                                 }
                                 value={party}
                                 onChange={(event, selectedParty) => onPartyChange(selectedParty)}
+                                ListboxProps={{
+                                    style: { textAlign: 'left' },
+                                }}
                             />
                         }
                         {onDeputyChange &&
                             <Autocomplete
                                 disablePortal
                                 options={resource ? resource.deputies : []}
-                                getOptionLabel={(deputy) => deputy.name}
+                                getOptionLabel={(deputy) => deputy.electoralName}
                                 getOptionKey={(deputy: Deputy) => deputy.id}
                                 isOptionEqualToValue={(option, value) => option.id === value.id}
                                 className={styles.filterSelect}
@@ -154,24 +186,30 @@ export const FiltersModal: FC<Props> = memo(function FiltersModal({
                                 }
                                 value={deputy}
                                 onChange={(event, selectedDeputy) => onDeputyChange(selectedDeputy)}
+                                ListboxProps={{
+                                    style: { textAlign: 'left' },
+                                }}
                             />
                         }
-                        {onOrganizationChange &&
+                        {onExternalAuthorChange &&
                             <Autocomplete
                                 disablePortal
-                                options={resource ? resource.organizations : []}
-                                getOptionLabel={(organization) => organization.name}
-                                getOptionKey={(organization: Organization) => organization.id}
+                                options={resource ? resource.externalAuthors : []}
+                                getOptionLabel={(externalAuthor) => externalAuthor.name}
+                                getOptionKey={(externalAuthor: ExternalAuthor) => externalAuthor.id}
                                 isOptionEqualToValue={(option, value) => option.id === value.id}
                                 className={styles.filterSelect}
                                 size="small"
                                 renderInput={(params: any) =>
                                     <TextField
                                         {...params}
-                                        label="Organização"/>
+                                        label="Autor Externo"/>
                                 }
-                                value={organization}
-                                onChange={(event, selectedOrganization) => onOrganizationChange(selectedOrganization)}
+                                value={externalAuthor}
+                                onChange={(event, selectedExternalAuthor) => onExternalAuthorChange(selectedExternalAuthor)}
+                                ListboxProps={{
+                                    style: { textAlign: 'left' },
+                                }}
                             />
                         }
 
