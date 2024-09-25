@@ -17,8 +17,8 @@ To execute the proper settings of the application, you will need to follow these
 
 Ready! The project is configured. From now on, every time you want to start the project, just run the `npm run dev` command. This way, the project will be available at the address `http://localhost:3000`.
 
-## Você Na Câmara (VNC)
+## Você na Câmara (VNC)
 
-Você Na Câmara (VNC) is a news platform that seeks to simplify the proposals under debate in the Chamber of Deputies of Brazil aiming to 
+Você na Câmara (VNC) is a news platform that seeks to simplify the propositions under debate in the Chamber of Deputies of Brazil aiming to 
 synthesize the ideas of these propositions through the use of Artificial Intelligence (AI) so that these documents can have their ideas expressed
 in a simple and objective way for the general population.

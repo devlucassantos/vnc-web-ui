@@ -1,4 +1,4 @@
-export const newsList = [
+export const articleList = [
     {
         id: '1',
         title: 'Projeto de Lei X',
@@ -77,4 +77,4 @@ export const newsletterList = {
     updated_at: "2024-01-02T16:10:00Z"
 };
 
-export default { newsletterList, newsList };
+export default { newsletterList, articleList };

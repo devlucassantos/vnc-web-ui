@@ -18,7 +18,7 @@ export const DeputyCard: FC<Props> = memo(function DeputyCard({
 
     return (
         <div className={styles.deputyNameLabel} onMouseEnter={openModal}>
-            - {deputy.name}
+            - {deputy.electoralName}
             {modalOpen && <DeputyModal deputy={deputy} closeModal={closeModal}/>}
         </div>
     );

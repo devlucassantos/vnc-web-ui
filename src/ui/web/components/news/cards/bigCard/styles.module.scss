@@ -1,4 +1,5 @@
 .card {
+  position: relative;
   display: flex;
   margin-bottom: 0;
   width: 100%;
@@ -9,31 +10,54 @@
 }
 
 .imageContainer {
-  width: 15%;
+  width: 100%;
+  height: 30vh;
   border-radius: 10px;
   background-color: #fff;
 }
 
 .image {
-  height: 100%;
   width: 100%;
+  height: 100%;
   border-radius: 10px;
+  background-repeat: no-repeat;
+  background-position: center;
   background-size: cover;
 }
 
 .cardColumn {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 0 40px 16px 40px;
   display: flex;
   flex-direction: column;
-  justify-content: normal;
-  width: 85%;
-  gap: 0.5vw;
+  justify-content: end;
+  width: 100%;
+  gap: 8px;
+}
+
+.labelContainer {
+  background-color: #C4170C;
+  border-radius: 10px;
+  display: inline-block;
+  width: max-content;
+}
+
+.label {
+  color: #FFFFFF;
+  font-size: calc(0.7rem + 0.4vw);
+  font-weight: bold;
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+  'Liberation Sans', sans-serif;
+  padding: 4px 8px;
 }
 
 .titleContainer {
-  margin-left: 1%;
-  margin-top: 0.5%;
   display: flex;
-  width: 98%;
+  width: 100%;
   text-decoration: none;
 }
 
@@ -51,8 +75,8 @@
 }
 
 .title {
-  color: #000;
-  font-size: calc(0.9rem + 0.6vw);
+  color: #FFFFFF;
+  font-size: calc(0.8rem + 0.5vw);
   font-weight: bold;
   font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
   'Liberation Sans', sans-serif;
@@ -60,12 +84,15 @@
   text-align: justify;
   height: auto;
   width: 100%;
-  margin-left: 5px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .title:hover {
   color: #0047ab;
-  text-decoration: underline;
+}
+
+.titleStyle:hover {
+  color: var(--hover-color);
 }
 
 .content {
@@ -95,18 +122,18 @@
 }
 
 .createdAt {
-  color: #000;
+  color: #FFFFFF;
   font-size: calc(0.8rem + 0.2vw);
   font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
   'Liberation Sans', sans-serif;
   letter-spacing: -0.017em;
   width: 50%;
   height: auto;
-  padding-left: 1%;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .updatedAt {
-  color: #000;
+  color: #FFFFFF;
   font-size: calc(0.8rem + 0.2vw);
   font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
   'Liberation Sans', sans-serif;
@@ -114,70 +141,11 @@
   text-align: right;
   width: 50%;
   height: auto;
-  padding-right: 1%;
-}
-
-@media screen and (max-width: 1000px) {
-  .imageContainer {
-    width: 20%;
-  }
-}
-
-@media screen and (max-width: 750px) {
-  .imageContainer {
-    width: 30%;
-  }
-}
-
-@media screen and (max-width: 600px) {
-  .imageContainer {
-    width: 40%;
-  }
-}
-
-@media screen and (max-width: 500px) {
-  .content {
-    display: none;
-  }
-
-  .cardColumn {
-    width: 100%;
-    justify-content: normal;
-    padding: 0;
-    gap: 0.5rem;
-  }
-
-  .imageContainer {
-    min-width: 30%;
-  }
-
-  .title {
-    font-size: calc(1rem + 0.5vw);
-  }
-
-  .createdAt {
-    font-size: calc(0.9rem + 0.1vw);
-  }
-
-  .updatedAt {
-    font-size: calc(0.9rem + 0.1vw);
-  }
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 @media screen and (max-width: 400px) {
-  .imageContainer {
-    min-width: 45%;
-  }
-
-  .title {
-    font-size: calc(0.8rem + 0.5vw);
-  }
-
-  .createdAt {
-    font-size: calc(0.8rem + 0.1vw);
-  }
-
-  .updatedAt {
-    font-size: calc(0.8rem + 0.1vw);
+  .cardColumn {
+    padding: 0 16px 24px 16px;
   }
 }

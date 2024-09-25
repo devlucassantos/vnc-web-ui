@@ -1,0 +1,299 @@
+.root {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  align-items: flex-start;
+  background-color: #fff;
+  box-shadow: 0px 4px 4px 0px #00000040;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.background {
+  position: relative;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  outline: solid 1px #fff;
+  outline-offset: -1px;
+  background-color: #faf9f9;
+  box-shadow: 0px 4px 4px 0px #00000040;
+}
+
+.body {
+  position: relative;
+  left: 15%;
+  width: 70%;
+  margin: 0 0 128px;
+  overflow: hidden;
+}
+
+.filtersRow {
+  display: flex;
+  margin-top: 2%;
+  margin-bottom: 1%;
+  gap: 1rem;
+}
+
+.titleView {
+  display: flex;
+  margin-top: 2%;
+  align-items: center;
+}
+
+.lawDocumentIcon {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  background-image: url('/src/ui/web/assets/law-document.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.propositionsContainer {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: auto;
+  margin-bottom: 1%;
+  margin-top: 3%;
+}
+
+.propositionsLeftColumn {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  min-height: 70vh;
+}
+
+.propositionsRightColumn {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  width: 30%;
+  height: auto;
+  float: right;
+}
+
+.gridContainer {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  margin-top: 1%;
+  gap: 1%;
+}
+
+.gridColumn {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 49.5%;
+  height: 50vh;
+  gap: 2%;
+}
+
+.mediumCarousel {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  margin-bottom: 0;
+  border-radius: 10px;
+}
+
+.bigCard {
+  position: relative;
+  display: flex;
+  margin-bottom: 0;
+  width: 49.5%;
+  height: auto;
+  border-radius: 10px;
+  background-color: #fff;
+}
+
+.mediumCard {
+  position: relative;
+  display: flex;
+  margin-bottom: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  background-color: #fff;
+}
+
+.bigCardImageContainer {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  background-color: #fff;
+}
+
+.gridBigCardImageContainer {
+  width: 100%;
+  height: 50vh;
+  border-radius: 10px;
+  background-color: #fff;
+}
+
+.gridMediumCardImageContainer {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  background-color: #fff;
+}
+
+.propositionTypeTitleView {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-top: 2%;
+  margin-bottom: 2%;
+}
+
+.bigCardTitle {
+  color: #FFFFFF;
+  font-size: calc(0.9rem + 0.6vw);
+  font-weight: bold;
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+  'Liberation Sans', sans-serif;
+  letter-spacing: -0.017em;
+  text-align: justify;
+  height: auto;
+  width: 100%;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.mediumCardTitle {
+  color: #FFFFFF;
+  font-size: calc(0.7rem + 0.5vw);
+  font-weight: bold;
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+  'Liberation Sans', sans-serif;
+  letter-spacing: -0.017em;
+  text-align: justify;
+  height: auto;
+  width: 100%;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.bigCardTitle:hover {
+  color: #0047ab;
+}
+
+.mediumCardTitle {
+  color: #FFFFFF;
+  font-size: calc(0.7rem + 0.5vw);
+  font-weight: bold;
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+  'Liberation Sans', sans-serif;
+  letter-spacing: -0.017em;
+  text-align: justify;
+  height: auto;
+  width: 100%;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.mediumCardTitle:hover {
+  color: #0047ab;
+}
+
+.lastArticleTitleView {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 40px;
+}
+
+.trendingTitleView {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin-bottom: 40px;
+}
+
+@media screen and (max-width: 1500px) {
+  .body {
+    left: 10%;
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 1300px) {
+  .body {
+    left: 3%;
+    width: 94%;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .propositionsLeftColumn {
+    width: 100%;
+  }
+
+  .propositionsRightColumn {
+    display: none;
+  }
+
+  .body {
+    left: 1%;
+    width: 98%;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .gridContainer {
+    flex-direction: column;
+    height: 75vh;
+    gap: 8px;
+    margin-top: 8px;
+  }
+
+  .bigCard, .gridColumn {
+    width: 100%;
+  }
+
+  .bigCard {
+    height: 25vh;
+  }
+
+  .gridColumn {
+    height: 50vh;
+    gap: 8px;
+  }
+
+  .mediumCardTitle {
+    font-size: calc(0.9rem + 0.6vw);
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .gridContainer {
+    height: 90vh;
+  }
+
+  .bigCard {
+    height: 30vh;
+  }
+
+  .gridColumn {
+    height: 60vh;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .bigCardTitle, .mediumCardTitle {
+    font-size: calc(0.8rem + 0.6vw);
+  }
+}
+
+
+@media screen and (max-width: 300px) {
+  .bigCardTitle, .mediumCardTitle {
+    font-size: calc(0.7rem + 0.6vw);
+  }
+}

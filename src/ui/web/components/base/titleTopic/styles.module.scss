@@ -1,0 +1,30 @@
+.label {
+  color: #0047AB;
+  font-size: 32px;
+  font-weight: bold;
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+  'Liberation Sans', sans-serif;
+  letter-spacing: -0.017em;
+  position: relative;
+  height: auto;
+  flex-direction: column;
+}
+
+.titleView {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-top: 2%;
+  margin-bottom: 2%;
+}
+
+.divider {
+  flex-shrink: 0;
+  width: 100%;
+}
+
+@media screen and (max-width: 280px) {
+  .label {
+    left: 0;
+  }
+}

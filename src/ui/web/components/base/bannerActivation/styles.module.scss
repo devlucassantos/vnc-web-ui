@@ -1,0 +1,29 @@
+.banner {
+  background-color: #d6e4f2;
+  padding: 4px;
+  text-align: center;
+  color: #0047ab;
+  width: 100%;
+}
+
+.bannerText {
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+  'Liberation Sans', sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.bannerButton {
+  font-weight: bold;
+  cursor: pointer;
+  display: inline-block;
+  transition: background-color 0.3s ease;
+  margin-left: 4px;
+  color: #0047ab;
+}
+
+@media screen and (max-width: 600px) {
+  .bannerText {
+    font-size: 14px;
+  }
+}

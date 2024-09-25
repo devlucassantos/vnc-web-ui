@@ -1,12 +1,10 @@
 import Model from "./model";
 import DTO from "../types/http/DTO";
 import Party from "./Party";
-import {formatCustomDate} from "../../utils/dateUtils";
+import {convertToISODate, formatCustomDateTime} from "../../utils/dateUtils";
 
 class Deputy extends Model {
     private _id: string;
-    private _code: number;
-    private _cpf: string;
     private _name: string;
     private _electoralName: string;
     private _imageUrl: string;
@@ -17,22 +15,13 @@ class Deputy extends Model {
 
     constructor() {
         super();
-        this._id = this._name = this._cpf = this._electoralName = this._imageUrl = this._createdAt = this._updatedAt = '';
-        this._code = 0;
+        this._id = this._name = this._electoralName = this._imageUrl = this._createdAt = this._updatedAt = '';
         this._party = new Party();
         this._partyInTheProposal = new Party();
     }
 
     get id() {
         return this._id;
-    }
-
-    get code() {
-        return this._code;
-    }
-
-    get cpf() {
-        return this._cpf;
     }
 
     get name() {
@@ -53,14 +42,6 @@ class Deputy extends Model {
 
     get partyInTheProposal() {
         return this._partyInTheProposal;
-    }
-
-    set setCode(code: number) {
-        this._code = code;
-    }
-
-    set setCpf(cpf: string) {
-        this._cpf = cpf;
     }
 
     set setName(name: string) {
@@ -98,28 +79,26 @@ class Deputy extends Model {
     toJSON(): DTO {
         let dto = {} as DTO;
         dto['id'] = this._id;
-        dto['code'] = this._code;
-        dto['cpf'] = this._cpf;
         dto['name'] = this._name;
         dto['electoral_name'] = this._electoralName;
         dto['image_url'] = this._imageUrl;
         dto['party'] = this._party.toJSON();
         dto['party_in_the_proposal'] = this._partyInTheProposal?.toJSON();
+        dto['created_at'] = convertToISODate(this._createdAt);
+        dto['updated_at'] = convertToISODate(this._updatedAt);
         return dto;
     }
 
     static fromJSON(json: DTO<any>): Deputy {
         const obj = new Deputy();
         obj._id = String(json['id']);
-        obj._code = Number(json['code']);
-        obj._cpf = String(json['cpf']);
         obj._name = String(json['name']);
         obj._electoralName = String(json['electoral_name']);
         obj._imageUrl = String(json['image_url']);
         obj._party = Party.fromJSON(json['party']);
         obj._partyInTheProposal = json['party_in_the_proposal'] ? Party.fromJSON(json['party_in_the_proposal']) : null;
-        obj._createdAt = formatCustomDate(String(json['created_at']));
-        obj._updatedAt = formatCustomDate(String(json['updated_at']));
+        obj._createdAt = formatCustomDateTime(String(json['created_at']));
+        obj._updatedAt = formatCustomDateTime(String(json['updated_at']));
         return obj;
     }
 }

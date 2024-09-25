@@ -1,28 +1,28 @@
 import Pagination from '@mui/material/Pagination';
-import {createTheme, makeStyles, Theme} from '@mui/material/styles';
+import {createTheme} from '@mui/material/styles';
 import {CssBaseline, ThemeProvider} from "@mui/material";
 import styles from "./styles.module.scss";
-import React, {useState} from "react";
+import React from "react";
 
 interface Props {
+    currentPage: number;
     count: number;
     actionOnChange: Function;
+    color?: string;
 }
 
-const theme = createTheme({
-    palette: {
-        primary: {
-            main: '#0047ab',
-        },
-    },
-});
-
-function CustomPagination({ count, actionOnChange }: Props) {
-    const [page, setPage] = useState<number>(1);
+function CustomPagination({ currentPage, count, actionOnChange, color = '#0047ab' }: Props) {
     const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
-        setPage(value);
         actionOnChange(value);
     };
+
+    const theme = createTheme({
+        palette: {
+            primary: {
+                main: color,
+            },
+        },
+    });
 
     return (
         <ThemeProvider theme={theme}>
@@ -30,7 +30,7 @@ function CustomPagination({ count, actionOnChange }: Props) {
             <Pagination
                 className={styles.pagination}
                 count={count}
-                page={page}
+                page={currentPage}
                 onChange={handleChange}
                 showFirstButton
                 showLastButton

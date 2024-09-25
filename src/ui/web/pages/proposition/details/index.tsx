@@ -4,49 +4,56 @@ import type {FC} from 'react';
 import styles from './styles.module.scss';
 import Navbar from "../../../components/base/navbar";
 import DIContainer from "../../../dicontainer";
-import {PageTitle} from "../../../components/base/pageTitle";
 import PropositionDetailsCard from "../../../components/proposition/details";
 import TrendingContainer from "../../../components/base/trending";
-import ShortRectangularAnnouncement from "../../../components/base/announcement/shortRectangular";
 import {useParams} from "react-router-dom";
 import Proposition from "../../../../../core/domain/models/Proposition";
-import LongRectangularAnnouncement from "@components/base/announcement/longRectangular";
-import {NewsFilters} from "@typing/http/Filters";
-import News from "@models/News";
+import LongHorizontalRectangularAnnouncement from "@components/base/announcement/longRectangular/horizontal";
+import {ArticleFilters} from "@typing/http/Filters";
+import Article from "@models/Article";
 import NoResultMessage from "@components/base/noResultMessage";
+import {TitleTopic} from "@components/base/titleTopic";
+import LongVerticalRectangularAnnouncement from "@components/base/announcement/longRectangular/vertical";
+import Footer from "@components/base/footer";
+import CustomCircularProgress from "@components/base/customCircularProgress";
 
 interface Props {
     className?: string;
 }
 
 const propositionService = DIContainer.getPropositionUseCase();
-const trendingNewsService = DIContainer.getTrendingNewsUseCase();
+const articleService = DIContainer.getArticleUseCase();
 
 export const PropositionDetailsPage: FC<Props> = memo(function PropositionDetailsPage(props = {}) {
     const {id} = useParams();
     const [proposition, setProposition] = useState<Proposition>();
-    const [trendingNewsList, setTrendingNews] = useState<News[]>([]);
+    const [trendingArticleList, setTrendingArticle] = useState<Article[]>([]);
+    const [loading, setLoading] = useState(true);
 
     const findProposition = async () => {
         try {
             if (id) {
+                setLoading(true);
                 const data = await propositionService.getPropositionByID(id);
                 setProposition(data);
+                await fetchTrendingArticles(data.type.id);
             }
         } catch (error) {
             console.log(error)
+        } finally {
+            setLoading(false);
         }
     };
 
-    const fetchTrendingNews = async (page?: number) => {
+    const fetchTrendingArticles = async (typeId?: string) => {
         try {
-            const queryFilters: NewsFilters = {
-                type: "Proposição",
+            const queryFilters: ArticleFilters = {
+                typeId: typeId,
                 itemsPerPage: 5
             };
 
-            const pagination = await trendingNewsService.getTrendingNews(queryFilters);
-            setTrendingNews(pagination.data);
+            const pagination = await articleService.getTrendingArticles(queryFilters);
+            setTrendingArticle(pagination.data);
         } catch (error) {
             console.log(error)
         }
@@ -54,32 +61,36 @@ export const PropositionDetailsPage: FC<Props> = memo(function PropositionDetail
 
     useEffect(() => {
         findProposition();
-        fetchTrendingNews();
     }, []);
 
     return (
         <div className={`${styles.resets} ${styles.background}`}>
-            <Navbar/>
+            <Navbar showFilter={false} />
             <div className={styles.body}>
-                <LongRectangularAnnouncement/>
-                <PageTitle iconStyle={styles.infoIcon} titleViewStyle={styles.titleView}
-                           label="Detalhes da Proposição"/>
-                {proposition ? (
-                    <div className={styles.detailsContainer}>
-                        <div className={styles.detailsLeftColumn}>
-                            {proposition && <PropositionDetailsCard proposition={proposition}/>}
-                        </div>
-                        <div className={styles.detailsRightColumn}>
-                            <TrendingContainer trendingNewsList={trendingNewsList} />
-                            <ShortRectangularAnnouncement/>
-                        </div>
-                    </div>
+                <LongHorizontalRectangularAnnouncement/>
+                {loading ? (
+                    <CustomCircularProgress />
                 ) : (
-                    <div className={styles.noResultContainer}>
-                        <NoResultMessage />
-                    </div>
+                    proposition ? (
+                        <div className={styles.detailsContainer}>
+                            <div className={styles.detailsLeftColumn}>
+                                <TitleTopic titleViewStyle={styles.propositionDetailsTitleView} label="Detalhes da Proposição" />
+                                {proposition && <PropositionDetailsCard proposition={proposition}/>}
+                            </div>
+                            <div className={styles.detailsRightColumn}>
+                                <TitleTopic titleViewStyle={styles.trendingTitleView} label="Em Destaque" />
+                                <TrendingContainer trendingArticleList={trendingArticleList} />
+                                <LongVerticalRectangularAnnouncement/>
+                            </div>
+                        </div>
+                    ) : (
+                        <div className={styles.noResultContainer}>
+                            <NoResultMessage />
+                        </div>
+                    )
                 )}
             </div>
+            <Footer />
         </div>
     );
 });

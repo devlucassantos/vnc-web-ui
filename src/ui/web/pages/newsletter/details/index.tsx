@@ -1,52 +1,64 @@
-import React, {memo, useEffect, useState} from 'react';
+import React, {memo, useContext, useEffect, useState} from 'react';
 import type {FC} from 'react';
 
 import styles from './styles.module.scss';
 import Navbar from "../../../components/base/navbar";
 import DIContainer from "../../../dicontainer";
-import {PageTitle} from "../../../components/base/pageTitle";
 import TrendingContainer from "../../../components/base/trending";
-import ShortRectangularAnnouncement from "../../../components/base/announcement/shortRectangular";
 import {useParams} from "react-router-dom";
 import Newsletter from "../../../../../core/domain/models/Newsletter";
-import LongRectangularAnnouncement from "@components/base/announcement/longRectangular";
+import LongHorizontalRectangularAnnouncement from "@components/base/announcement/longRectangular/horizontal";
 import NewsletterDetailsCard from "@components/newsletter/details";
-import News from "@models/News";
-import {NewsFilters} from "@typing/http/Filters";
+import Article from "@models/Article";
+import {ArticleFilters} from "@typing/http/Filters";
 import NoResultMessage from "@components/base/noResultMessage";
+import {TitleTopic} from "@components/base/titleTopic";
+import LongVerticalRectangularAnnouncement from "@components/base/announcement/longRectangular/vertical";
+import Footer from "@components/base/footer";
+import CustomCircularProgress from "@components/base/customCircularProgress";
+import {ResourceContext, ResourceContextType} from "@web/providers/resourceProvider";
 
 interface Props {
     className?: string;
 }
 
 const newsletterService = DIContainer.getNewsletterUseCase();
-const trendingNewsService = DIContainer.getTrendingNewsUseCase();
+const articleService = DIContainer.getArticleUseCase();
 
 export const NewsletterDetailsPage: FC<Props> = memo(function NewsletterDetailsPage(props = {}) {
     const { id } = useParams();
     const [newsletter, setNewsletter] = useState<Newsletter>();
-    const [trendingNewsList, setTrendingNews] = useState<News[]>([]);
+    const [trendingArticleList, setTrendingArticle] = useState<Article[]>([]);
+    const [loading, setLoading] = useState(true);
+    const resourceContext = useContext(ResourceContext);
+    const { resource} = resourceContext ?? {
+        resource: null,
+        fetchResources: () => {},
+    } as ResourceContextType;
 
     const findNewsletter = async () => {
         try {
             if (id) {
+                setLoading(true);
                 const data = await newsletterService.getNewsletterByID(id);
                 setNewsletter(data);
             }
         } catch (error) {
             console.log(error)
+        } finally {
+            setLoading(false);
         }
     };
 
-    const fetchTrendingNews = async () => {
+    const fetchTrendingArticles = async () => {
         try {
-            const queryFilters: NewsFilters = {
-                type: 'Boletim',
+            const queryFilters: ArticleFilters = {
+                typeId: resource?.articleTypes?.find((type) => type.description == 'Boletins')?.id,
                 itemsPerPage: 5
             };
 
-            const pagination = await trendingNewsService.getTrendingNews(queryFilters);
-            setTrendingNews(pagination.data);
+            const pagination = await articleService.getTrendingArticles(queryFilters);
+            setTrendingArticle(pagination.data);
         } catch (error) {
             console.log(error)
         }
@@ -54,31 +66,37 @@ export const NewsletterDetailsPage: FC<Props> = memo(function NewsletterDetailsP
 
     useEffect(() => {
         findNewsletter();
-        fetchTrendingNews();
+        fetchTrendingArticles();
     }, []);
 
     return (
         <div className={`${styles.resets} ${styles.background}`}>
-            <Navbar/>
+            <Navbar showFilter={false} />
             <div className={styles.body}>
-                <LongRectangularAnnouncement/>
-                <PageTitle iconStyle={styles.infoIcon} titleViewStyle={styles.titleView} label="Detalhes do Boletim"/>
-                {newsletter ? (
-                <div className={styles.detailsContainer}>
-                    <div className={styles.detailsLeftColumn}>
-                        {newsletter && <NewsletterDetailsCard newsletter={newsletter}/>}
-                    </div>
-                    <div className={styles.detailsRightColumn}>
-                        <TrendingContainer trendingNewsList={trendingNewsList}/>
-                        <ShortRectangularAnnouncement/>
-                    </div>
-                </div>
+                <LongHorizontalRectangularAnnouncement/>
+                {loading ? (
+                    <CustomCircularProgress />
                 ) : (
-                    <div className={styles.noResultContainer}>
-                        <NoResultMessage />
-                    </div>
+                    newsletter ? (
+                        <div className={styles.detailsContainer}>
+                            <div className={styles.detailsLeftColumn}>
+                                <TitleTopic titleViewStyle={styles.newsletterDetailsTitleView} label="Detalhes do Boletim" />
+                                {newsletter && <NewsletterDetailsCard newsletter={newsletter}/>}
+                            </div>
+                            <div className={styles.detailsRightColumn}>
+                                <TitleTopic titleViewStyle={styles.trendingTitleView} label="Em Destaque" />
+                                <TrendingContainer trendingArticleList={trendingArticleList}/>
+                                <LongVerticalRectangularAnnouncement/>
+                            </div>
+                        </div>
+                    ) : (
+                        <div className={styles.noResultContainer}>
+                            <NoResultMessage />
+                        </div>
+                    )
                 )}
             </div>
+            <Footer />
         </div>
     );
 });

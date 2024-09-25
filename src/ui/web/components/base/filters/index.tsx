@@ -6,7 +6,7 @@ import FiltersModal from "@components/base/filters/modal";
 import {FaFilter, FaSearch} from "react-icons/fa";
 import Party from "@models/Party";
 import Deputy from "@models/Deputy";
-import Organization from "@models/Organization";
+import ExternalAuthor from "@models/ExternalAuthor";
 
 interface Props {
     className?: string;
@@ -15,13 +15,13 @@ interface Props {
     endDate: Date | null;
     party?: Party | null;
     deputy?: Deputy | null;
-    organization?: Organization | null;
+    externalAuthor?: ExternalAuthor | null;
     onContentChange: (value: string) => void;
     onStartDateChange: (value: Date | null) => void;
     onEndDateChange: (value: Date | null) => void;
     onPartyChange?: (value: Party | null) => void;
     onDeputyChange?: (value: Deputy | null) => void;
-    onOrganizationChange?: (value: Organization | null) => void;
+    onExternalAuthorChange?: (value: ExternalAuthor | null) => void;
     onFilterClick: () => void;
 }
 
@@ -31,13 +31,13 @@ export const Filters: FC<Props> = memo(function Filters({
     endDate,
     party,
     deputy,
-    organization,
+    externalAuthor,
     onContentChange,
     onStartDateChange,
     onEndDateChange,
     onPartyChange,
     onDeputyChange,
-    onOrganizationChange,
+    onExternalAuthorChange,
     onFilterClick,
     ...props
 }) {
@@ -70,13 +70,13 @@ export const Filters: FC<Props> = memo(function Filters({
                     endDate={endDate}
                     party={party}
                     deputy={deputy}
-                    organization={organization}
+                    externalAuthor={externalAuthor}
                     onFilterClick={onFilterClick}
                     onStartDateChange={onStartDateChange}
                     onEndDateChange={onEndDateChange}
                     onPartyChange={onPartyChange}
                     onDeputyChange={onDeputyChange}
-                    onOrganizationChange={onOrganizationChange}
+                    onExternalAuthorChange={onExternalAuthorChange}
                 />
             }
         </div>

@@ -1,0 +1,160 @@
+.footer {
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  width: 100%;
+  height: 80px;
+  background-color: #0047ab;
+}
+
+.footerContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-left: 15%;
+  padding-right: 15%;
+  gap: 16px;
+  width: 100%;
+}
+
+.termsContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+}
+
+.copyrightContainer {
+  position: absolute;
+  left: 45%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-items: center;
+  gap: 4%;
+}
+
+.rightContainer {
+  display: flex;
+  flex-direction: row;
+  margin-left: auto;
+  align-items: center;
+  gap: 6%;
+}
+
+.labelText {
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+  'Liberation Sans', sans-serif;
+  letter-spacing: -0.017em;
+  width: min-content;
+  height: min-content;
+  white-space: nowrap;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.copyrightLabel {
+  color: #fff;
+  font-size: 12px;
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+  'Liberation Sans', sans-serif;
+  letter-spacing: -0.017em;
+  width: min-content;
+  height: min-content;
+  white-space: nowrap;
+  flex-direction: column;
+}
+
+.linearProfileCircle {
+  position: absolute;
+  right: 15%;
+  top: 20px;
+  width: 24px;
+  height: 24px;
+}
+
+.icon {
+  width: 40px;
+  height: 100%;
+  overflow: visible;
+  cursor: pointer;
+}
+
+.iconMenu {
+  position: relative;
+  left: 15%;
+  width: 20px;
+  height: 16px;
+  overflow: visible;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.logo {
+  width: 40px;
+  height: 30px;
+  background-image: url('/src/ui/web/assets/yellow-logo-icon.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+
+@media screen and (max-width: 1500px) {
+  .footerContainer {
+    padding-left: 10%;
+    padding-right: 10%;
+  }
+}
+
+@media screen and (max-width: 1300px) {
+  .footerContainer {
+    padding-left: 3%;
+    padding-right: 3%;
+  }
+
+  .copyrightContainer {
+    left: 40%;
+  }
+}
+
+@media screen and (max-width: 950px) {
+  .copyrightContainer {
+    left: 2%;
+  }
+
+  .footerContainer {
+    padding-left: 2%;
+    padding-right: 2%;
+  }
+
+  .termsContainer {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .copyrightContainer {
+    position: relative;
+    left: 0;
+  }
+
+  .vncLabel {
+    display: none;
+  }
+
+  .icon {
+    width: 30px;
+    height: 100%;
+    overflow: visible;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .rightContainer {
+    display: none;
+  }
+}

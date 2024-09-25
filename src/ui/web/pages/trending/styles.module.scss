@@ -10,7 +10,7 @@
 }
 
 .background {
-  position: absolute;
+  position: relative;
   left: 0;
   top: 0;
   width: 100%;
@@ -25,7 +25,7 @@
   position: relative;
   left: 15%;
   width: 70%;
-  margin: 0;
+  margin: 0 0 128px;
   overflow: hidden;
 }
 
@@ -57,7 +57,11 @@
   margin-bottom: 2%;
 }
 
-.trendingNewsContainer {
+.trendingsTitleView {
+  margin-top: 2%;
+}
+
+.trendingArticleContainer {
   position: relative;
   display: flex;
   flex-direction: row;
@@ -67,7 +71,7 @@
   margin-bottom: 1%;
 }
 
-.trendingNewsLeftColumn {
+.trendingArticleLeftColumn {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -75,7 +79,7 @@
   min-height: 70vh;
 }
 
-.trendingNewsRightColumn {
+.trendingArticleRightColumn {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -100,11 +104,11 @@
 }
 
 @media screen and (max-width: 1000px) {
-  .trendingNewsLeftColumn {
+  .trendingArticleLeftColumn {
     width: 100%;
   }
 
-  .trendingNewsRightColumn {
+  .trendingArticleRightColumn {
     display: none;
   }
 

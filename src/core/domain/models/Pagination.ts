@@ -3,13 +3,13 @@ import Model from './model';
 
 class Pagination<T extends Model> {
     private _page: number;
-    private _itensPerPage: number;
+    private _itemsPerPage: number;
     private _total: number;
     private _data: T[];
 
     constructor(page: number, perPage: number, total: number, data: T[]) {
         this._page = page;
-        this._itensPerPage = perPage;
+        this._itemsPerPage = perPage;
         this._total = total;
         this._data = data;
     }
@@ -20,7 +20,7 @@ class Pagination<T extends Model> {
     ): Pagination<T> {
         return new Pagination(
             Number(json['page']),
-            Number(json['itens_per_page']),
+            Number(json['items_per_page']),
             Number(json['total']),
             (json['data'] as DTO[])?.map(itemFactory)
         );
@@ -30,8 +30,8 @@ class Pagination<T extends Model> {
         return this._page;
     }
 
-    get itensPerPage(): number {
-        return this._itensPerPage;
+    get itemsPerPage(): number {
+        return this._itemsPerPage;
     }
 
     get total(): number {
@@ -43,7 +43,7 @@ class Pagination<T extends Model> {
     }
 
     get maxPageCount(): number {
-        return Math.ceil(this.total / this.itensPerPage);
+        return Math.ceil(this.total / this.itemsPerPage);
     }
 }
 

@@ -1,14 +1,14 @@
-import React, {FC, memo} from "react";
+import React from "react";
 import TimeLineContainer from "./container";
-import News from "../../../../../core/domain/models/News";
+import Article from "@models/Article";
 
-export const TimeLine: React.FC<{ newsList: News[]}> = ({ newsList}) =>  {
-    const totalItems = newsList.length;
+export const TimeLine: React.FC<{ articleList: Article[]}> = ({ articleList}) =>  {
+    const totalItems = articleList.length;
 
     return (
         <>
-            {newsList.map((news, index) => (
-                <TimeLineContainer key={index} news={news} isLastItem={index === totalItems - 1} />
+            {articleList.map((article, index) => (
+                <TimeLineContainer key={index} article={article} isLastItem={index === totalItems - 1} />
             ))}
         </>
     );

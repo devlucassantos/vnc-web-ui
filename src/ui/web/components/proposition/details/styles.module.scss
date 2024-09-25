@@ -16,19 +16,20 @@
   display: flex;
   justify-content: space-between;
   width: 94%;
+  gap: 16px;
 }
 
 .titleContainerRow {
   display: flex;
   flex-direction: row;
-  width: 74%;
+  width: auto;
 }
 
 .line {
   max-width: 100%;
   height: auto;
   max-height: 100%;
-  outline: solid 1.5px #0047ab;
+  outline: solid 2px #0047ab;
 }
 
 .title {
@@ -48,7 +49,6 @@
 
 .title:hover {
   color: #0047ab;
-  text-decoration: underline;
 }
 
 .authors {
@@ -73,15 +73,31 @@
   font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
   'Liberation Sans', sans-serif;
   letter-spacing: -0.017em;
-  width: 21%;
+  width: auto;
   height: auto;
-  text-align: right;
-  margin-top: 0.4rem;
+  margin-left: 3%;
+  margin-top: 16px;
   text-decoration: none;
 }
 
 .viewOriginalProposition:hover {
   text-decoration: underline;
+}
+
+.labelContainer {
+  border-radius: 10px;
+  display: inline-block;
+  width: max-content;
+  margin-right: 8px;
+}
+
+.label {
+  color: #FFFFFF;
+  font-size: calc(0.6rem + 0.4vw);
+  font-weight: bold;
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+  'Liberation Sans', sans-serif;
+  padding: 4px 8px;
 }
 
 .content {
@@ -109,6 +125,21 @@
   height: auto;
   padding-left: 3%;
   margin-top: 16px;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 3%;
+  margin-right: 3%;
+  margin-top: 16px;
+}
+
+.ratingContainer {
+  display: flex;
+  align-items: center;
 }
 
 .submittedAt {
@@ -153,14 +184,14 @@
   height: auto;
 }
 
-.organizationsColumn {
+.externalAuthorsColumn {
   display: flex;
   flex-direction: column;
   width: 47%;
   height: auto;
 }
 
-.organizationsLabel {
+.externalAuthorsLabel {
   color: #000;
   font-size: 1.1rem;
   font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
@@ -172,7 +203,7 @@
   text-align: left;
 }
 
-.organizationNameLabel {
+.externalAuthorNameLabel {
   color: #1976D2;
   font-size: 1.1rem;
   font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
@@ -205,7 +236,7 @@
   text-decoration: underline;
 }
 
-.followNewsLabel {
+.followArticleLabel {
   color: #000;
   font-size: 1.4rem;
   font-weight: bold;

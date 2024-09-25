@@ -1,24 +1,23 @@
 import {FC, memo} from "react";
 import styles from "./styles.module.scss";
-import TimeLineIndicator from "../indicator";
 import SmallCard from "../../../news/cards/smallCard";
-import News from "../../../../../../core/domain/models/News";
+import Article from "@models/Article";
 
 interface Props {
     className?: string;
     isLastItem?: boolean;
-    news: News
+    article: Article
 }
 
 export const TimeLineContainer: FC<Props> = memo(function TimeLineContainer({
     isLastItem,
-    news,
+    article,
     ...props
 }) {
     return (
         <div className={styles.timeLineContainer}>
-            <TimeLineIndicator useSmallIndicator={isLastItem} />
-            <SmallCard news={news} />
+            <SmallCard article={article} />
+            {!isLastItem && <div className={styles.divider}/>}
         </div>
     );
 });

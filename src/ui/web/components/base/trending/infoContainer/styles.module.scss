@@ -3,8 +3,8 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding-top: 5%;
-  padding-bottom: 5%;
+  padding-bottom: 4%;
+  gap: 16px;
 }
 
 .borderTop {
@@ -12,23 +12,42 @@
 }
 
 .trendingNumber {
-  color: #999;
   font-size: 18px;
   font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
   'Liberation Sans', sans-serif;
+  width: 8px;
+}
+
+.titleView {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  gap: 8px;
 }
 
 .title {
-  color: #0047ab;
+  color: #000000;
   font-size: 16px;
   font-weight: bold;
   font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
   'Liberation Sans', sans-serif;
   text-align: justify;
   letter-spacing: -0.017em;
-  width: 90%;
+  width: 100%;
   flex-direction: column;
   cursor: pointer;
+}
+
+.title:hover {
+  color: #0047ab;
+}
+
+.line {
+  margin-top: 2%;
+  margin-bottom: 1%;
+  max-width: 100%;
+  height: auto;
+  max-height: 100%;
 }
 
 .infoIcon {
