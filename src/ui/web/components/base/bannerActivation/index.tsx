@@ -17,7 +17,7 @@ export const BannerActivation: FC<Props> = memo(function Navbar({
         <div className={styles.banner}>
             <p className={styles.bannerText}>
                 Sua conta ainda não está ativada. Para ativar, clique
-                <Link to='/ativar-conta' className={styles.bannerButton}>
+                <Link to='/activate-account' className={styles.bannerButton}>
                     aqui
                 </Link>.
             </p>

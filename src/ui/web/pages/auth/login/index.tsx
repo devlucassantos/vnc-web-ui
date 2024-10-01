@@ -180,7 +180,7 @@ export const LoginPage: FC<Props> = memo(function LoginPage(props = {}) {
                                         }}
                                     />
                                 }
-                                label="Manter conectado"
+                                label="Mantenha-me conectado"
                                 sx={{
                                     alignSelf: 'flex-start',
                                     mt: 1,
@@ -204,7 +204,7 @@ export const LoginPage: FC<Props> = memo(function LoginPage(props = {}) {
                                         Não tem uma conta?
                                     </Typography>
                                     <Box component="span" sx={{ mx: 0.3 }} />
-                                    <Link href="/cadastre-se" sx={{ color: '#0047AB', textDecoration: 'none' }}>
+                                    <Link href="/sign-up" sx={{ color: '#0047AB', textDecoration: 'none' }}>
                                         <Typography component="span" variant="body2">
                                             Cadastre-se
                                         </Typography>

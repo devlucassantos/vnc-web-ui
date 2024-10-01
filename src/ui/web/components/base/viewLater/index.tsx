@@ -145,7 +145,7 @@ const ViewLaterButton: React.FC<ViewLaterButtonProps> = ({ onViewLaterSubmit, in
                         )}
                         {" e "}
                         {isInactiveUser ? (
-                            <StyledLink to='/ativar-conta'>ative a sua conta</StyledLink>
+                            <StyledLink to='/activate-account'>ative a sua conta</StyledLink>
                         ) : (
                             'ative a sua conta'
                         )}

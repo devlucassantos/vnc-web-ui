@@ -1,10 +1,12 @@
-import { memo } from 'react';
+import {memo, useState} from 'react';
 import type { FC } from 'react';
 import { Drawer, IconButton, List, ListItem, ListItemIcon, ListItemText } from '@mui/material';
 import { Home, Description, TrendingUp, Close, BookmarkBorder } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import styles from "./styles.module.scss";
+import User from "@models/User";
+import DIContainer from "@web/dicontainer";
 
 interface Props {
     className?: string;
@@ -39,11 +41,18 @@ const Line = styled.div`
   margin: 8px 0;
 `;
 
+const authenticationService = DIContainer.getAuthenticationUseCase();
+
 export const DrawerMenu: FC<Props> = memo(function DrawerMenu({
    isOpen,
    onClose,
    ...props
 }) {
+    const [user, setUser] = useState<User | null>(
+        authenticationService.getCachedUser() as User
+    );
+    const isActiveUser = user && !user.roles.includes('INACTIVE_USER')
+
     return (
         <Drawer anchor="left" open={isOpen} onClose={onClose}>
             <DrawerContent>
@@ -71,7 +80,7 @@ export const DrawerMenu: FC<Props> = memo(function DrawerMenu({
                         </ListItem>
                     </Link>
 
-                    <Link to="/boletins" style={{ textDecoration: 'none', color: 'inherit' }}>
+                    <Link to="/newsletters" style={{ textDecoration: 'none', color: 'inherit' }}>
                         <ListItem button>
                             <ListItemIcon>
                                 <Description style={{ color: 'black', fontSize: '32px' }} />
@@ -95,17 +104,19 @@ export const DrawerMenu: FC<Props> = memo(function DrawerMenu({
                         </ListItem>
                     </Link>
 
-                    <Link to="/ver-mais-tarde" style={{ textDecoration: 'none', color: 'inherit' }}>
-                        <ListItem button>
-                            <ListItemIcon>
-                                <BookmarkBorder style={{ color: 'black', fontSize: '32px' }} />
-                            </ListItemIcon>
-                            <ListItemText
-                                primary="Matérias salvas"
-                                primaryTypographyProps={{ style: { color: 'black', fontSize: '18px', fontWeight: 'bold' } }}
-                            />
-                        </ListItem>
-                    </Link>
+                    { isActiveUser && (
+                        <Link to="/view-later" style={{ textDecoration: 'none', color: 'inherit' }}>
+                            <ListItem button>
+                                <ListItemIcon>
+                                    <BookmarkBorder style={{ color: 'black', fontSize: '32px' }} />
+                                </ListItemIcon>
+                                <ListItemText
+                                    primary="Matérias salvas"
+                                    primaryTypographyProps={{ style: { color: 'black', fontSize: '18px', fontWeight: 'bold' } }}
+                                />
+                            </ListItem>
+                        </Link>
+                    )}
                 </List>
             </DrawerContent>
         </Drawer>

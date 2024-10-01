@@ -68,7 +68,7 @@ export const PropositionDetailsCard: FC<Props> = memo(function PropositionDetail
             <div className={styles.titleContainer}>
                 <div className={styles.titleContainerRow}>
                     <div className={styles.line} />
-                    <Link className={styles.title} to={"/proposicao-original/" + codteor} >
+                    <Link className={styles.title} to={"/original-proposition/" + codteor} >
                         <div>{proposition.title}</div>
                     </Link>
                 </div>
@@ -95,7 +95,7 @@ export const PropositionDetailsCard: FC<Props> = memo(function PropositionDetail
                 )}
             </RowContainer>
             <div className={styles.content}>{proposition.content}</div>
-            <Link className={styles.viewOriginalProposition} to={"/proposicao-original/" + codteor} >
+            <Link className={styles.viewOriginalProposition} to={"/original-proposition/" + codteor} >
                 <div>Ver proposição original</div>
             </Link>
             <div className={styles.submittedAt}>{"Proposição submetida em " + proposition.submittedAt + "."}</div>
@@ -117,7 +117,7 @@ export const PropositionDetailsCard: FC<Props> = memo(function PropositionDetail
             {proposition.newsletterArticle && (
                 <div className={styles.newsletterColumn}>
                     <div className={styles.followArticleLabel}>Acompanhe as outras notícias do dia:</div>
-                    <Link className={styles.newsletterTitleLabel} to={"/detalhes-do-boletim/" + proposition.newsletterArticle.id}>
+                    <Link className={styles.newsletterTitleLabel} to={"/newsletter-details/" + proposition.newsletterArticle.id}>
                         - {proposition.newsletterArticle.title}
                     </Link>
                 </div>

@@ -274,7 +274,7 @@ export const SignUpPage: FC<Props> = memo(function SignUpPage(props = {}) {
                                         }}
                                     />
                                 }
-                                label="Manter conectado"
+                                label="Mantenha-me conectado"
                                 sx={{
                                     alignSelf: 'flex-start',
                                     mt: 1,
