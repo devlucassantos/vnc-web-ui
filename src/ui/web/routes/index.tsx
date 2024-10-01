@@ -22,12 +22,12 @@ export const NavigationRoutes: FC<Props> = memo(function NavigationRoutes(props 
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<Home />} />
-                <Route path="/proposições-por-tipo/:id" element={<PropositionListByTypePage />} />
+                <Route path="/proposicoes-por-tipo/:id" element={<PropositionListByTypePage />} />
                 <Route path="/boletins" element={<NewsletterListPage />} />
                 <Route path="/trendings" element={<TrendingPage />} />
-                <Route path="/detalhes-da-proposição/:id" element={<PropositionDetailsPage />} />
+                <Route path="/detalhes-da-proposicao/:id" element={<PropositionDetailsPage />} />
                 <Route path="/detalhes-do-boletim/:id" element={<NewsletterDetailsPage />} />
-                <Route path="/proposição-original/:codteor" element={<OriginalPropositionPage />} />
+                <Route path="/proposicao-original/:codteor" element={<OriginalPropositionPage />} />
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/cadastre-se" element={<SignUpPage />} />
                 <Route path="/ativar-conta" element={<ActivateAccountPage />} />

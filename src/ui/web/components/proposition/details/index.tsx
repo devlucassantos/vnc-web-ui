@@ -68,7 +68,7 @@ export const PropositionDetailsCard: FC<Props> = memo(function PropositionDetail
             <div className={styles.titleContainer}>
                 <div className={styles.titleContainerRow}>
                     <div className={styles.line} />
-                    <Link className={styles.title} to={"/proposição-original/" + codteor} >
+                    <Link className={styles.title} to={"/proposicao-original/" + codteor} >
                         <div>{proposition.title}</div>
                     </Link>
                 </div>
@@ -95,7 +95,7 @@ export const PropositionDetailsCard: FC<Props> = memo(function PropositionDetail
                 )}
             </RowContainer>
             <div className={styles.content}>{proposition.content}</div>
-            <Link className={styles.viewOriginalProposition} to={"/proposição-original/" + codteor} >
+            <Link className={styles.viewOriginalProposition} to={"/proposicao-original/" + codteor} >
                 <div>Ver proposição original</div>
             </Link>
             <div className={styles.submittedAt}>{"Proposição submetida em " + proposition.submittedAt + "."}</div>

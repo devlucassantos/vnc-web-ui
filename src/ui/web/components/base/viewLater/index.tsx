@@ -5,6 +5,7 @@ import BookmarkIcon from '@mui/icons-material/Bookmark';
 import styled from 'styled-components';
 import User from "@models/User";
 import DIContainer from "@web/dicontainer";
+import {Link} from "react-router-dom";
 
 interface ViewLaterButtonProps {
     onViewLaterSubmit: (viewLater: boolean) => Promise<void>;
@@ -62,6 +63,13 @@ const NotAuthenticatedDialogTitleStyled = styled(DialogTitle)`
     color: black;
 `;
 
+const StyledLink = styled(Link)`
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  color: #0047ab;
+`;
+
 const authenticationService = DIContainer.getAuthenticationUseCase();
 
 const ViewLaterButton: React.FC<ViewLaterButtonProps> = ({ onViewLaterSubmit, initialSelected = false }) => {
@@ -72,9 +80,10 @@ const ViewLaterButton: React.FC<ViewLaterButtonProps> = ({ onViewLaterSubmit, in
     const [user, setUser] = useState<User | null>(
         authenticationService.getCachedUser() as User
     );
+    const isInactiveUser = user && user.roles.includes('INACTIVE_USER')
 
     const handleViewLaterClick = async () => {
-        if (!user) {
+        if (!user || isInactiveUser) {
             setAuthDialogOpen(true);
             return;
         }
@@ -128,7 +137,19 @@ const ViewLaterButton: React.FC<ViewLaterButtonProps> = ({ onViewLaterSubmit, in
                 <DialogContentStyled>
                     <DialogSelectedIcon />
                     <NotAuthenticatedDialogTitleStyled>
-                        Não foi possível salvar esta matéria. Por favor, autentique-se para poder realizar esta ação.
+                        Não foi possível salvar esta matéria. Por favor,{" "}
+                        {!user ? (
+                            <StyledLink to='/login'>autentique-se</StyledLink>
+                        ) : (
+                            'autentique-se'
+                        )}
+                        {" e "}
+                        {isInactiveUser ? (
+                            <StyledLink to='/ativar-conta'>ative a sua conta</StyledLink>
+                        ) : (
+                            'ative a sua conta'
+                        )}
+                        {" para poder realizar esta ação."}
                     </NotAuthenticatedDialogTitleStyled>
                     <Button
                         onClick={handleAuthDialogClose}

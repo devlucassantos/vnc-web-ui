@@ -23,7 +23,7 @@ export const TrendingInfoContainer: FC<Props> = memo(function TrendingInfoContai
     ...props
 }) {
     const handleRedirect  = () => {
-        window.location.assign((trendingArticle.type.description !== "Boletins" ? "/detalhes-da-proposição/" : "/detalhes-do-boletim/") + trendingArticle.id);
+        window.location.assign((trendingArticle.type.description !== "Boletins" ? "/detalhes-da-proposicao/" : "/detalhes-do-boletim/") + trendingArticle.id);
     };
 
     return (

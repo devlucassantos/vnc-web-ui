@@ -35,8 +35,8 @@ BackendClient.interceptors.response.use(
                 return Promise.reject(error);
             }
         }
-
-        const refreshToken = StorageController.get('refresh-token');
+        const persistAfterSession = StorageController.getBooleanFromStorage('persist-session');
+        const refreshToken = StorageController.get('refresh-token', false, persistAfterSession);
         if (!refreshToken) return Promise.reject(error);
         delete BackendClient.defaults.headers.common['Authorization'];
         try {
@@ -47,8 +47,8 @@ BackendClient.interceptors.response.use(
             );
 
             const {access_token, refresh_token} = response.data;
-            StorageController.set('access-token', access_token);
-            StorageController.set('refresh-token', refresh_token);
+            StorageController.set('access-token', access_token, false, persistAfterSession);
+            StorageController.set('refresh-token', refresh_token, false, persistAfterSession);
             const authHeader = 'Bearer ' + response.data.access_token;
 
             if (!error.response.config.headers) {

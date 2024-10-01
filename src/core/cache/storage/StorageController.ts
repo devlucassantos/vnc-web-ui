@@ -1,10 +1,11 @@
-type StorageKeys = 'user' | 'access-token' | 'refresh-token';
+type StorageKeys = 'user' | 'access-token' | 'refresh-token' | 'persist-session';
 
 class StorageController {
     private static readonly keys: Record<StorageKeys, string> = {
         user: 'VNC@USER_DATA',
         'access-token': 'VNC@AUTH_TOKEN',
         'refresh-token': 'VNC@REFRESH_TOKEN',
+        'persist-session': 'VNC@PERSIST_SESSION',
     };
 
     static set(
@@ -35,6 +36,11 @@ class StorageController {
     static clear(): void {
         sessionStorage.clear();
         localStorage.clear();
+    }
+
+    static getBooleanFromStorage(key: StorageKeys, persistAfterSession: boolean = true): boolean {
+        const value = StorageController.get(key, false, persistAfterSession);
+        return value === 'true';
     }
 }
 

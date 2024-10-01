@@ -1,7 +1,7 @@
 import User from "@models/User";
 
 abstract class CacheUsecase {
-    static saveUserAndTokens(user: User): void {
+    static saveUserAndTokens(user: User, persistAfterSession: boolean): void {
         throw new Error('you must implement "saveUser"');
     }
 

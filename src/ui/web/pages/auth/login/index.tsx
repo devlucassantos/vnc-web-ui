@@ -1,5 +1,18 @@
 import React, {FC, memo, useState} from 'react';
-import { Button, TextField, Box, Typography, Container, Grid, Link, Alert, IconButton, InputAdornment } from '@mui/material';
+import {
+    Button,
+    TextField,
+    Box,
+    Typography,
+    Container,
+    Grid,
+    Link,
+    Alert,
+    IconButton,
+    InputAdornment,
+    Checkbox,
+    FormControlLabel
+} from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { styled } from '@mui/system';
 import DIContainer from "@web/dicontainer";
@@ -71,6 +84,7 @@ export const LoginPage: FC<Props> = memo(function LoginPage(props = {}) {
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const [showPassword, setShowPassword] = useState(false);
+    const [persistAfterSession, setPersistAfterSession] = useState(false);
     const navigate = useNavigate();
 
     const handleClickShowPassword = () => setShowPassword(!showPassword);
@@ -81,7 +95,7 @@ export const LoginPage: FC<Props> = memo(function LoginPage(props = {}) {
     const handleLogin = async (event: React.FormEvent) => {
         event.preventDefault();
         try {
-            const user = await authenticationService.signIn(email, password)
+            const user = await authenticationService.signIn(email, password, persistAfterSession)
             authenticationService.configureAuthorization();
             setError('');
             navigate('/');
@@ -96,7 +110,7 @@ export const LoginPage: FC<Props> = memo(function LoginPage(props = {}) {
                 <Logo>
                     <LogoImage
                         src="/src/ui/web/assets/vnc-circular-logo.png"
-                        alt="Logo Você na Câmara"
+                        alt="Logo da Plataforma Você na Câmara"
                     />
                 </Logo>
             </Grid>
@@ -152,6 +166,28 @@ export const LoginPage: FC<Props> = memo(function LoginPage(props = {}) {
                                             </IconButton>
                                     </InputAdornment>
                                     ),
+                                }}
+                            />
+                            <FormControlLabel
+                                control={
+                                    <Checkbox
+                                        checked={persistAfterSession}
+                                        onChange={(e) => setPersistAfterSession(e.target.checked)}
+                                        sx={{
+                                            color: '#0047AB',
+                                            '&.Mui-checked': { color: '#0047AB' },
+                                            borderRadius: '50%',
+                                        }}
+                                    />
+                                }
+                                label="Manter conectado"
+                                sx={{
+                                    alignSelf: 'flex-start',
+                                    mt: 1,
+                                    color: '#727272',
+                                    '& .MuiFormControlLabel-label': {
+                                        fontSize: '14px',
+                                    },
                                 }}
                             />
                             <SubmitButton

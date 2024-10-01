@@ -1,8 +1,9 @@
-import React, { FC, memo, useState } from 'react';
+import React, {FC, memo, useEffect, useState} from 'react';
 import { Button, TextField, Box, Typography, Container, Grid, Link, Alert } from '@mui/material';
 import { styled } from '@mui/system';
 import DIContainer from '@web/dicontainer';
 import { useNavigate } from 'react-router-dom';
+import User from "@models/User";
 
 interface Props {
     className?: string;
@@ -78,6 +79,7 @@ const ResendButton = styled(Button)({
 });
 
 const userService = DIContainer.getUserUseCase();
+const authenticationService = DIContainer.getAuthenticationUseCase();
 
 export const ActivateAccountPage: FC<Props> = memo(function ActivateAccountPage(props = {}) {
     const [activationCode, setActivationCode] = useState('');
@@ -86,6 +88,9 @@ export const ActivateAccountPage: FC<Props> = memo(function ActivateAccountPage(
     const [activateAccountLoading, setActivateAccountLoading] = useState(false);
     const [resendEmailLoading, setResendEmailLoading] = useState(false);
     const navigate = useNavigate();
+    const [user, setUser] = useState<User | null>(
+        authenticationService.getCachedUser() as User
+    );
 
     const handleActivation = async (event: React.FormEvent) => {
         event.preventDefault();
@@ -118,13 +123,19 @@ export const ActivateAccountPage: FC<Props> = memo(function ActivateAccountPage(
         }
     };
 
+    useEffect(() => {
+        if (!user) {
+            navigate('/login');
+        }
+    }, [user]);
+
     return (
         <Grid container>
             <Grid item xs={12} md={6}>
                 <Logo>
                     <LogoImage
                         src="/src/ui/web/assets/vnc-circular-logo.png"
-                        alt="Logo Você na Câmara"
+                        alt="Logo da Plataforma Você na Câmara"
                     />
                 </Logo>
             </Grid>

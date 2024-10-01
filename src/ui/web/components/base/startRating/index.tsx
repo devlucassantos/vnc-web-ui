@@ -4,6 +4,7 @@ import StarIcon from '@mui/icons-material/Star';
 import styled from 'styled-components';
 import User from "@models/User";
 import DIContainer from "@web/dicontainer";
+import {Link} from "react-router-dom";
 
 interface StarRatingProps {
     onSubmitRating: (rating: number) => Promise<void>;
@@ -64,6 +65,12 @@ const NotAuthenticatedDialogTitleStyled = styled(DialogTitle)`
     color: black;
 `;
 
+const StyledLink = styled(Link)`
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  color: #0047ab;
+`;
 
 const authenticationService = DIContainer.getAuthenticationUseCase();
 
@@ -75,9 +82,10 @@ const StarRating: React.FC<StarRatingProps> = ({ onSubmitRating, initialRating =
     const [user, setUser] = useState<User | null>(
         authenticationService.getCachedUser() as User
     );
+    const isInactiveUser = user && user.roles.includes('INACTIVE_USER')
 
     const handleRatingChange = async (event: React.SyntheticEvent, value: number | null) => {
-        if (!user) {
+        if (!user || isInactiveUser) {
             setAuthDialogOpen(true);
             return;
         }
@@ -139,7 +147,20 @@ const StarRating: React.FC<StarRatingProps> = ({ onSubmitRating, initialRating =
                 <DialogContentStyled>
                     <CustomLargeStarIcon />
                     <NotAuthenticatedDialogTitleStyled>
-                        Não foi possível avaliar esta matéria. Por favor, autentique-se para poder realizar a avaliação.
+                        Não foi possível avaliar esta matéria. Por favor,
+                        {" "}
+                        {!user ? (
+                            <StyledLink to='/login'>autentique-se</StyledLink>
+                        ) : (
+                            'autentique-se'
+                        )}
+                        {" e "}
+                        {isInactiveUser ? (
+                            <StyledLink to='/ativar-conta'>ative a sua conta</StyledLink>
+                        ) : (
+                            'ative a sua conta'
+                        )}
+                        {" para poder realizar a avaliação."}
                     </NotAuthenticatedDialogTitleStyled>
                     <Button
                         onClick={handleAuthDialogClose}
