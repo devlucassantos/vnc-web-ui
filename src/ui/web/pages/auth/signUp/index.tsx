@@ -1,5 +1,18 @@
 import React, {FC, memo, useEffect, useRef, useState} from 'react';
-import { Button, TextField, Box, Typography, Container, Grid, Link, Alert, IconButton, InputAdornment } from '@mui/material';
+import {
+    Button,
+    TextField,
+    Box,
+    Typography,
+    Container,
+    Grid,
+    Link,
+    Alert,
+    IconButton,
+    InputAdornment,
+    Checkbox,
+    FormControlLabel
+} from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { styled } from '@mui/system';
 import {isEmailValid, isPasswordValid} from "@utils/validatorUtils";
@@ -76,6 +89,7 @@ export const SignUpPage: FC<Props> = memo(function SignUpPage(props = {}) {
     const [error, setError] = useState('');
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+    const [persistAfterSession, setPersistAfterSession] = useState(false);
     const navigate = useNavigate();
 
     const handleClickShowPassword = () => setShowPassword(!showPassword);
@@ -102,7 +116,7 @@ export const SignUpPage: FC<Props> = memo(function SignUpPage(props = {}) {
         }
 
         try {
-            const user = await authenticationService.signUp(email, firstName, lastName, password)
+            const user = await authenticationService.signUp(email, firstName, lastName, password, persistAfterSession)
             authenticationService.configureAuthorization();
             setError('');
             navigate('/');
@@ -137,7 +151,7 @@ export const SignUpPage: FC<Props> = memo(function SignUpPage(props = {}) {
                 <Logo>
                     <LogoImage
                         src="/src/ui/web/assets/vnc-circular-logo.png"
-                        alt="Logo Você na Câmara"
+                        alt="Logo da Plataforma Você na Câmara"
                     />
                 </Logo>
             </Grid>
@@ -246,6 +260,28 @@ export const SignUpPage: FC<Props> = memo(function SignUpPage(props = {}) {
                                             </IconButton>
                                         </InputAdornment>
                                     ),
+                                }}
+                            />
+                            <FormControlLabel
+                                control={
+                                    <Checkbox
+                                        checked={persistAfterSession}
+                                        onChange={(e) => setPersistAfterSession(e.target.checked)}
+                                        sx={{
+                                            color: '#0047AB',
+                                            '&.Mui-checked': { color: '#0047AB' },
+                                            borderRadius: '50%',
+                                        }}
+                                    />
+                                }
+                                label="Mantenha-me conectado"
+                                sx={{
+                                    alignSelf: 'flex-start',
+                                    mt: 1,
+                                    color: '#727272',
+                                    '& .MuiFormControlLabel-label': {
+                                        fontSize: '14px',
+                                    },
                                 }}
                             />
                             <SubmitButton

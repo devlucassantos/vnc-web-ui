@@ -22,16 +22,16 @@ export const NavigationRoutes: FC<Props> = memo(function NavigationRoutes(props 
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<Home />} />
-                <Route path="/proposições-por-tipo/:id" element={<PropositionListByTypePage />} />
-                <Route path="/boletins" element={<NewsletterListPage />} />
+                <Route path="/propositions-by-type/:id" element={<PropositionListByTypePage />} />
+                <Route path="/newsletters" element={<NewsletterListPage />} />
                 <Route path="/trendings" element={<TrendingPage />} />
-                <Route path="/detalhes-da-proposição/:id" element={<PropositionDetailsPage />} />
-                <Route path="/detalhes-do-boletim/:id" element={<NewsletterDetailsPage />} />
-                <Route path="/proposição-original/:codteor" element={<OriginalPropositionPage />} />
+                <Route path="/proposition-details/:id" element={<PropositionDetailsPage />} />
+                <Route path="/newsletter-details/:id" element={<NewsletterDetailsPage />} />
+                <Route path="/original-proposition/:codteor" element={<OriginalPropositionPage />} />
                 <Route path="/login" element={<LoginPage />} />
-                <Route path="/cadastre-se" element={<SignUpPage />} />
-                <Route path="/ativar-conta" element={<ActivateAccountPage />} />
-                <Route path="/ver-mais-tarde" element={<ViewLaterListPage />} />
+                <Route path="/sign-up" element={<SignUpPage />} />
+                <Route path="/activate-account" element={<ActivateAccountPage />} />
+                <Route path="/view-later" element={<ViewLaterListPage />} />
                 <Route path="*" element={<NotFoundPage />} />
             </Routes>
         </BrowserRouter>

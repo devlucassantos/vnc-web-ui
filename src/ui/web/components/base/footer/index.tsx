@@ -8,6 +8,8 @@ interface Props {
 }
 
 export const Footer: FC<Props> = memo(function Footer(props = {}) {
+    const currentYear = new Date().getFullYear();
+
     return (
         <div className={styles.footer}>
             <div className={styles.footerContainer}>
@@ -17,7 +19,7 @@ export const Footer: FC<Props> = memo(function Footer(props = {}) {
                 </div>
                 <div className={styles.copyrightContainer}>
                     <div className={styles.logo} />
-                    <div className={styles.copyrightLabel}>© Copyright 2024-2028 Você na Câmara</div>
+                    <div className={styles.copyrightLabel}>© Copyright {currentYear} Você na Câmara</div>
                 </div>
                 <div className={styles.rightContainer}>
                     <div className={`${styles.labelText} ${styles.vncLabel}`}>VNC NAS REDES</div>

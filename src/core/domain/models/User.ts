@@ -99,15 +99,15 @@ class User extends Model {
 
     static fromJSON(json: DTO<any>): User {
         const obj = new User();
-        obj._id = String(json['id']);
-        obj._email = String(json['email']);
-        obj._firstName = String(json['first_name']);
-        obj._lastName = String(json['last_name']);
-        obj._accessToken = String(json['access_token']);
-        obj._refreshToken = String(json['refresh_token']);
+        obj._id = json['id'];
+        obj._email = json['email'];
+        obj._firstName = json['first_name'];
+        obj._lastName = json['last_name'];
+        obj._accessToken = json['access_token'];
+        obj._refreshToken = json['refresh_token'];
         obj._roles = json['roles'] ? json['roles'] as string[] : [];
-        obj._createdAt = formatCustomDateTime(String(json['created_at']));
-        obj._updatedAt = formatCustomDateTime(String(json['updated_at']));
+        obj._createdAt = formatCustomDateTime(json['created_at']);
+        obj._updatedAt = formatCustomDateTime(json['updated_at']);
         return obj;
     }
 }

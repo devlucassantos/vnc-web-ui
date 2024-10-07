@@ -9,15 +9,15 @@ export class AuthenticationService implements AuthenticationUsecase {
         this.configureAuthorization();
     }
 
-    async signIn(email: string, password: string): Promise<User> {
+    async signIn(email: string, password: string, persistAfterSession: boolean): Promise<User> {
         const user = await this.authenticationAdapter.signIn(email, password);
-        CacheService.saveUserAndTokens(user);
+        CacheService.saveUserAndTokens(user, persistAfterSession);
         return user
     }
 
-    async signUp(email: string, firstName: string, lastName: string, password: string): Promise<User> {
+    async signUp(email: string, firstName: string, lastName: string, password: string, persistAfterSession: boolean): Promise<User> {
         const user = await this.authenticationAdapter.signUp(email, firstName, lastName, password);
-        CacheService.saveUserAndTokens(user);
+        CacheService.saveUserAndTokens(user, persistAfterSession);
         return user
     }
 
@@ -28,7 +28,8 @@ export class AuthenticationService implements AuthenticationUsecase {
     }
 
     configureAuthorization(): void {
-        const token = StorageController.get('access-token');
+        const persistAfterSession = StorageController.getBooleanFromStorage('persist-session');
+        const token = StorageController.get('access-token', false, persistAfterSession);
         if (token) {
             this.authenticationAdapter.saveAuthorization(token);
         } else {

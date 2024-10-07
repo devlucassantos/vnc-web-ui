@@ -19,7 +19,7 @@ export const PropositionNavigationBar: FC<Props> = memo(function PropositionNavi
             <div className={styles.navigationBarRow}>
                 {resource?.articleTypes?.map((articleType, index) => (
                     articleType.description !== 'Boletins' ? (
-                        <Link key={index} className={styles.label} style={{ color: articleType.color }} to={`/proposições-por-tipo/${articleType.id}`}>
+                        <Link key={index} className={styles.label} style={{ color: articleType.color }} to={`/propositions-by-type/${articleType.id}`}>
                             {articleType.description}
                         </Link>
                     ) : null

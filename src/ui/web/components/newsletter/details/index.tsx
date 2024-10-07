@@ -81,7 +81,7 @@ export const NewsletterDetailsCard: FC<Props> = memo(function NewsletterDetailsC
             <div className={styles.propositionsColumn}>
                 {newsletter.propositionArticles?.map((propositionArticle, index) => (
                     <>
-                        <Link className={styles.propositionArticleTitleLabel} key={index} to={"/detalhes-da-proposição/" + propositionArticle.id}>
+                        <Link className={styles.propositionArticleTitleLabel} key={index} to={"/proposition-details/" + propositionArticle.id}>
                             {propositionArticle.title}
                         </Link>
                         <div className={styles.propositionArticleContent}>{propositionArticle.content}</div>

@@ -30,7 +30,7 @@ export const SmallCard: FC<Props> = memo(function SmallCard({
                 )}
             </div>
             <div className={styles.column}>
-                <Link className={styles.titleRow} to={(article.type.description !== "Boletins" ? "/detalhes-da-proposição/" : "/detalhes-do-boletim/") + article.id}>
+                <Link className={styles.titleRow} to={(article.type.description !== "Boletins" ? "/proposition-details/" : "/newsletter-details/") + article.id}>
                     <div className={styles.titleView}>
                         <div className={styles.line} style={{ outline: `solid 2px ${article.type.color}` }}/>
                         <TitleDiv className={styles.title} hoverColor={article.type.color}>{article.title}</TitleDiv>
