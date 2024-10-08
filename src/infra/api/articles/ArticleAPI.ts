@@ -39,7 +39,7 @@ class ArticleAPI implements ArticleAdapter {
 
     async saveArticleRating(articleId: string, rating: number): Promise<void> {
         try {
-            await BackendClient.patch(`/articles/${articleId}/rating`, { rating: rating});
+            await BackendClient.put(`/articles/${articleId}/rating`, { rating: rating});
         } catch (error) {
             throw error;
         }
@@ -47,7 +47,7 @@ class ArticleAPI implements ArticleAdapter {
 
     async saveArticleToViewLater(articleId: string, viewLater: boolean): Promise<void> {
         try {
-            await BackendClient.patch(`/articles/${articleId}/view-later`, { view_later: viewLater});
+            await BackendClient.put(`/articles/${articleId}/view-later`, { view_later: viewLater});
         } catch (error) {
             throw error;
         }
