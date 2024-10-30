@@ -4,7 +4,7 @@ import User from "@models/User";
 class UserAPI implements UserAdapter {
     async activateAccount(activationCode: string): Promise<User> {
         try {
-            const response = await BackendClient.put(`/user/activate-account`, {
+            const response = await BackendClient.patch(`/user/activate-account`, {
                 activation_code: activationCode,
             });
 
@@ -16,7 +16,7 @@ class UserAPI implements UserAdapter {
 
     async resendActivationEmail(): Promise<void> {
         try {
-            await BackendClient.put(`/user/resend-activation-email`);
+            await BackendClient.patch(`/user/resend-activation-email`);
         } catch (error) {
             throw error;
         }
