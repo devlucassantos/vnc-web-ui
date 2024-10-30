@@ -1,0 +1,19 @@
+services:
+    vnc_web_ui:
+        container_name: vnc_web_ui
+        build:
+            context: .
+            dockerfile: Dockerfile
+            args:
+                VITE_API_URL: # REQUIRED
+        restart: always
+        environment:
+            PORT: 8080
+        ports:
+            - "8090:8080"
+        networks:
+            - vnc_network
+
+networks:
+    vnc_network:
+        external: true
