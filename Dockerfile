@@ -10,13 +10,11 @@ RUN npm install
 
 RUN npm run build
 
-FROM node:20-alpine
 
-WORKDIR /app
+FROM nginx:alpine
 
-RUN npm install -g serve
+COPY --from=build /app/dist /usr/share/nginx/html
+COPY --from=build /app/nginx.conf /etc/nginx/conf.d/default.conf
+COPY --from=build /app/src/ui/web/assets /usr/share/nginx/html/src/ui/web/assets
 
-COPY --from=build /app/dist /app/dist
-COPY --from=build /app/src/ui/web/assets /app/dist/src/ui/web/assets
-
-CMD serve -s dist -l $PORT
+CMD sed -i -e 's/$PORT/'"$PORT"'/g' /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'
