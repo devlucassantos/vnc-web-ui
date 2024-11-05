@@ -15,12 +15,6 @@ interface Props {
     proposition: Proposition
 }
 
-const TitleDiv = styled.div<{ hoverColor: string }>`
-  &:hover {
-    color: ${(props) => props.hoverColor};
-  }
-`;
-
 const RatingContainer = styled.div`
   display: flex;
   align-items: center;
@@ -101,18 +95,24 @@ export const PropositionDetailsCard: FC<Props> = memo(function PropositionDetail
             <div className={styles.submittedAt}>{"Proposição submetida em " + proposition.submittedAt + "."}</div>
             <div className={styles.authors}>Autores</div>
             <div className={styles.authorsRow}>
-                <div className={styles.deputiesColumn}>
-                    <div className={styles.deputiesLabel}>Deputados:</div>
-                    {proposition.deputies?.map((deputy, index) => (
-                        <DeputyCard key={index} deputy={deputy} />
-                    ))}
+              {proposition.deputies?.length > 0 && (
+                <div className={`${styles.deputiesColumn} ${!proposition.externalAuthors?.length ? styles.fullWidthColumn : ""}`}>
+                  <div className={styles.deputiesLabel}>Deputados:</div>
+                  {proposition.deputies.map((deputy, index) => (
+                    <DeputyCard key={index} deputy={deputy} />
+                  ))}
                 </div>
-                <div className={styles.externalAuthorsColumn}>
-                    <div className={styles.externalAuthorsLabel}>Autores Externos:</div>
-                    {proposition.externalAuthors?.map((externalAuthor, index) => (
-                        <div key={index} className={styles.externalAuthorNameLabel}>- {externalAuthor.name}</div>
-                    ))}
+              )}
+              {proposition.externalAuthors?.length > 0 && (
+                <div className={`${styles.externalAuthorsColumn} ${!proposition.deputies?.length ? styles.fullWidthColumn : ""}`}>
+                  <div className={styles.externalAuthorsLabel}>Autores Externos:</div>
+                  {proposition.externalAuthors.map((externalAuthor, index) => (
+                    <div key={index} className={styles.externalAuthorNameLabel}>
+                      - {externalAuthor.name}
+                    </div>
+                  ))}
                 </div>
+              )}
             </div>
             {proposition.newsletterArticle && (
                 <div className={styles.newsletterColumn}>

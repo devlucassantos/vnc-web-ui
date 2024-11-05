@@ -83,7 +83,7 @@ export const PropositionListByTypePage: FC<Props> = memo(function PropositionLis
         try {
             const queryFilters: ArticleTypeFilters = {
                 itemsPerPage: 5,
-                ids: `${id}`
+                articleTypeIds: `${id}`
             };
 
             const articleTypes = await ArticleTypeService.getTrendingArticlesByType(queryFilters);
@@ -134,7 +134,7 @@ export const PropositionListByTypePage: FC<Props> = memo(function PropositionLis
                 ) : (
                     articleList?.length > 0 ? (
                         <>
-                            {trendingArticleListByType && trendingArticleListByType[0]?.propositionArticles?.length >= 3 &&
+                            {trendingArticleListByType && trendingArticleListByType[0]?.propositionArticles?.length >= 3 && trendingArticleListByType[0]?.description !== "Outras Proposições" &&
                                 <>
                                     <TitleTopic titleViewStyle={style.propositionTypeTitleView} label={articleTypeDescription} color={articleTypeColor} />
                                     <div className={style.gridContainer}>

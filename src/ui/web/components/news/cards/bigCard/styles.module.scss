@@ -84,7 +84,7 @@
   text-align: justify;
   height: auto;
   width: 100%;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  text-shadow: 0 1px 3px rgba(0,0,0,.8);
 }
 
 .title:hover {
@@ -129,7 +129,7 @@
   letter-spacing: -0.017em;
   width: 50%;
   height: auto;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  text-shadow: 0 1px 3px rgba(0,0,0,.8);
 }
 
 .updatedAt {
@@ -141,7 +141,7 @@
   text-align: right;
   width: 50%;
   height: auto;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  text-shadow: 0 1px 3px rgba(0,0,0,.8);
 }
 
 @media screen and (max-width: 400px) {

@@ -10,20 +10,19 @@
 }
 
 .titleContainer {
+  display: flex;
+  flex-direction: row;
   margin-left: 3%;
   margin-right: 3%;
   margin-top: 10px;
-  display: flex;
-  width: 94%;
+  width: auto;
+  justify-content: space-between;
 }
 
 .titleContainerRow {
   display: flex;
   flex-direction: row;
   width: auto;
-  margin-left: 3%;
-  padding-right: 3%;
-  margin-top: 16px;
 }
 
 .line {
@@ -210,4 +209,11 @@
   text-align: left;
   margin-top: 16px;
   cursor: pointer;
+}
+
+@media screen and (max-width: 500px) {
+  .titleContainer {
+    flex-direction: column;
+    gap: 8px;
+  }
 }

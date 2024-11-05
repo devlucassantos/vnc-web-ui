@@ -17,8 +17,10 @@ export const DeputyCard: FC<Props> = memo(function DeputyCard({
     const closeModal = () => setModalOpen(false);
 
     return (
-        <div className={styles.deputyNameLabel} onMouseEnter={openModal}>
-            - {deputy.electoralName}
+        <div className={styles.deputyNameContainer} >
+            <div className={styles.deputyNameLabel} onMouseEnter={openModal}>
+              - {deputy.electoralName}
+            </div>
             {modalOpen && <DeputyModal deputy={deputy} closeModal={closeModal}/>}
         </div>
     );

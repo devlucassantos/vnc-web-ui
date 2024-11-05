@@ -4,26 +4,29 @@ import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import Article from "@models/Article";
 import styled from 'styled-components';
+import SplitCard from "@components/news/cards/splitCard";
 
 interface Props {
     className?: string;
     articleList: Article[];
-    typePropositionLabel: string;
-    carouselStyle: any;
-    cardStyle: any;
-    imageContainerStyle: any;
-    titleStyle: any;
+    typePropositionLabel?: string;
+    carouselStyle?: any;
+    cardStyle?: any;
+    imageContainerStyle?: any;
+    titleStyle?: any;
     dotColor?: string;
+    isSplitCard?: boolean;
+    displayArticleTypeLabel?: boolean;
 }
 
-const StyledCarousel = styled(Carousel)<{ dotColor: string }>`
+const StyledCarousel = styled(Carousel)<{ dotColor: string, isSplitCard: boolean }>`
     .react-multi-carousel-dot button {
-        background-color: white;
+        background-color: ${props => props.isSplitCard ? 'rgba(255, 255, 255, 0.5)' : 'white'};
         border: none;
     }
 
     .react-multi-carousel-dot--active button {
-        background-color: ${props => props.dotColor};
+        background-color: ${props => props.isSplitCard ? 'white' : props.dotColor};
     }
 `;
 
@@ -35,15 +38,18 @@ export const CustomCarousel: FC<Props> = memo(function CustomCarousel({
     imageContainerStyle,
     titleStyle,
     dotColor = "#0047AB",
+    isSplitCard = false,
+    displayArticleTypeLabel = true,
     ...props
 }) {
 
     return (
         <StyledCarousel
             dotColor={dotColor}
+            isSplitCard={isSplitCard}
             className={`${carouselStyle}`}
             additionalTransfrom={0}
-            arrows={false}
+            arrows={true}
             autoPlaySpeed={3000}
             centerMode={false}
             containerClass="container"
@@ -88,8 +94,10 @@ export const CustomCarousel: FC<Props> = memo(function CustomCarousel({
             swipeable
         >
             {articleList?.map((article, index) => (
-                <BigCard key={index} article={article} typePropositionLabel={typePropositionLabel} cardStyle={cardStyle}
-                         imageContainerStyle={imageContainerStyle} titleStyle={titleStyle}/>
+              isSplitCard ?
+                <SplitCard key={index} article={article} /> :
+                <BigCard key={index} article={article} typePropositionLabel={typePropositionLabel!} cardStyle={cardStyle}
+                         imageContainerStyle={imageContainerStyle} titleStyle={titleStyle} displayArticleTypeLabel={displayArticleTypeLabel}/>
             ))}
         </StyledCarousel>
     );

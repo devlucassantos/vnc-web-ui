@@ -15,6 +15,10 @@ const RatingContainer = styled.div`
     display: flex;
     justify-content: end;
     margin-top: 0.4rem;
+    
+    @media screen and (max-width: 500px) {
+        justify-content: start; 
+    }
 `;
 
 const CustomStarIcon = styled(StarIcon)`
