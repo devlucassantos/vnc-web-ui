@@ -57,10 +57,12 @@ export const NewsletterDetailsCard: FC<Props> = memo(function NewsletterDetailsC
 
     return (
         <div className={styles.card}>
-            <div className={styles.titleContainerRow}>
-                <div className={styles.line} />
+            <div className={styles.titleContainer}>
+              <div className={styles.titleContainerRow}>
+                <div className={styles.line}/>
                 <div className={styles.title}>{newsletter.title}</div>
-                <StarRating onSubmitRating={handleRatingSubmit} initialRating={ newsletter.userRating ?? 0 } />
+              </div>
+              <StarRating onSubmitRating={handleRatingSubmit} initialRating={newsletter.userRating ?? 0 } />
             </div>
             <RowContainer>
                 <div className={styles.createdAt}>
@@ -80,12 +82,12 @@ export const NewsletterDetailsCard: FC<Props> = memo(function NewsletterDetailsC
             </RowContainer>
             <div className={styles.propositionsColumn}>
                 {newsletter.propositionArticles?.map((propositionArticle, index) => (
-                    <>
-                        <Link className={styles.propositionArticleTitleLabel} key={index} to={"/proposition-details/" + propositionArticle.id}>
+                    <React.Fragment key={index}>
+                        <Link className={styles.propositionArticleTitleLabel} to={"/proposition-details/" + propositionArticle.id}>
                             {propositionArticle.title}
                         </Link>
                         <div className={styles.propositionArticleContent}>{propositionArticle.content}</div>
-                    </>
+                    </React.Fragment>
                 ))}
             </div>
         </div>

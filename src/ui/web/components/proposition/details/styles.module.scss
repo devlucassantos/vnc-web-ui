@@ -6,7 +6,9 @@
   height: auto;
   border-radius: 10px;
   background-color: #fff;
-  box-shadow: 0px 4px 4px 0px #00000040;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1),
+  0px 4px 8px rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.3s ease;
 }
 
 .titleContainer {
@@ -93,11 +95,11 @@
 
 .label {
   color: #FFFFFF;
-  font-size: calc(0.6rem + 0.4vw);
+  font-size: 1rem;
   font-weight: bold;
   font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
   'Liberation Sans', sans-serif;
-  padding: 4px 8px;
+  padding: 8px 16px;
 }
 
 .content {
@@ -163,14 +165,19 @@
   height: auto;
   margin-top: 16px;
   margin-bottom: 16px;
+  padding-left: 3%;
+  padding-right: 3%;
 }
 
-.deputiesColumn {
+.deputiesColumn, .externalAuthorsColumn {
   display: flex;
   flex-direction: column;
   width: 50%;
   height: auto;
-  padding-left: 3%;
+}
+
+.fullWidthColumn {
+  width: 100%;
 }
 
 .deputiesLabel {
@@ -181,13 +188,6 @@
   font-weight: bold;
   letter-spacing: -0.017em;
   width: auto;
-  height: auto;
-}
-
-.externalAuthorsColumn {
-  display: flex;
-  flex-direction: column;
-  width: 47%;
   height: auto;
 }
 
@@ -213,7 +213,6 @@
   height: auto;
   text-align: left;
   margin-top: 16px;
-  cursor: pointer;
 }
 
 .newsletterTitleLabel {
@@ -272,11 +271,21 @@
 
 
 @media screen and (max-width: 500px) {
-  .viewOriginalProposition {
-    display: none;
-  }
-
   .titleContainerRow {
     width: 95%;
+  }
+
+  .titleContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .title {
+    font-size: 1.2rem;
+  }
+
+  .content {
+    font-size: 1rem;
   }
 }

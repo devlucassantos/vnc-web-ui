@@ -165,22 +165,8 @@
   text-align: justify;
   height: auto;
   width: 100%;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  text-shadow: 0 1px 3px rgba(0,0,0,.8);
 }
-
-.mediumCardTitle {
-  color: #FFFFFF;
-  font-size: calc(0.7rem + 0.5vw);
-  font-weight: bold;
-  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
-  'Liberation Sans', sans-serif;
-  letter-spacing: -0.017em;
-  text-align: justify;
-  height: auto;
-  width: 100%;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-}
-
 .bigCardTitle:hover {
   color: #0047ab;
 }
@@ -195,7 +181,7 @@
   text-align: justify;
   height: auto;
   width: 100%;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  text-shadow: 0 1px 3px rgba(0,0,0,.8);
 }
 
 .mediumCardTitle:hover {
@@ -240,8 +226,8 @@
   }
 
   .body {
-    left: 1%;
-    width: 98%;
+    left: 2%;
+    width: 96%;
   }
 }
 
@@ -268,6 +254,14 @@
 
   .mediumCardTitle {
     font-size: calc(0.9rem + 0.6vw);
+  }
+
+  .propositionTypeTitleView {
+    margin-bottom: 16px;
+  }
+
+  .lastArticleTitleView {
+    margin-bottom: 16px;
   }
 }
 

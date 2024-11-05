@@ -9,6 +9,7 @@
   width: 40%;
   height: 20vh;
   border-radius: 10px;
+  margin-right: 1%;
 }
 
 .image {
@@ -26,13 +27,11 @@
   width: 100%;
   height: auto;
   gap: 8px;
-  margin-left: 1%;
 }
 
 .titleRow {
-  margin-left: 1%;
   display: flex;
-  width: 99%;
+  width: 100%;
   text-decoration: none;
 }
 
@@ -46,9 +45,9 @@
 .line {
   margin-top: 0.5%;
   margin-bottom: 1%;
-  max-width: 100%;
   height: auto;
   max-height: 100%;
+  width: 4px;
 }
 
 .title {
@@ -61,7 +60,7 @@
   text-align: justify;
   height: auto;
   width: 100%;
-  margin-left: 5px;
+  margin-left: 4px;
 }
 
 .title:hover {
@@ -82,7 +81,6 @@
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
   text-align: justify;
-  margin-left: 1%;
 }
 
 .dateRow {
@@ -102,7 +100,6 @@
   letter-spacing: -0.017em;
   width: 50%;
   height: auto;
-  padding-left: 1%;
 }
 
 .updatedAt {
