@@ -85,11 +85,12 @@
 
 .dateRow {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-self: flex-end;
-  align-items: end;
+  align-items: start;
   width: 100%;
   height: auto;
+  gap: 8px;
 }
 
 .createdAt {
@@ -98,7 +99,7 @@
   font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
   'Liberation Sans', sans-serif;
   letter-spacing: -0.017em;
-  width: 50%;
+  width: 100%;
   height: auto;
 }
 
@@ -108,9 +109,8 @@
   font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
   'Liberation Sans', sans-serif;
   letter-spacing: -0.017em;
-  width: 50%;
+  width: 100%;
   height: auto;
-  text-align: right;
   padding-right: 2%;
 }
 

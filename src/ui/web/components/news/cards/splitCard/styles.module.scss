@@ -33,13 +33,12 @@
   letter-spacing: -0.017em;
   width: 100%;
   height: auto;
-  overflow: hidden;
+  overflow: auto;
   text-decoration: none;
   text-overflow: ellipsis;
   text-align: justify;
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 6;
 }
 
 .dateLabel {

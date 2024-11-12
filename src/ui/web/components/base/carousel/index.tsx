@@ -28,6 +28,10 @@ const StyledCarousel = styled(Carousel)<{ dotColor: string, isSplitCard: boolean
     .react-multi-carousel-dot--active button {
         background-color: ${props => props.isSplitCard ? 'white' : props.dotColor};
     }
+
+    .react-multiple-carousel__arrow {
+        z-index: 1;
+    }
 `;
 
 export const CustomCarousel: FC<Props> = memo(function CustomCarousel({

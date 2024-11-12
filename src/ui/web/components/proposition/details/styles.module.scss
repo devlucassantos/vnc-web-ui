@@ -244,7 +244,6 @@
   letter-spacing: -0.017em;
   text-align: justify;
   height: auto;
-  width: 105%;
   margin-bottom: 4px;
 }
 
@@ -254,6 +253,7 @@
   width: 100%;
   height: auto;
   padding-left: 3%;
+  padding-right: 3%;
 }
 
 .deputyCard {
@@ -281,7 +281,7 @@
     gap: 8px;
   }
 
-  .title {
+  .title, .followArticleLabel, .authors {
     font-size: 1.2rem;
   }
 
