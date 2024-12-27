@@ -10,9 +10,9 @@ interface Props {
     article: Article;
 }
 
-const TitleDiv = styled.div<{ hoverColor: string }>`
+const TitleDiv = styled.div<{ $hoverColor: string }>`
   &:hover {
-    color: ${(props) => props.hoverColor};
+    color: ${(props) => props.$hoverColor};
   }
 `;
 
@@ -22,18 +22,21 @@ export const SmallCard: FC<Props> = memo(function SmallCard({
 }) {
     return (
         <div className={styles.smallCard}>
-            <div className={styles.imageView}>
-                { article.type.description !== "Boletins" ? (
-                    <div className={styles.image} style={{ backgroundImage: `url(${article.imageUrl})` }} role="img" aria-label="Imagem gerada por Inteligência Artificial representando o conteúdo da proposição." />
-                ) : (
+            { (article.type.description === "Boletins" || article.imageUrl !== 'undefined') && (
+              <div className={styles.imageView}>
+                  {article.type.description !== "Boletins" ? (
+                    <div className={styles.image} style={{backgroundImage: `url(${article.imageUrl})`}} role="img" aria-label="Imagem gerada por Inteligência Artificial representando o conteúdo da proposição." />
+                  ) : (
                     <NewsletterImageCard title={article.title}/>
-                )}
-            </div>
+                  )}
+              </div>
+            )}
             <div className={styles.column}>
-                <Link className={styles.titleRow} to={(article.type.description !== "Boletins" ? "/proposition-details/" : "/newsletter-details/") + article.id} aria-label="Ir para a página de detalhes da matéria">
+                <Link className={styles.titleRow}
+                      to={(article.type.description !== "Boletins" ? "/proposition-details/" : "/newsletter-details/") + article.id} aria-label="Ir para a página de detalhes da matéria">
                     <div className={styles.titleView}>
-                        <div className={styles.line} style={{ outline: `solid 2px ${article.type.color}` }}/>
-                        <TitleDiv className={styles.title} hoverColor={article.type.color}>{article.title}</TitleDiv>
+                        <div className={styles.line} style={{backgroundColor: `${article.type.color}` }}/>
+                        <TitleDiv className={styles.title} $hoverColor={article.type.color}>{article.title}</TitleDiv>
                     </div>
                 </Link>
                 <div className={styles.content}>{article.content}</div>

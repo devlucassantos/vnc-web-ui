@@ -10,12 +10,13 @@ interface Props {
     cardStyle: any;
     imageContainerStyle: any;
     titleStyle: any;
-    article: Article
+    article: Article;
+    displayArticleTypeLabel?: boolean;
 }
 
-const TitleDiv = styled.div<{ hoverColor: string }>`
+const TitleDiv = styled.div<{ $hoverColor: string }>`
   &:hover {
-    color: ${(props) => props.hoverColor};
+    color: ${(props) => props.$hoverColor};
   }
 `;
 
@@ -25,6 +26,7 @@ export const BigCard: FC<Props> = memo(function BigCard({
     cardStyle,
     imageContainerStyle,
     titleStyle,
+    displayArticleTypeLabel = true,
     ...props
 }) {
 
@@ -34,12 +36,15 @@ export const BigCard: FC<Props> = memo(function BigCard({
                 <div className={styles.image} style={{ backgroundImage: `url(${article.imageUrl})` }} role="img" aria-label="Imagem gerada por Inteligência Artificial representando o conteúdo da proposição." />
             </div>
             <div className={styles.cardColumn}>
-                <div className={styles.labelContainer} style={{ backgroundColor: article.type.color }}>
-                    <div className={styles.label}>{typePropositionLabel}</div>
-                </div>
-                <Link className={styles.titleContainer} to={(article.type.description !== "Boletins" ? "/proposition-details/" : "/newsletter-details/") + article.id} aria-label="Ir para a página de detalhes da matéria">
-                    <div className={styles.titleContainerRow}>
-                        <TitleDiv className={titleStyle} hoverColor={article.type.color}>{article.title}</TitleDiv>
+                { displayArticleTypeLabel && (
+                  <div className={styles.labelContainer} style={{backgroundColor: article.type.color}}>
+                      <div className={styles.label}>{typePropositionLabel}</div>
+                  </div>
+                )}
+                <Link className={styles.titleContainer}
+                      to={(article.type.description !== "Boletins" ? "/proposition-details/" : "/newsletter-details/") + article.id} aria-label="Ir para a página de detalhes da matéria">
+                <div className={styles.titleContainerRow}>
+                        <TitleDiv className={titleStyle} $hoverColor={article.type.color}>{article.title}</TitleDiv>
                     </div>
                 </Link>
                 <div className={styles.dateRow}>

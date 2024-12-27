@@ -11,6 +11,6 @@ export interface ArticleFilters {
 }
 
 export interface ArticleTypeFilters {
-    ids?: string;
+    articleTypeIds?: string;
     itemsPerPage?: number;
 }

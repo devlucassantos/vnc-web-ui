@@ -149,20 +149,42 @@ export const Home: FC<Props> = memo(function Home(props = {}) {
                         <>
                             {!isAnyFilterApplied && trendingArticleListByType?.length > 0 &&
                                 <>
-                                    <TitleTopic titleViewStyle={style.emphasisArticleTitleView} label="Notícias em Destaque" />
-                                    <div className={style.gridContainer}>
-                                        <CustomCarousel carouselStyle={style.gridBigCarousel} articleList={trendingArticleListByType.at(1)!.propositionArticles} typePropositionLabel={trendingArticleListByType.at(1)!.description} cardStyle={style.card} imageContainerStyle={style.gridBigCardImageContainer} titleStyle={style.bigCardTitle} dotColor={trendingArticleListByType.at(1)!.color} />
-                                        <div className={style.gridColumn}>
-                                            <CustomCarousel carouselStyle={style.mediumCarousel} articleList={trendingArticleListByType.at(2)!.propositionArticles} typePropositionLabel={trendingArticleListByType.at(2)!.description} cardStyle={style.card} imageContainerStyle={style.gridMediumCardImageContainer} titleStyle={style.mediumCardTitle} dotColor={trendingArticleListByType.at(2)!.color} />
-                                            <CustomCarousel carouselStyle={style.mediumCarousel} articleList={trendingArticleListByType.at(3)!.propositionArticles} typePropositionLabel={trendingArticleListByType.at(3)!.description} cardStyle={style.card} imageContainerStyle={style.gridMediumCardImageContainer} titleStyle={style.mediumCardTitle} dotColor={trendingArticleListByType.at(3)!.color} />
-                                        </div>
+                                    <TitleTopic titleViewStyle={style.emphasisArticleTitleView} label={trendingArticleListByType.at(1)!.description} color={trendingArticleListByType.at(1)!.color}/>
+                                    <div className={style.mainGridContainer}>
+                                        <CustomCarousel carouselStyle={style.mainGridCarousel} articleList={trendingArticleListByType.at(1)!.propositionArticles} typePropositionLabel={trendingArticleListByType.at(1)!.description} cardStyle={style.card} imageContainerStyle={style.bigCardImageContainer} titleStyle={style.bigCardTitle} dotColor={trendingArticleListByType.at(1)!.color} displayArticleTypeLabel={false} />
                                     </div>
-                                    <div className={style.gridContainer}>
-                                        <div className={style.gridColumn}>
-                                            <CustomCarousel carouselStyle={style.mediumCarousel} articleList={trendingArticleListByType.at(4)!.propositionArticles} typePropositionLabel={trendingArticleListByType.at(4)!.description} cardStyle={style.card} imageContainerStyle={style.gridMediumCardImageContainer} titleStyle={style.mediumCardTitle} dotColor={trendingArticleListByType.at(4)!.color} />
-                                            <CustomCarousel carouselStyle={style.mediumCarousel} articleList={trendingArticleListByType.at(5)!.propositionArticles} typePropositionLabel={trendingArticleListByType.at(5)!.description} cardStyle={style.card} imageContainerStyle={style.gridMediumCardImageContainer} titleStyle={style.mediumCardTitle} dotColor={trendingArticleListByType.at(5)!.color} />
-                                        </div>
-                                        <CustomCarousel carouselStyle={`${style.gridBigCarousel} ${style.otherPropositionCarousel}`} articleList={trendingArticleListByType.at(6)!.propositionArticles} typePropositionLabel={trendingArticleListByType.at(6)!.description} cardStyle={style.card} imageContainerStyle={style.gridBigCardImageContainer} titleStyle={style.bigCardTitle} dotColor={trendingArticleListByType.at(6)!.color} />
+
+                                    <div className={style.splitCarouselContainer}>
+                                        { trendingArticleListByType.at(2) && trendingArticleListByType!.at(2)!.propositionArticles && trendingArticleListByType!.at(2)!.propositionArticles!.length > 1 && (
+                                          <div className={style.splitCarouselColumn}>
+                                              <TitleTopic titleViewStyle={style.splitCarouselTitleView}
+                                                          label={trendingArticleListByType.at(2)!.description}
+                                                          color={trendingArticleListByType.at(2)!.color}/>
+                                              <CustomCarousel carouselStyle={style.splitCarousel}
+                                                              articleList={trendingArticleListByType.at(2)!.propositionArticles}
+                                                              isSplitCard={true}/>
+                                          </div>
+                                        )}
+                                        { trendingArticleListByType.at(3) && trendingArticleListByType!.at(3)!.propositionArticles && trendingArticleListByType!.at(3)!.propositionArticles!.length > 0 && (
+                                          <div className={style.splitCarouselColumn}>
+                                              <TitleTopic titleViewStyle={style.splitCarouselTitleView}
+                                                          label={"Emenda à Constituição"}
+                                                          color={trendingArticleListByType.at(3)!.color}/>
+                                              <CustomCarousel carouselStyle={style.splitCarousel}
+                                                              articleList={trendingArticleListByType.at(3)!.propositionArticles}
+                                                              isSplitCard={true}/>
+                                          </div>
+                                        )}
+                                        { trendingArticleListByType.at(4) && trendingArticleListByType!.at(4)!.propositionArticles && trendingArticleListByType!.at(4)!.propositionArticles!.length > 0 && (
+                                          <div className={style.splitCarouselColumn}>
+                                              <TitleTopic titleViewStyle={style.splitCarouselTitleView}
+                                                          label={"Lei Complementar"}
+                                                          color={trendingArticleListByType.at(4)!.color}/>
+                                              <CustomCarousel carouselStyle={style.splitCarousel}
+                                                              articleList={trendingArticleListByType.at(4)!.propositionArticles}
+                                                              isSplitCard={true}/>
+                                          </div>
+                                        )}
                                     </div>
                                 </>
                             }

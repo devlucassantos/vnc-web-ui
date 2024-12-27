@@ -8,7 +8,18 @@ interface Props {
 export const LongVerticalRectangularAnnouncement: FC<Props> = memo(function LongVerticalRectangularAnnouncement(props = {}) {
     return (
         <div className={styles.container}>
-            <img className={styles.image} src="/src/ui/web/assets/long-vertical-rectangular-ad.png" alt={'Imagem de anúncio vertical da plataforma Você na Câmara'} />
+            <div className={styles.image}>
+              { process.env.NODE_ENV === 'production' ?
+                (
+                  <img className={styles.image} src="/src/ui/web/assets/long-vertical-rectangular-ad.png" alt={'Imagem de anúncio vertical da plataforma Você na Câmara'} />
+                  // TODO: This code will be uncommented after configuring Google ADS
+                  // <AdsComponent dataAdSlot="4554675950" />
+                ) :
+                (
+                  <img className={styles.image} src="/src/ui/web/assets/long-vertical-rectangular-ad.png" alt={'Imagem de anúncio vertical da plataforma Você na Câmara'} />
+                )
+              }
+            </div>
         </div>
     );
 });

@@ -1,11 +1,15 @@
+.deputyNameContainer {
+  width: auto;
+  height: auto;
+  margin-top: 16px;
+}
+
 .deputyNameLabel {
+  display: inline-block;
   color: #1976D2;
   font-size: 1.1rem;
   font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
   'Liberation Sans', sans-serif;
   letter-spacing: -0.017em;
-  width: auto;
-  height: auto;
-  margin-top: 16px;
   cursor: pointer;
 }

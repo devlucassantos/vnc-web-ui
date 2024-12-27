@@ -1,13 +1,15 @@
 .label {
   color: #0047AB;
-  font-size: 32px;
+  font-size: clamp(24px, 2vw, 32px);
   font-weight: bold;
   font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
   'Liberation Sans', sans-serif;
   letter-spacing: -0.017em;
   position: relative;
+  width: fit-content;
   height: auto;
   flex-direction: column;
+  white-space: nowrap;
 }
 
 .titleView {

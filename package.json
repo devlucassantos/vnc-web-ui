@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@coreui/react": "^5.1.0",
+    "@ctrl/react-adsense": "^1.7.0",
     "@date-io/date-fns": "^2.10.8",
     "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",

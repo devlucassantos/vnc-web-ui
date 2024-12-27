@@ -10,9 +10,9 @@ interface Props {
     color: string;
 }
 
-const TitleDiv = styled.div<{ hoverColor: string }>`
+const TitleDiv = styled.div<{ $hoverColor: string }>`
   &:hover {
-    color: ${(props) => props.hoverColor};
+    color: ${(props) => props.$hoverColor};
   }
 `;
 
@@ -31,7 +31,7 @@ export const TrendingInfoContainer: FC<Props> = memo(function TrendingInfoContai
             <div className={styles.trendingNumber} style={{color: color}}>{index + 1}</div>
             <div className={styles.titleView}>
                 <div className={styles.line} style={{outline: `solid 2px ${color}`}}/>
-                <TitleDiv className={styles.title} hoverColor={color} onClick={handleRedirect}>{trendingArticle.title}</TitleDiv>
+                <TitleDiv className={styles.title} $hoverColor={color} onClick={handleRedirect}>{trendingArticle.title}</TitleDiv>
             </div>
         </div>
     );
