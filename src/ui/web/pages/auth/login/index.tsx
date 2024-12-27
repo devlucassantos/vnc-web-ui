@@ -162,7 +162,7 @@ export const LoginPage: FC<Props> = memo(function LoginPage(props = {}) {
                                                 onMouseDown={handleMouseDownPassword}
                                                 edge="end"
                                             >
-                                                {showPassword ? <VisibilityOff /> : <Visibility />}
+                                                {showPassword ? <VisibilityOff aria-label="Ícone para ocultar a senha" /> : <Visibility aria-label="Ícone para exibir a senha" />}
                                             </IconButton>
                                     </InputAdornment>
                                     ),
@@ -204,7 +204,7 @@ export const LoginPage: FC<Props> = memo(function LoginPage(props = {}) {
                                         Não tem uma conta?
                                     </Typography>
                                     <Box component="span" sx={{ mx: 0.3 }} />
-                                    <Link href="/sign-up" sx={{ color: '#0047AB', textDecoration: 'none' }}>
+                                    <Link href="/sign-up" sx={{ color: '#0047AB', textDecoration: 'none' }} aria-label="Ir para a página cadastro da conta">
                                         <Typography component="span" variant="body2">
                                             Cadastre-se
                                         </Typography>

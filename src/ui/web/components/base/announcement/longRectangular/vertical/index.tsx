@@ -8,7 +8,7 @@ interface Props {
 export const LongVerticalRectangularAnnouncement: FC<Props> = memo(function LongVerticalRectangularAnnouncement(props = {}) {
     return (
         <div className={styles.container}>
-            <img className={styles.image} src="/src/ui/web/assets/long-vertical-rectangular-ad.png" />
+            <img className={styles.image} src="/src/ui/web/assets/long-vertical-rectangular-ad.png" alt={'Imagem de anúncio vertical da plataforma Você na Câmara'} />
         </div>
     );
 });

@@ -58,7 +58,7 @@ export const DrawerMenu: FC<Props> = memo(function DrawerMenu({
             <DrawerContent>
                 <Header>
                     <div className={styles.imageFrame}>
-                        <div className={styles.vncLogo}></div>
+                        <div className={styles.vncLogo} role="img" aria-label="Logo do Você na Câmara"></div>
                     </div>
                     <IconButton onClick={onClose}>
                         <Close style={{ color: 'black', fontSize: '28px' }} />
@@ -68,10 +68,10 @@ export const DrawerMenu: FC<Props> = memo(function DrawerMenu({
                 <Line />
 
                 <List>
-                    <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
+                    <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }} aria-label="Ir para a página inicial">
                         <ListItem button>
                             <ListItemIcon>
-                                <Home style={{ color: 'black', fontSize: '32px' }} />
+                                <Home aria-label="Ícone de home" style={{ color: 'black', fontSize: '32px' }} />
                             </ListItemIcon>
                             <ListItemText
                                 primary="Home"
@@ -80,10 +80,10 @@ export const DrawerMenu: FC<Props> = memo(function DrawerMenu({
                         </ListItem>
                     </Link>
 
-                    <Link to="/newsletters" style={{ textDecoration: 'none', color: 'inherit' }}>
+                    <Link to="/newsletters" style={{ textDecoration: 'none', color: 'inherit' }} aria-label="Ir para a página de listagem dos boletins">
                         <ListItem button>
                             <ListItemIcon>
-                                <Description style={{ color: 'black', fontSize: '32px' }} />
+                                <Description aria-label="Ícone de boletins" style={{ color: 'black', fontSize: '32px' }} />
                             </ListItemIcon>
                             <ListItemText
                                 primary="Boletins"
@@ -92,10 +92,10 @@ export const DrawerMenu: FC<Props> = memo(function DrawerMenu({
                         </ListItem>
                     </Link>
 
-                    <Link to="/trendings" style={{ textDecoration: 'none', color: 'inherit' }}>
+                    <Link to="/trendings" style={{ textDecoration: 'none', color: 'inherit' }} aria-label="Ir para a página de proposições em destaque">
                         <ListItem button>
                             <ListItemIcon>
-                                <TrendingUp style={{ color: 'black', fontSize: '32px' }} />
+                                <TrendingUp aria-label="Ícone de proposições em destaque" style={{ color: 'black', fontSize: '32px' }} />
                             </ListItemIcon>
                             <ListItemText
                                 primary="Trendings"
@@ -105,10 +105,10 @@ export const DrawerMenu: FC<Props> = memo(function DrawerMenu({
                     </Link>
 
                     { isActiveUser && (
-                        <Link to="/view-later" style={{ textDecoration: 'none', color: 'inherit' }}>
+                        <Link to="/view-later" style={{ textDecoration: 'none', color: 'inherit' }} aria-label="Ir para a página de matérias salvas">
                             <ListItem button>
                                 <ListItemIcon>
-                                    <BookmarkBorder style={{ color: 'black', fontSize: '32px' }} />
+                                    <BookmarkBorder aria-label="Ícone de matérias salvas" style={{ color: 'black', fontSize: '32px' }} />
                                 </ListItemIcon>
                                 <ListItemText
                                     primary="Matérias salvas"

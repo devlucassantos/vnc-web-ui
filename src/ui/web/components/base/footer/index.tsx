@@ -18,14 +18,14 @@ export const Footer: FC<Props> = memo(function Footer(props = {}) {
                     <div className={styles.labelText}>Termo de uso</div>
                 </div>
                 <div className={styles.copyrightContainer}>
-                    <div className={styles.logo} />
+                    <div className={styles.logo} role="img" aria-label="Logo do Você na Câmara"/>
                     <div className={styles.copyrightLabel}>© Copyright {currentYear} Você na Câmara</div>
                 </div>
                 <div className={styles.rightContainer}>
                     <div className={`${styles.labelText} ${styles.vncLabel}`}>VNC NAS REDES</div>
-                    <FaFacebook color="white" className={styles.icon}/>
-                    <FaInstagram color="white" className={styles.icon}/>
-                    <FaXTwitter color="white" className={styles.icon}/>
+                    <FaFacebook color="white" className={styles.icon} aria-label="Ícone do facebook da plataforma."/>
+                    <FaInstagram color="white" className={styles.icon} aria-label="Ícone do instragram da plataforma." />
+                    <FaXTwitter color="white" className={styles.icon} aria-label="Ícone do Twitter da plataforma." />
                 </div>
             </div>
         </div>

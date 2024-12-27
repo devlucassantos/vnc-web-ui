@@ -113,7 +113,7 @@ const ViewLaterButton: React.FC<ViewLaterButtonProps> = ({ onViewLaterSubmit, in
     return (
         <>
             <ViewLaterContainer onClick={handleViewLaterClick}>
-                {isSelected ? <SelectedIcon /> : <UnselectedIcon />}
+                {isSelected ? <SelectedIcon aria-label="Ícone de matéria já salva" /> : <UnselectedIcon aria-label="Ícone de matéria não salva" />}
             </ViewLaterContainer>
 
             <Dialog
@@ -139,13 +139,13 @@ const ViewLaterButton: React.FC<ViewLaterButtonProps> = ({ onViewLaterSubmit, in
                     <NotAuthenticatedDialogTitleStyled>
                         Não foi possível salvar esta matéria. Por favor,{" "}
                         {!user ? (
-                            <StyledLink to='/login'>autentique-se</StyledLink>
+                            <StyledLink to='/login' aria-label="Ir para a página de login">autentique-se</StyledLink>
                         ) : (
                             'autentique-se'
                         )}
                         {" e "}
                         {isInactiveUser ? (
-                            <StyledLink to='/activate-account'>ative a sua conta</StyledLink>
+                            <StyledLink to='/activate-account' aria-label="Ir para a página de ativação da conta">ative a sua conta</StyledLink>
                         ) : (
                             'ative a sua conta'
                         )}

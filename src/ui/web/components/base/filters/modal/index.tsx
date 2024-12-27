@@ -90,7 +90,7 @@ export const FiltersModal: FC<Props> = memo(function FiltersModal({
                             <div className={styles.titleLabel}>Filtros</div>
                         </div>
                         <div className={styles.closeButtonDiv}>
-                            <FaTimes className={styles.closeButton} onClick={closeModal}/>
+                            <FaTimes aria-label="Ícone de fechamento do modal." className={styles.closeButton} onClick={closeModal}/>
                         </div>
                     </div>
                     <div className={styles.modalFields}>
@@ -222,7 +222,7 @@ export const FiltersModal: FC<Props> = memo(function FiltersModal({
                                     closeModal();
                                 }}
                             >
-                                <FaFilter/>
+                                <FaFilter aria-label="Botão de aplicação dos filtros." />
                                 <label>Filtrar</label>
                             </Button>
                             <Button
@@ -232,7 +232,7 @@ export const FiltersModal: FC<Props> = memo(function FiltersModal({
                                     clearFilters();
                                 }}
                             >
-                                <FaTrash/>
+                                <FaTrash aria-label="Botão de limpeza dos filtros adicionados." />
                                 <label className={styles.clearButtonLabel}>Limpar</label>
                             </Button>
                         </div>

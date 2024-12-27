@@ -14,7 +14,7 @@ export const NewsletterImageCard: FC<Props> = memo(function NewsletterImageCard(
     return (
         <div className={styles.newsletterCard}>
             <h2>{title}</h2>
-            <img src="/src/ui/web/assets/yellow-logo-icon.png" alt="Logo" className={styles.logo} />
+            <img src="/src/ui/web/assets/yellow-logo-icon.png" alt="Logo do Você na Câmara" className={styles.logo} />
         </div>
     );
 });

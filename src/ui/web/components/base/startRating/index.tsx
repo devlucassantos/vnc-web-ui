@@ -122,7 +122,7 @@ const StarRating: React.FC<StarRatingProps> = ({ onSubmitRating, initialRating =
                 value={rating}
                 onChange={handleRatingChange}
                 precision={1}
-                icon={<CustomStarIcon />}
+                icon={<CustomStarIcon aria-label="Estrela de avaliação da proposição." />}
                 emptyIcon={<EmptyStarIcon />}
                 disabled={isSubmitting}
             />
@@ -150,13 +150,13 @@ const StarRating: React.FC<StarRatingProps> = ({ onSubmitRating, initialRating =
                         Não foi possível avaliar esta matéria. Por favor,
                         {" "}
                         {!user ? (
-                            <StyledLink to='/login'>autentique-se</StyledLink>
+                            <StyledLink to='/login' aria-label="Ir para a página de login">autentique-se</StyledLink>
                         ) : (
                             'autentique-se'
                         )}
                         {" e "}
                         {isInactiveUser ? (
-                            <StyledLink to='/activate-account'>ative a sua conta</StyledLink>
+                            <StyledLink to='/activate-account' aria-label="Ir para a página de ativação da conta">ative a sua conta</StyledLink>
                         ) : (
                             'ative a sua conta'
                         )}

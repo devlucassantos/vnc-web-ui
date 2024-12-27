@@ -68,7 +68,7 @@ export const PropositionDetailsCard: FC<Props> = memo(function PropositionDetail
             <div className={styles.titleContainer}>
                 <div className={styles.titleContainerRow}>
                     <div className={styles.line} />
-                    <Link className={styles.title} to={"/original-proposition/" + codteor} >
+                    <Link className={styles.title} to={"/original-proposition/" + codteor} aria-label="Ir para a página de exibição da proposição original">
                         <div>{proposition.title}</div>
                     </Link>
                 </div>
@@ -87,7 +87,7 @@ export const PropositionDetailsCard: FC<Props> = memo(function PropositionDetail
                     <RatingContainer>
                         <Tooltip title="Média das avaliações">
                             <div className={styles.ratingContainer}>
-                                <CustomStarIcon />
+                                <CustomStarIcon aria-label="Ícone de estrela representando a média das avaliações" />
                                 <RatingText>{proposition.averageRating.toFixed(1)}</RatingText>
                             </div>
                         </Tooltip>
@@ -95,7 +95,7 @@ export const PropositionDetailsCard: FC<Props> = memo(function PropositionDetail
                 )}
             </RowContainer>
             <div className={styles.content}>{proposition.content}</div>
-            <Link className={styles.viewOriginalProposition} to={"/original-proposition/" + codteor} >
+            <Link className={styles.viewOriginalProposition} to={"/original-proposition/" + codteor} aria-label="Ir para a página de exibição da proposição original">
                 <div>Ver proposição original</div>
             </Link>
             <div className={styles.submittedAt}>{"Proposição submetida em " + proposition.submittedAt + "."}</div>
@@ -117,7 +117,7 @@ export const PropositionDetailsCard: FC<Props> = memo(function PropositionDetail
             {proposition.newsletterArticle && (
                 <div className={styles.newsletterColumn}>
                     <div className={styles.followArticleLabel}>Acompanhe as outras notícias do dia:</div>
-                    <Link className={styles.newsletterTitleLabel} to={"/newsletter-details/" + proposition.newsletterArticle.id}>
+                    <Link className={styles.newsletterTitleLabel} to={"/newsletter-details/" + proposition.newsletterArticle.id} aria-label="Ir para a página de detalhes do boletim">
                         - {proposition.newsletterArticle.title}
                     </Link>
                 </div>

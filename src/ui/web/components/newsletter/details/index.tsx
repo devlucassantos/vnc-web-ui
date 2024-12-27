@@ -71,7 +71,7 @@ export const NewsletterDetailsCard: FC<Props> = memo(function NewsletterDetailsC
                     <RatingContainer>
                         <Tooltip title="Média das avaliações">
                             <div className={styles.ratingContainer}>
-                                <CustomStarIcon />
+                                <CustomStarIcon aria-label="Ícone de estrela representando a média das avaliações" />
                                 <RatingText>{newsletter.averageRating.toFixed(1)}</RatingText>
                             </div>
                         </Tooltip>
@@ -81,7 +81,7 @@ export const NewsletterDetailsCard: FC<Props> = memo(function NewsletterDetailsC
             <div className={styles.propositionsColumn}>
                 {newsletter.propositionArticles?.map((propositionArticle, index) => (
                     <>
-                        <Link className={styles.propositionArticleTitleLabel} key={index} to={"/proposition-details/" + propositionArticle.id}>
+                        <Link className={styles.propositionArticleTitleLabel} key={index} to={"/proposition-details/" + propositionArticle.id} aria-label="Ir para a página de detalhes da proposição">
                             {propositionArticle.title}
                         </Link>
                         <div className={styles.propositionArticleContent}>{propositionArticle.content}</div>

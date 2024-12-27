@@ -230,7 +230,7 @@ export const SignUpPage: FC<Props> = memo(function SignUpPage(props = {}) {
                                                 onMouseDown={handleMouseDownPassword}
                                                 edge="end"
                                             >
-                                                {showPassword ? <VisibilityOff /> : <Visibility />}
+                                                {showPassword ? <VisibilityOff aria-label="Ícone para ocultar a senha" /> : <Visibility aria-label="Ícone para exibir a senha" />}
                                             </IconButton>
                                     </InputAdornment>
                                     ),
@@ -256,7 +256,7 @@ export const SignUpPage: FC<Props> = memo(function SignUpPage(props = {}) {
                                                 onMouseDown={handleMouseDownPassword}
                                                 edge="end"
                                             >
-                                                {showConfirmPassword ? <VisibilityOff /> : <Visibility />}
+                                                {showConfirmPassword ? <VisibilityOff aria-label="Ícone para ocultar a senha" /> : <Visibility aria-label="Ícone para exibir a senha" />}
                                             </IconButton>
                                         </InputAdornment>
                                     ),
@@ -298,7 +298,7 @@ export const SignUpPage: FC<Props> = memo(function SignUpPage(props = {}) {
                                         Já possui uma conta?
                                     </Typography>
                                     <Box component="span" sx={{ mx: 0.3 }} />
-                                    <Link href="/login" sx={{ color: '#0047AB', textDecoration: 'none' }}>
+                                    <Link href="/login" sx={{ color: '#0047AB', textDecoration: 'none' }} aria-label="Ir para a página de login">
                                         <Typography component="span" variant="body2">
                                             Entre
                                         </Typography>

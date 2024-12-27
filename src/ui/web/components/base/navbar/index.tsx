@@ -99,30 +99,34 @@ export const Navbar: FC<Props> = memo(function Navbar({
             <div className={styles.iconMenu} onClick={handleDrawerOpen} >
                 <MenuIcon className={styles.icon} />
             </div>
-            <Link to="/">
-                <div className={styles.logoWhite} />
+            <Link to="/" aria-label="Ir para a página inicial">
+                <div className={styles.logoWhite} role="img" aria-label="Logo do Você na Câmara" />
             </Link>
 
             <div className={styles.rightSection}>
                 { user ? (
                     <div onClick={handleLogoutModalOpen} className={styles.authContainer}>
                         <span className={styles.logoutSpan}>Sair</span>
-                        <IconButton  sx={{
-                            padding: 0,
-                            '&:hover': {
-                                backgroundColor: 'transparent',
-                            },
-                            '&:focus': {
-                                outline: 'none',
-                            },
-                        }}>
-                            <LogoutIcon sx={{ color: 'white', fontSize: '24px' }} />
+                        <IconButton
+                            role="button"
+                            aria-label="Botão de saída da aplicação"
+                            sx={{
+                                padding: 0,
+                                '&:hover': {
+                                    backgroundColor: 'transparent',
+                                },
+                                '&:focus': {
+                                    outline: 'none',
+                                },
+                            }}
+                        >
+                            <LogoutIcon aria-label="Ícone de saída da aplicação" sx={{ color: 'white', fontSize: '24px' }} />
                         </IconButton>
                     </div>
                 ) : (
-                    <Link className={styles.authContainer} to="/login">
+                    <Link className={styles.authContainer} to="/login" aria-label="Ir para a página de login">
                         <span className={styles.loginSpan}>Entrar</span>
-                        <FaUser className={styles.loginIcon} />
+                        <FaUser className={styles.loginIcon} aria-label="Ícone de usuário para realizar login na plataforma" />
                     </Link>
                 )}
 
@@ -146,6 +150,7 @@ export const Navbar: FC<Props> = memo(function Navbar({
                                         <FaSearch
                                             style={{ color: "#0047AB", cursor: "pointer" }}
                                             onClick={onFilterClick}
+                                            aria-label="Ícone de lupa para aplicar o filtro de conteúdo"
                                         />
                                     </InputAdornment>
                                 ),
@@ -154,6 +159,7 @@ export const Navbar: FC<Props> = memo(function Navbar({
                                         <FaEllipsisV
                                             style={{ color: "#0047AB", fontSize: "20px", cursor: "pointer" }}
                                             onClick={handleFilterModalOpen}
+                                            aria-label="Menu de filtros"
                                         />
                                     </InputAdornment>
                                 ),
@@ -218,7 +224,7 @@ export const Navbar: FC<Props> = memo(function Navbar({
                     )}
                     <DialogTitle>
                         <div style={{ textAlign: 'center' }}>
-                            <FaExclamationCircle size={100} color="#0047ab" />
+                            <FaExclamationCircle aria-label="Ícone de alerta para a realização do logout na plataforma." size={100} color="#0047ab" />
                         </div>
                     </DialogTitle>
                     <DialogContent>

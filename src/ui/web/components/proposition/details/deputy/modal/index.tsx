@@ -11,7 +11,8 @@ class DeputyModal extends React.Component<{ deputy: Deputy, closeModal: any }> {
                 <div className={`${styles.modal} ${deputy ? styles.show : ''}`}>
                     <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
                         <div className={styles.closeButtonDiv} onClick={closeModal}>
-                            <FaTimes className={styles.closeButton} />
+
+                            <FaTimes className={styles.closeButton} aria-label="Ícone de fechamento do modal." />
                         </div>
                         <div className={styles.detailsContainer}>
                             <div className={styles.infoContainer}>
@@ -23,7 +24,7 @@ class DeputyModal extends React.Component<{ deputy: Deputy, closeModal: any }> {
                                     <label className={styles.nameLabel}>{deputy.name}</label>
                                 </div>
                                 <div className={styles.imageContainer}>
-                                    <img className={styles.profileImage} src={deputy.imageUrl} alt={deputy.name} />
+                                    <img className={styles.profileImage} src={deputy.imageUrl} alt={`Imagem do deputado ${deputy.name}`} />
                                 </div>
                             </div>
                             <div className={styles.infoContainer}>
@@ -35,7 +36,7 @@ class DeputyModal extends React.Component<{ deputy: Deputy, closeModal: any }> {
                                     <label className={styles.nameLabel}>{deputy.party.acronym}</label>
                                 </div>
                                 <div className={styles.imageContainer}>
-                                    <img className={styles.partyImage} src={deputy.party.imageUrl} alt={deputy.party.name} />
+                                    <img className={styles.partyImage} src={deputy.party.imageUrl} alt={`Imagem do partido ${deputy.party.imageUrl} do deputado.`}  />
                                 </div>
                             </div>
                             {deputy.partyInTheProposal && deputy.party.id != deputy.partyInTheProposal.id &&
@@ -48,7 +49,7 @@ class DeputyModal extends React.Component<{ deputy: Deputy, closeModal: any }> {
                                         <label className={styles.nameLabel}>{deputy.partyInTheProposal.acronym}</label>
                                     </div>
                                     <div className={styles.imageContainer}>
-                                        <img className={styles.partyImage} src={deputy.partyInTheProposal.imageUrl} alt={deputy.partyInTheProposal.name} />
+                                        <img className={styles.partyImage} src={deputy.partyInTheProposal.imageUrl} alt={`Imagem do partido ${deputy.partyInTheProposal.name} do deputado na proposição.`} />
                                     </div>
                                 </div>
                             }

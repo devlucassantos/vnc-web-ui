@@ -54,11 +54,11 @@ export const Filters: FC<Props> = memo(function Filters({
             />
             <div className={styles.buttonsContainer}>
                 <Button variant="contained" className={styles.buttonBlue} onClick={onFilterClick}>
-                    <FaSearch />
+                    <FaSearch aria-label="Ícone de busca"/>
                     Pesquisar
                 </Button>
                 <Button variant="contained" className={styles.buttonBlue} onClick={openModal}>
-                    <FaFilter />
+                    <FaFilter aria-label="Ícone de filtros" />
                     Filtrar
                 </Button>
             </div>
