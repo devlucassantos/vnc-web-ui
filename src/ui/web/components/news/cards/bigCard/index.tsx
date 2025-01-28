@@ -1,8 +1,9 @@
-import {FC, memo} from "react";
+import {FC, memo, useRef} from "react";
 import styles from "./styles.module.scss";
 import Article from "@models/Article";
 import {Link} from "react-router-dom";
 import styled from "styled-components";
+import useDisableFocus from "@web/hooks/disableFocusHook";
 
 interface Props {
     className?: string;
@@ -12,6 +13,7 @@ interface Props {
     titleStyle: any;
     article: Article;
     displayArticleTypeLabel?: boolean;
+    isHidden: boolean;
 }
 
 const TitleDiv = styled.div<{ $hoverColor: string }>`
@@ -27,13 +29,16 @@ export const BigCard: FC<Props> = memo(function BigCard({
     imageContainerStyle,
     titleStyle,
     displayArticleTypeLabel = true,
+    isHidden = false,
     ...props
 }) {
+    const cardRef = useRef<HTMLDivElement>(null);
+    useDisableFocus(isHidden, cardRef);
 
     return (
-        <div className={cardStyle}>
+        <div ref={cardRef} className={cardStyle} data-id={article.id}>
             <div className={imageContainerStyle}>
-                <div className={styles.image} style={{ backgroundImage: `url(${article.imageUrl})` }} role="img" aria-label="Imagem gerada por Inteligência Artificial representando o conteúdo da proposição." />
+                <div className={styles.image} style={{ backgroundImage: `url(${article.imageUrl})` }} />
             </div>
             <div className={styles.cardColumn}>
                 { displayArticleTypeLabel && (

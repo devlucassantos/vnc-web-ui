@@ -1,4 +1,4 @@
-import React, {FC, memo} from "react";
+import React, {FC, memo, useEffect, useRef, useState} from "react";
 import BigCard from "@components/news/cards/bigCard";
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
@@ -46,6 +46,41 @@ export const CustomCarousel: FC<Props> = memo(function CustomCarousel({
     displayArticleTypeLabel = true,
     ...props
 }) {
+    const [hiddenStates, setHiddenStates] = useState<Record<string, boolean>>({});
+    const observerRef = useRef<MutationObserver | null>(null);
+
+    useEffect(() => {
+        const updateHiddenStates = () => {
+            setTimeout(() => {
+                const slides = document.querySelectorAll('.react-multi-carousel-item [data-id]');
+                const newHiddenStates = articleList.reduce<Record<string, boolean>>((acc, article) => {
+                    const slide = Array.from(slides).find(
+                        (slide) => slide.getAttribute('data-id') === article.id
+                    );
+                    const ariaHidden = slide?.closest('.react-multi-carousel-item')?.getAttribute('aria-hidden');
+                    acc[article.id] = ariaHidden === 'true';
+                    return acc;
+                }, {});
+
+                setHiddenStates(newHiddenStates);
+            }, 0);
+        };
+
+        updateHiddenStates();
+
+        const carouselContainer = document.querySelector('.react-multi-carousel-list');
+        if (!carouselContainer) return;
+
+        if (!observerRef.current) {
+            observerRef.current = new MutationObserver(updateHiddenStates);
+            observerRef.current.observe(carouselContainer, { attributes: true, subtree: true });
+        }
+
+        return () => {
+            observerRef.current?.disconnect();
+            observerRef.current = null;
+        };
+    }, [articleList]);
 
     return (
         <StyledCarousel
@@ -59,7 +94,7 @@ export const CustomCarousel: FC<Props> = memo(function CustomCarousel({
             containerClass="container"
             draggable
             focusOnSelect={false}
-            infinite
+            infinite={false}
             keyBoardControl
             minimumTouchDrag={80}
             pauseOnHover
@@ -97,12 +132,14 @@ export const CustomCarousel: FC<Props> = memo(function CustomCarousel({
             slidesToSlide={1}
             swipeable
         >
-            {articleList?.map((article, index) => (
-              isSplitCard ?
-                <SplitCard key={index} article={article} /> :
-                <BigCard key={index} article={article} typePropositionLabel={typePropositionLabel!} cardStyle={cardStyle}
-                         imageContainerStyle={imageContainerStyle} titleStyle={titleStyle} displayArticleTypeLabel={displayArticleTypeLabel}/>
-            ))}
+            {articleList?.map((article, index) => {
+                const isHidden = hiddenStates[article.id] ?? false;
+
+                return isSplitCard ?
+                    <SplitCard key={index} article={article} isHidden={isHidden} /> :
+                    <BigCard key={index} article={article} isHidden={isHidden} typePropositionLabel={typePropositionLabel!} cardStyle={cardStyle}
+                             imageContainerStyle={imageContainerStyle} titleStyle={titleStyle} displayArticleTypeLabel={displayArticleTypeLabel}/>;
+            })}
         </StyledCarousel>
     );
 });
