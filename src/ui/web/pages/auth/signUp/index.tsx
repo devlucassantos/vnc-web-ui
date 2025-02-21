@@ -229,8 +229,9 @@ export const SignUpPage: FC<Props> = memo(function SignUpPage(props = {}) {
                                                 onClick={handleClickShowPassword}
                                                 onMouseDown={handleMouseDownPassword}
                                                 edge="end"
+                                                aria-label={showPassword ? "Ocultar senha" : "Mostrar senha"}
                                             >
-                                                {showPassword ? <VisibilityOff aria-label="Ícone para ocultar a senha" /> : <Visibility aria-label="Ícone para exibir a senha" />}
+                                                {showPassword ? <VisibilityOff aria-hidden="true" /> : <Visibility aria-hidden="true" />}
                                             </IconButton>
                                     </InputAdornment>
                                     ),
@@ -255,8 +256,9 @@ export const SignUpPage: FC<Props> = memo(function SignUpPage(props = {}) {
                                                 onClick={handleClickShowConfirmPassword}
                                                 onMouseDown={handleMouseDownPassword}
                                                 edge="end"
+                                                aria-label={showConfirmPassword ? "Ocultar senha" : "Mostrar senha"}
                                             >
-                                                {showConfirmPassword ? <VisibilityOff aria-label="Ícone para ocultar a senha" /> : <Visibility aria-label="Ícone para exibir a senha" />}
+                                                {showConfirmPassword ? <VisibilityOff aria-hidden="true" /> : <Visibility aria-hidden="true" />}
                                             </IconButton>
                                         </InputAdornment>
                                     ),
