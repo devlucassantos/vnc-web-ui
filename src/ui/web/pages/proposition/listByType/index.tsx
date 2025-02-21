@@ -139,12 +139,12 @@ export const PropositionListByTypePage: FC<Props> = memo(function PropositionLis
                                     <TitleTopic titleViewStyle={style.propositionTypeTitleView} label={articleTypeDescription} color={articleTypeColor} />
                                     <div className={style.gridContainer}>
                                         <BigCard article={trendingArticleListByType[0]?.propositionArticles[0]} typePropositionLabel={articleTypeDescription} cardStyle={style.bigCard}
-                                                 imageContainerStyle={style.bigCardImageContainer} titleStyle={style.bigCardTitle}/>
+                                                 imageContainerStyle={style.bigCardImageContainer} titleStyle={style.bigCardTitle} isHidden={false}/>
                                         <div className={style.gridColumn}>
                                             <BigCard article={trendingArticleListByType[0]?.propositionArticles[1]} typePropositionLabel={articleTypeDescription} cardStyle={style.mediumCard}
-                                                     imageContainerStyle={style.gridMediumCardImageContainer} titleStyle={style.mediumCardTitle}/>
+                                                     imageContainerStyle={style.gridMediumCardImageContainer} titleStyle={style.mediumCardTitle} isHidden={false}/>
                                             <BigCard article={trendingArticleListByType[0]?.propositionArticles[2]} typePropositionLabel={articleTypeDescription} cardStyle={style.mediumCard}
-                                                     imageContainerStyle={style.gridMediumCardImageContainer} titleStyle={style.mediumCardTitle}/>
+                                                     imageContainerStyle={style.gridMediumCardImageContainer} titleStyle={style.mediumCardTitle} isHidden={false}/>
                                         </div>
                                     </div>
                                 </>
