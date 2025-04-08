@@ -47,6 +47,7 @@ export const EventListPage: FC<Props> = memo(function EventListPage(props = {}) 
                 page: page,
                 typeId: resource?.articleTypes?.find((type) => type.codes == 'event')?.id,
                 itemsPerPage: 15,
+                removeEventsInTheFuture: true,
                 content: content,
                 startDate: startDate ? format(startDate, 'yyyy-MM-dd') : '',
                 endDate: endDate ? format(endDate, 'yyyy-MM-dd') : '',
