@@ -31,7 +31,7 @@ export const NewsletterDetailsPage: FC<Props> = memo(function NewsletterDetailsP
     const [trendingArticleList, setTrendingArticle] = useState<Article[]>([]);
     const [loading, setLoading] = useState(true);
     const resourceContext = useContext(ResourceContext);
-    const { resource} = resourceContext ?? {
+    const { resource } = resourceContext ?? {
         resource: null,
         fetchResources: () => {},
     } as ResourceContextType;
@@ -53,7 +53,7 @@ export const NewsletterDetailsPage: FC<Props> = memo(function NewsletterDetailsP
     const fetchTrendingArticles = async () => {
         try {
             const queryFilters: ArticleFilters = {
-                typeId: resource?.articleTypes?.find((type) => type.description == 'Boletins')?.id,
+                typeId: resource?.articleTypes?.find((type) => type.codes == 'newsletter')?.id,
                 itemsPerPage: 5
             };
 

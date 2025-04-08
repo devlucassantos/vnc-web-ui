@@ -12,6 +12,10 @@ import {AuthenticationService} from "@services/AuthenticationService";
 import AuthenticationAPI from "@api/auth/AuthenticationAPI";
 import {UserService} from "@services/UserService";
 import UserAPI from "@api/user/UserAPI";
+import {VotingService} from "@services/VotingService";
+import VotingAPI from "@api/articles/VotingAPI";
+import {EventService} from "@services/EventService";
+import EventAPI from "@api/articles/EventAPI";
 
 class DIContainer {
     static getArticleUseCase() {
@@ -24,6 +28,14 @@ class DIContainer {
 
     static getNewsletterUseCase() {
         return new NewsletterService(new NewsletterAPI())
+    }
+
+    static getVotingUseCase() {
+        return new VotingService(new VotingAPI())
+    }
+
+    static getEventUseCase() {
+        return new EventService(new EventAPI())
     }
 
     static getResourceUseCase() {

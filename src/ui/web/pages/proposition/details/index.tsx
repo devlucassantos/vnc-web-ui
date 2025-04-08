@@ -36,7 +36,7 @@ export const PropositionDetailsPage: FC<Props> = memo(function PropositionDetail
                 setLoading(true);
                 const data = await propositionService.getPropositionByID(id);
                 setProposition(data);
-                await fetchTrendingArticles(data.type.id);
+                await fetchTrendingArticles(data.type.specificType.id);
             }
         } catch (error) {
             console.log(error)
@@ -45,10 +45,10 @@ export const PropositionDetailsPage: FC<Props> = memo(function PropositionDetail
         }
     };
 
-    const fetchTrendingArticles = async (typeId?: string) => {
+    const fetchTrendingArticles = async (specificTypeId?: string) => {
         try {
             const queryFilters: ArticleFilters = {
-                typeId: typeId,
+                specificTypeId: specificTypeId,
                 itemsPerPage: 5
             };
 

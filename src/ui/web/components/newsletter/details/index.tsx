@@ -8,6 +8,8 @@ import DIContainer from "@web/dicontainer";
 import StarRating from "@components/base/startRating";
 import ViewLaterButton from "@components/base/viewLater";
 import {Tooltip} from "@mui/material";
+import AccordionItem from "@components/base/accordionItem";
+import TimeLine from "@components/base/timeLine";
 
 interface Props {
     className?: string;
@@ -81,14 +83,30 @@ export const NewsletterDetailsCard: FC<Props> = memo(function NewsletterDetailsC
                 )}
             </RowContainer>
             <div className={styles.propositionsColumn}>
-                {newsletter.propositionArticles?.map((propositionArticle, index) => (
-                    <React.Fragment key={index}>
-                        <Link className={styles.propositionArticleTitleLabel} to={"/proposition-details/" + propositionArticle.id} aria-label="Ir para a página de detalhes da proposição">
+                {newsletter.propositions && (
+                  <AccordionItem title={'Proposições'} startOpen={true}>
+                    <div className={styles.propositionContainer}>
+                      {newsletter.propositions?.map((propositionArticle, index) => (
+                        <React.Fragment key={index}>
+                          <Link className={styles.propositionArticleTitleLabel} to={"/proposition-details/" + propositionArticle.id} aria-label="Ir para a página de detalhes da proposição">
                             {propositionArticle.title}
-                        </Link>
-                        <div className={styles.propositionArticleContent}>{propositionArticle.content}</div>
-                    </React.Fragment>
-                ))}
+                          </Link>
+                          <div className={styles.propositionArticleContent}>{propositionArticle.content}</div>
+                        </React.Fragment>
+                      ))}
+                    </div>
+                  </AccordionItem>
+                )}
+              {newsletter.events && (
+                <AccordionItem title={'Eventos'} startOpen={true}>
+                  <TimeLine articleList={newsletter.events}/>
+                </AccordionItem>
+              )}
+              {newsletter.votes && (
+                <AccordionItem title={'Votações'} startOpen={true}>
+                  <TimeLine articleList={newsletter.votes}/>
+                </AccordionItem>
+              )}
             </div>
         </div>
     );

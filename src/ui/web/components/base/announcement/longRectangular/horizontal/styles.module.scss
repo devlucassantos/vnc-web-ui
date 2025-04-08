@@ -1,15 +1,17 @@
-.longHorizontalRectangularAdContainer {
+.longHorizontalRectangularAdContainer > * {
   display: flex;
   flex-direction: column;
   margin-top: 2%;
   align-items: center;
   width: 100%;
-  height: 10%;
+  height: 20vh !important;
+  background-color: #fff;
 }
 
 .imageAd {
   position: relative;
   width: 100%;
+  height: 20vh !important;
   background-size: cover;
 }
 
@@ -41,6 +43,16 @@
   width: 100%;
   height: auto;
   z-index: 1;
+}
+
+@media screen and (max-width: 500px) {
+  .longHorizontalRectangularAdContainer > * {
+    height: 15vh !important;
+  }
+
+  .imageAd {
+    height: 15vh !important;
+  }
 }
 
 @media screen and (max-width: 280px) {

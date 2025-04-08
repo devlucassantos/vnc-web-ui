@@ -144,6 +144,17 @@
   align-items: center;
 }
 
+.accordionItems {
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  padding-left: 3%;
+  padding-right: 3%;
+  margin-top: 16px;
+  margin-bottom: 16px;
+  gap: 16px;
+}
+
 .submittedAt {
   color: #767575;
   font-size: 1rem;
@@ -165,8 +176,6 @@
   height: auto;
   margin-top: 16px;
   margin-bottom: 16px;
-  padding-left: 3%;
-  padding-right: 3%;
 }
 
 .deputiesColumn, .externalAuthorsColumn {
@@ -254,6 +263,7 @@
   height: auto;
   padding-left: 3%;
   padding-right: 3%;
+  margin-bottom: 16px;
 }
 
 .deputyCard {
@@ -268,7 +278,6 @@
 .deputyCard:hover {
   background-color: #f0f0f0;
 }
-
 
 @media screen and (max-width: 500px) {
   .titleContainerRow {

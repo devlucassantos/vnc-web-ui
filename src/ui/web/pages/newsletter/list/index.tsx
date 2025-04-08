@@ -16,6 +16,7 @@ import LongVerticalRectangularAnnouncement from "@components/base/announcement/l
 import Footer from "@components/base/footer";
 import CustomCircularProgress from "@components/base/customCircularProgress";
 import {ResourceContext, ResourceContextType} from "@web/providers/resourceProvider";
+import ArticleNavigationBar from "@components/news/articleNavigationBar";
 
 interface Props {
     className?: string;
@@ -44,7 +45,7 @@ export const NewsletterListPage: FC<Props> = memo(function NewsletterListPage(pr
             setCurrentPage(page ?? 1)
             const queryFilters: ArticleFilters = {
                 page: page,
-                typeId: resource?.articleTypes?.find((type) => type.description == 'Boletins')?.id,
+                typeId: resource?.articleTypes?.find((type) => type.codes == 'newsletter')?.id,
                 itemsPerPage: 15,
                 content: content,
                 startDate: startDate ? format(startDate, 'yyyy-MM-dd') : '',
@@ -64,7 +65,7 @@ export const NewsletterListPage: FC<Props> = memo(function NewsletterListPage(pr
     const fetchTrendingArticles = async () => {
         try {
             const queryFilters: ArticleFilters = {
-                typeId: resource?.articleTypes?.find((type) => type.description == 'Boletins')?.id,
+                typeId: resource?.articleTypes?.find((type) => type.codes == 'newsletter')?.id,
                 itemsPerPage: 5
             };
 
@@ -99,6 +100,7 @@ export const NewsletterListPage: FC<Props> = memo(function NewsletterListPage(pr
                 onEndDateChange={(value) => setEndDate(value)}
                 onFilterClick={handleFilterClick}
             />
+            <ArticleNavigationBar />
             <div className={styles.body}>
                 {loading ? (
                     <CustomCircularProgress />

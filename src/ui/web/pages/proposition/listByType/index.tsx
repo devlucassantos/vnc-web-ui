@@ -16,7 +16,7 @@ import ExternalAuthor from "@models/ExternalAuthor";
 import {format} from "date-fns";
 import style from "./styles.module.scss";
 import {TitleTopic} from "@components/base/titleTopic";
-import PropositionNavigationBar from "@components/proposition/propositionNavigationBar";
+import ArticleNavigationBar from "ui/web/components/news/articleNavigationBar";
 import BigCard from "@components/news/cards/bigCard";
 import {useParams} from "react-router-dom";
 import LongVerticalRectangularAnnouncement from "@components/base/announcement/longRectangular/vertical";
@@ -49,8 +49,8 @@ export const PropositionListByTypePage: FC<Props> = memo(function PropositionLis
         resource: null,
         fetchResources: () => {},
     } as ResourceContextType;
-    const articleTypeColor : string = resource?.articleTypes?.find((articleType, index) => articleType.id == id)?.color ?? "#0047AB"
-    const articleTypeDescription : string = resource?.articleTypes?.find((articleType, index) => articleType.id == id)?.description ?? ""
+    const articleTypeColor : string = resource?.propositionTypes?.find((articleType, index) => articleType.id == id)?.color ?? "#0047AB"
+    const articleTypeDescription : string = resource?.propositionTypes?.find((articleType, index) => articleType.id == id)?.description ?? ""
     const [currentPage, setCurrentPage] = useState(1);
 
     const fetchArticles = async (page?: number) => {
@@ -59,7 +59,7 @@ export const PropositionListByTypePage: FC<Props> = memo(function PropositionLis
             setCurrentPage(page ?? 1)
             const queryFilters: ArticleFilters = {
                 page: page,
-                typeId: id,
+                specificTypeId: id,
                 itemsPerPage: 15,
                 content: content,
                 startDate: startDate ? format(startDate, 'yyyy-MM-dd') : '',
@@ -83,7 +83,7 @@ export const PropositionListByTypePage: FC<Props> = memo(function PropositionLis
         try {
             const queryFilters: ArticleTypeFilters = {
                 itemsPerPage: 5,
-                articleTypeIds: `${id}`
+                articleSpecificTypeIds: `${id}`
             };
 
             const articleTypes = await ArticleTypeService.getTrendingArticlesByType(queryFilters);
@@ -125,7 +125,7 @@ export const PropositionListByTypePage: FC<Props> = memo(function PropositionLis
                 onExternalAuthorChange={(value) => setExternalAuthor(value)}
                 onFilterClick={handleFilterClick}
             />
-            <PropositionNavigationBar />
+            <ArticleNavigationBar />
             <div className={styles.body}>
                 {loading ? (
                     <div className={style.loadingContainer}>
@@ -134,16 +134,16 @@ export const PropositionListByTypePage: FC<Props> = memo(function PropositionLis
                 ) : (
                     articleList?.length > 0 ? (
                         <>
-                            {trendingArticleListByType && trendingArticleListByType[0]?.propositionArticles?.length >= 3 && trendingArticleListByType[0]?.description !== "Outras Proposições" &&
+                            {trendingArticleListByType && trendingArticleListByType[0]?.specificTypes && trendingArticleListByType[0]?.specificTypes[0].articles?.length >= 3 && trendingArticleListByType[0]?.specificTypes[0]?.description !== "Outras Proposições" &&
                                 <>
                                     <TitleTopic titleViewStyle={style.propositionTypeTitleView} label={articleTypeDescription} color={articleTypeColor} />
                                     <div className={style.gridContainer}>
-                                        <BigCard article={trendingArticleListByType[0]?.propositionArticles[0]} typePropositionLabel={articleTypeDescription} cardStyle={style.bigCard}
+                                        <BigCard article={trendingArticleListByType[0]?.specificTypes[0]?.articles[0]} typePropositionLabel={articleTypeDescription} cardStyle={style.bigCard}
                                                  imageContainerStyle={style.bigCardImageContainer} titleStyle={style.bigCardTitle} isHidden={false}/>
                                         <div className={style.gridColumn}>
-                                            <BigCard article={trendingArticleListByType[0]?.propositionArticles[1]} typePropositionLabel={articleTypeDescription} cardStyle={style.mediumCard}
+                                            <BigCard article={trendingArticleListByType[0]?.specificTypes[0]?.articles[1]} typePropositionLabel={articleTypeDescription} cardStyle={style.mediumCard}
                                                      imageContainerStyle={style.gridMediumCardImageContainer} titleStyle={style.mediumCardTitle} isHidden={false}/>
-                                            <BigCard article={trendingArticleListByType[0]?.propositionArticles[2]} typePropositionLabel={articleTypeDescription} cardStyle={style.mediumCard}
+                                            <BigCard article={trendingArticleListByType[0]?.specificTypes[0]?.articles[2]} typePropositionLabel={articleTypeDescription} cardStyle={style.mediumCard}
                                                      imageContainerStyle={style.gridMediumCardImageContainer} titleStyle={style.mediumCardTitle} isHidden={false}/>
                                         </div>
                                     </div>
@@ -156,12 +156,12 @@ export const PropositionListByTypePage: FC<Props> = memo(function PropositionLis
                                     {maxPageCount != 0 && <CustomPagination currentPage={currentPage} count={maxPageCount} actionOnChange={actionOnChangePagination} color={articleTypeColor} />}
                                 </div>
                                 <div className={styles.propositionsRightColumn}>
-                                    {trendingArticleListByType[0]?.propositionArticles?.length > 0 &&
+                                    {trendingArticleListByType[0]?.specificTypes[0]?.articles?.length > 0 &&
                                         <>
                                             <TitleTopic titleViewStyle={style.trendingTitleView} label="Em Destaque" color={articleTypeColor} />
                                         </>
                                     }
-                                    <TrendingContainer trendingArticleList={trendingArticleListByType[0]?.propositionArticles} color={articleTypeColor}/>
+                                    <TrendingContainer trendingArticleList={trendingArticleListByType[0]?.specificTypes[0]?.articles} color={articleTypeColor}/>
                                     <LongVerticalRectangularAnnouncement/>
                                 </div>
                             </div>

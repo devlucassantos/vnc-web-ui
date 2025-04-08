@@ -4,12 +4,14 @@ import Party from "./Party";
 import Deputy from "./Deputy";
 import ExternalAuthor from "./ExternalAuthor";
 import ArticleType from "@models/ArticleType";
+import SpecificType from "@models/SpecificType";
 
 class Resource extends Model {
     private _parties: Party[];
     private _deputies: Deputy[];
     private _externalAuthors: ExternalAuthor[];
     private _articleTypes: ArticleType[];
+    private _propositionTypes: SpecificType[];
 
     constructor() {
         super();
@@ -17,6 +19,7 @@ class Resource extends Model {
         this._deputies = [];
         this._externalAuthors = [];
         this._articleTypes = [];
+        this._propositionTypes = [];
     }
 
     get parties() {
@@ -35,12 +38,17 @@ class Resource extends Model {
         return this._articleTypes
     }
 
+    get propositionTypes() {
+        return this._propositionTypes
+    }
+
     toJSON(): DTO {
         let dto = {} as DTO;
         dto['parties'] = this._parties.map(party => party.toJSON());
         dto['deputies'] = this._deputies.map(deputy => deputy.toJSON());
         dto['external_authors'] = this._externalAuthors.map(externalAuthor => externalAuthor.toJSON());
         dto['article_types'] = this._articleTypes.map(ArticleType => ArticleType.toJSON());
+        dto['proposition_types'] = this._propositionTypes.map(PropositionType => PropositionType.toJSON());
         return dto;
     }
 
@@ -50,6 +58,7 @@ class Resource extends Model {
         resource._deputies = json['deputies'] ? json['deputies'].map((deputyJson: DTO) => Deputy.fromJSON(deputyJson)) : [];
         resource._externalAuthors = json['external_authors'] ? json['external_authors'].map((externalAuthorJson: DTO) => ExternalAuthor.fromJSON(externalAuthorJson)) : [];
         resource._articleTypes = json['article_types'] ? json['article_types'].map((articleTypeJSON: DTO) => ArticleType.fromJSON(articleTypeJSON)) : [];
+        resource._propositionTypes = json['proposition_types'] ? json['proposition_types'].map((propositionTypeJSON: DTO) => SpecificType.fromJSON(propositionTypeJSON)) : [];
         return resource;
     }
 }

@@ -21,8 +21,11 @@ export const SplitCard: FC<Props> = memo(function SplitCard({
     return (
         <div ref={cardRef} className={styles.cardStyle} data-id={article.id}>
             <div className={styles.image}
-                 style={{backgroundImage: `url(${article.imageUrl})`}}/>
-            <div className={styles.content} style={{backgroundColor: article.type.color}}>
+                 style={{backgroundImage: `url(${article.multimediaUrl})`}}
+                 role="img"
+                 aria-label={`${article.multimediaDescription ?? "Imagem gerada por Inteligência Artificial representando o conteúdo da proposição."}`}
+            />
+            <div className={styles.content} style={{backgroundColor: article.type.specificType.color}}>
                 <Link
                     className={styles.titleLabel}
                     to={"/proposition-details/" + article.id}

@@ -1,4 +1,4 @@
-import React, {memo, useEffect, useState} from 'react';
+import React, {memo, useContext, useEffect, useState} from 'react';
 import type {FC} from 'react';
 
 import style from './styles.module.scss';
@@ -18,11 +18,15 @@ import {TitleTopic} from "@components/base/titleTopic";
 import LongVerticalRectangularAnnouncement from "@components/base/announcement/longRectangular/vertical";
 import Footer from "@components/base/footer";
 import CustomCarousel from "@components/base/carousel";
-import PropositionNavigationBar from "@components/proposition/propositionNavigationBar";
+import ArticleNavigationBar from "ui/web/components/news/articleNavigationBar";
 import CustomCircularProgress from "@components/base/customCircularProgress";
 import ArticleType from "@models/ArticleType";
 import BannerActivation from "@components/base/bannerActivation";
 import User from "@models/User";
+import {ResourceContext, ResourceContextType} from "@web/providers/resourceProvider";
+import VideoCard from "@components/base/videoCard";
+import BigCard from "@components/event/largeCard";
+import LargeEventCard from "@components/event/largeCard";
 
 interface Props {
     className?: string;
@@ -36,6 +40,7 @@ export const Home: FC<Props> = memo(function Home(props = {}) {
     const [articleList, setArticle] = useState<Article[]>([]);
     const [trendingArticleList, setTrendingArticle] = useState<Article[]>([]);
     const [trendingArticleListByType, setTrendingArticleListByType] = useState<ArticleType[]>([]);
+    const [eventList, setEventList] = useState<Article[]>([]);
     const [maxPageCount, setMaxPageCount] = useState<number>(0);
     const [content, setContent] = useState<string>('');
     const [startDate, setStartDate] = useState<Date | null>(null);
@@ -50,6 +55,19 @@ export const Home: FC<Props> = memo(function Home(props = {}) {
     const [user, setUser] = useState<User | null>(
         authenticationService.getCachedUser() as User
     );
+    const resourceContext = useContext(ResourceContext);
+    const { resource} = resourceContext ?? {
+        resource: null,
+        fetchResources: () => {},
+    } as ResourceContextType;
+    const propositionArticleTypeId : string = resource?.articleTypes?.find((articleType, index) => articleType.codes == "proposition")?.id ?? ""
+    const eventArticleTypeId : string = resource?.articleTypes?.find((articleType, index) => articleType.codes == "event")?.id ?? ""
+    const specificTypeIds: string = resource?.propositionTypes
+      ?.filter((propositionType) =>
+        ["Projetos de Lei", "Medidas Provisórias", "Propostas de Emenda à Constituição"].includes(propositionType.description)
+      )
+      ?.map((propositionType) => propositionType.id)
+      .join(",") ?? "";
 
     const fetchArticles = async (page?: number) => {
         try {
@@ -61,7 +79,7 @@ export const Home: FC<Props> = memo(function Home(props = {}) {
                 content: content,
                 startDate: startDate ? format(startDate, 'yyyy-MM-dd') : '',
                 endDate: endDate ? format(endDate, 'yyyy-MM-dd') : '',
-                typeId: articleType ? articleType.id : '',
+                typeId: propositionArticleTypeId ? propositionArticleTypeId : articleType ? articleType.id : '',
                 partyId: party ? party.id : '',
                 deputyId: deputy ? deputy.id : '',
                 externalAuthorId: externalAuthor ? externalAuthor.id : '',
@@ -81,7 +99,8 @@ export const Home: FC<Props> = memo(function Home(props = {}) {
     const fetchTrendingArticles = async () => {
         try {
             const queryFilters: ArticleFilters = {
-                itemsPerPage: 5
+                itemsPerPage: 5,
+                typeId: propositionArticleTypeId,
             };
 
             const pagination = await articleService.getTrendingArticles(queryFilters);
@@ -94,7 +113,9 @@ export const Home: FC<Props> = memo(function Home(props = {}) {
     const fetchTrendingArticlesByType = async () => {
         try {
             const queryFilters: ArticleTypeFilters = {
-                itemsPerPage: 5
+                itemsPerPage: 5,
+                articleTypeIds: propositionArticleTypeId,
+                articleSpecificTypeIds: specificTypeIds
             };
 
             const articleTypes = await articleTypeService.getTrendingArticlesByType(queryFilters);
@@ -104,11 +125,27 @@ export const Home: FC<Props> = memo(function Home(props = {}) {
         }
     };
 
+    const fetchEvents = async () => {
+        try {
+            const queryFilters: ArticleFilters = {
+                itemsPerPage: 5,
+                page: 1,
+                typeId: eventArticleTypeId,
+                removeEventsInTheFuture: true,
+            };
+
+            const pagination = await articleService.getArticles(queryFilters);
+            setEventList(pagination.data);
+        } catch (error) {
+            console.log(error)
+        }
+    };
 
     useEffect(() => {
         fetchArticles();
         fetchTrendingArticles();
         fetchTrendingArticlesByType();
+        fetchEvents();
     }, []);
 
     const actionOnChangePagination = (page: number) => {
@@ -139,7 +176,7 @@ export const Home: FC<Props> = memo(function Home(props = {}) {
                 onFilterClick={handleFilterClick}
             />
             { user && <BannerActivation roles={user.roles} /> }
-            <PropositionNavigationBar />
+            <ArticleNavigationBar />
             <div className={style.body}>
 
                 {loading ? (
@@ -147,41 +184,47 @@ export const Home: FC<Props> = memo(function Home(props = {}) {
                 ) : (
                     articleList?.length > 0 ? (
                         <>
+                            {!isAnyFilterApplied && eventList?.length > 0 &&
+                                <>
+                                    <TitleTopic titleViewStyle={style.emphasisArticleTitleView} label={"Eventos em Destaque"} color={eventList.at(0)!.type.color}/>
+                                    <div className={style.mainGridContainer}>
+                                        <CustomCarousel carouselStyle={style.mainGridCarousel}
+                                                        articleList={eventList}
+                                                        isEvent={true}/>
+                                    </div>
+                                </>
+                            }
+
                             {!isAnyFilterApplied && trendingArticleListByType?.length > 0 &&
                                 <>
-                                    <TitleTopic titleViewStyle={style.emphasisArticleTitleView} label={trendingArticleListByType.at(1)!.description} color={trendingArticleListByType.at(1)!.color}/>
-                                    <div className={style.mainGridContainer}>
-                                        <CustomCarousel carouselStyle={style.mainGridCarousel} articleList={trendingArticleListByType.at(1)!.propositionArticles} typePropositionLabel={trendingArticleListByType.at(1)!.description} cardStyle={style.card} imageContainerStyle={style.bigCardImageContainer} titleStyle={style.bigCardTitle} dotColor={trendingArticleListByType.at(1)!.color} displayArticleTypeLabel={false} />
-                                    </div>
-
                                     <div className={style.splitCarouselContainer}>
-                                        { trendingArticleListByType.at(2) && trendingArticleListByType!.at(2)!.propositionArticles && trendingArticleListByType!.at(2)!.propositionArticles!.length > 1 && (
+                                        { trendingArticleListByType.at(0) && trendingArticleListByType!.at(0)!.specificTypes && trendingArticleListByType!.at(0)!.specificTypes!.at(0) && trendingArticleListByType!.at(0)!.specificTypes!.at(0)!.articles && trendingArticleListByType!.at(0)!.specificTypes!.at(0)!.articles!.length > 0 && (
                                           <div className={style.splitCarouselColumn}>
                                               <TitleTopic titleViewStyle={style.splitCarouselTitleView}
-                                                          label={trendingArticleListByType.at(2)!.description}
-                                                          color={trendingArticleListByType.at(2)!.color}/>
+                                                          label={trendingArticleListByType.at(0)!.specificTypes!.at(0)!.description}
+                                                          color={trendingArticleListByType.at(0)!.specificTypes!.at(0)!.color}/>
                                               <CustomCarousel carouselStyle={style.splitCarousel}
-                                                              articleList={trendingArticleListByType.at(2)!.propositionArticles}
+                                                              articleList={trendingArticleListByType.at(0)!.specificTypes!.at(0)!.articles}
                                                               isSplitCard={true}/>
                                           </div>
                                         )}
-                                        { trendingArticleListByType.at(3) && trendingArticleListByType!.at(3)!.propositionArticles && trendingArticleListByType!.at(3)!.propositionArticles!.length > 0 && (
+                                        { trendingArticleListByType.at(0) && trendingArticleListByType!.at(0)!.specificTypes && trendingArticleListByType!.at(0)!.specificTypes!.at(1) && trendingArticleListByType!.at(0)!.specificTypes!.at(1)!.articles && trendingArticleListByType!.at(0)!.specificTypes!.at(1)!.articles!.length > 0 && (
+                                          <div className={style.splitCarouselColumn}>
+                                              <TitleTopic titleViewStyle={style.splitCarouselTitleView}
+                                                          label={trendingArticleListByType.at(0)!.specificTypes!.at(1)!.description}
+                                                          color={trendingArticleListByType.at(0)!.specificTypes!.at(1)!.color}/>
+                                              <CustomCarousel carouselStyle={style.splitCarousel}
+                                                              articleList={trendingArticleListByType.at(0)!.specificTypes!.at(1)!.articles}
+                                                              isSplitCard={true}/>
+                                          </div>
+                                        )}
+                                        { trendingArticleListByType.at(0) && trendingArticleListByType!.at(0)!.specificTypes && trendingArticleListByType!.at(0)!.specificTypes!.at(2) && trendingArticleListByType!.at(0)!.specificTypes!.at(2)!.articles && trendingArticleListByType!.at(0)!.specificTypes!.at(2)!.articles!.length > 0 && (
                                           <div className={style.splitCarouselColumn}>
                                               <TitleTopic titleViewStyle={style.splitCarouselTitleView}
                                                           label={"Emenda à Constituição"}
-                                                          color={trendingArticleListByType.at(3)!.color}/>
+                                                          color={trendingArticleListByType.at(0)!.specificTypes!.at(2)!.color}/>
                                               <CustomCarousel carouselStyle={style.splitCarousel}
-                                                              articleList={trendingArticleListByType.at(3)!.propositionArticles}
-                                                              isSplitCard={true}/>
-                                          </div>
-                                        )}
-                                        { trendingArticleListByType.at(4) && trendingArticleListByType!.at(4)!.propositionArticles && trendingArticleListByType!.at(4)!.propositionArticles!.length > 0 && (
-                                          <div className={style.splitCarouselColumn}>
-                                              <TitleTopic titleViewStyle={style.splitCarouselTitleView}
-                                                          label={"Lei Complementar"}
-                                                          color={trendingArticleListByType.at(4)!.color}/>
-                                              <CustomCarousel carouselStyle={style.splitCarousel}
-                                                              articleList={trendingArticleListByType.at(4)!.propositionArticles}
+                                                              articleList={trendingArticleListByType.at(0)!.specificTypes!.at(2)!.articles}
                                                               isSplitCard={true}/>
                                           </div>
                                         )}

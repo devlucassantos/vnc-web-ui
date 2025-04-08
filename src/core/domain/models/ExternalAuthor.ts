@@ -26,14 +26,6 @@ class ExternalAuthor extends Model {
         return this._type;
     }
 
-    set setName(name: string) {
-        this._name = name;
-    }
-
-    set setType(type: string) {
-        this._type = type;
-    }
-
     get createdAt(): string {
         return this._createdAt;
     }
@@ -42,17 +34,11 @@ class ExternalAuthor extends Model {
         return this._updatedAt;
     }
 
-    set updatedAt(value: string) {
-        this._updatedAt = value;
-    }
-
     toJSON(): DTO {
         let dto = {} as DTO;
         dto['id'] = this._id;
         dto['name'] = this._name;
         dto['type'] = this._type;
-        dto['created_at'] = convertToISODate(this._createdAt);
-        dto['updated_at'] = convertToISODate(this._updatedAt);
         return dto;
     }
 
@@ -61,8 +47,6 @@ class ExternalAuthor extends Model {
         obj._id = String(json['id']);
         obj._name = String(json['name']);
         obj._type = String(json['type']);
-        obj._createdAt = formatCustomDateTime(String(json['created_at']));
-        obj._updatedAt = formatCustomDateTime(String(json['updated_at']));
         return obj;
     }
 }

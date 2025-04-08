@@ -1,0 +1,46 @@
+.videoCard {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans';
+  position: relative;
+  gap: 8px;
+}
+
+.title {
+  font-size: 28px;
+  margin: 0;
+  color: #ffffff;
+}
+
+.logo {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  width: 40px;
+  height: auto;
+}
+
+@media screen and (max-width: 900px) {
+  .title {
+    font-size: 20px;
+    margin: 0;
+    color: #ffffff;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .title {
+    font-size: 16px;
+    margin: 0;
+    color: #ffffff;
+  }
+}

@@ -38,18 +38,18 @@ export const BigCard: FC<Props> = memo(function BigCard({
     return (
         <div ref={cardRef} className={cardStyle} data-id={article.id}>
             <div className={imageContainerStyle}>
-                <div className={styles.image} style={{ backgroundImage: `url(${article.imageUrl})` }} />
+                <div className={styles.image} style={{ backgroundImage: `url(${article.multimediaUrl})` }} role="img" aria-label={`${article.multimediaDescription ?? "Imagem gerada por Inteligência Artificial representando o conteúdo da proposição."}`} />
             </div>
             <div className={styles.cardColumn}>
                 { displayArticleTypeLabel && (
-                  <div className={styles.labelContainer} style={{backgroundColor: article.type.color}}>
+                  <div className={styles.labelContainer} style={{backgroundColor: article.type.specificType.color}}>
                       <div className={styles.label}>{typePropositionLabel}</div>
                   </div>
                 )}
                 <Link className={styles.titleContainer}
                       to={(article.type.description !== "Boletins" ? "/proposition-details/" : "/newsletter-details/") + article.id} aria-label="Ir para a página de detalhes da matéria">
                 <div className={styles.titleContainerRow}>
-                        <TitleDiv className={titleStyle} $hoverColor={article.type.color}>{article.title}</TitleDiv>
+                        <TitleDiv className={titleStyle} $hoverColor={article.type.specificType.color}>{article.title}</TitleDiv>
                     </div>
                 </Link>
                 <div className={styles.dateRow}>

@@ -1,4 +1,4 @@
-import React, {memo, useEffect, useState} from 'react';
+import React, {memo, useContext, useEffect, useState} from 'react';
 import type {FC} from 'react';
 
 import styles from './styles.module.scss';
@@ -14,6 +14,7 @@ import {TitleTopic} from "@components/base/titleTopic";
 import Footer from "@components/base/footer";
 import LongVerticalRectangularAnnouncement from "@components/base/announcement/longRectangular/vertical";
 import CustomCircularProgress from "@components/base/customCircularProgress";
+import {ResourceContext, ResourceContextType} from "@web/providers/resourceProvider";
 
 interface Props {
     className?: string;
@@ -24,12 +25,18 @@ const articleService = DIContainer.getArticleUseCase();
 export const OriginalPropositionPage: FC<Props> = memo(function OriginalPropositionPage(props = {}) {
     const {codteor} = useParams();
 
+    const resourceContext = useContext(ResourceContext);
+    const { resource} = resourceContext ?? {
+        resource: null,
+        fetchResources: () => {},
+    } as ResourceContextType;
     const [trendingArticleList, setTrendingArticleList] = useState<Article[]>([]);
     const [loading, setLoading] = useState(true);
     const fetchTrendingArticles = async (page?: number) => {
         try {
             setLoading(true);
             const queryFilters: ArticleFilters = {
+                typeId: resource?.articleTypes?.find((type) => type.codes == 'proposition')?.id,
                 itemsPerPage: 5
             };
 
