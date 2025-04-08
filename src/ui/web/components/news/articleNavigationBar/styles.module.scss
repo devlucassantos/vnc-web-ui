@@ -20,6 +20,18 @@
   border-bottom: 2px solid #EFEFEF;
 }
 
+.articleNavigationBarRow {
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  left: 15%;
+  right: 15%;
+  top: 50%;
+  transform: translate(0%, -50%);
+  gap: 4%;
+}
+
 .navigationBarRow {
   position: absolute;
   display: flex;
@@ -88,21 +100,21 @@
 }
 
 @media screen and (max-width: 1500px) {
-  .navigationBarRow {
+  .navigationBarRow, .articleNavigationBarRow {
     left: 10%;
     right: 10%;
   }
 }
 
 @media screen and (max-width: 1300px) {
-  .navigationBarRow {
+  .navigationBarRow, .articleNavigationBarRow {
     left: 3%;
     right: 3%;
   }
 }
 
 @media screen and (max-width: 1000px) {
-  .navigationBarRow {
+  .navigationBarRow, .articleNavigationBarRow {
     left: 2%;
     right: 2%;
   }
@@ -121,6 +133,11 @@
     flex-wrap: wrap;
     justify-content: left;
     gap: 8px;
+  }
+
+  .articleNavigationBarRow {
+    flex-wrap: wrap;
+    justify-content: left;
   }
 
   .propositionNavigationBar {

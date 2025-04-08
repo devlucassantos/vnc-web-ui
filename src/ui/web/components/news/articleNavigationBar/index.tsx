@@ -34,7 +34,7 @@ export const ArticleNavigationBar: FC<Props> = memo(function ArticleNavigationBa
   return (
     <>
       <div className={styles.articleNavigationBar}>
-        <div className={styles.navigationBarRow}>
+        <div className={styles.articleNavigationBarRow}>
           {resource?.articleTypes?.map((articleType, index) => (
             <div key={index}>
               {articleType.codes !== 'proposition' && (
