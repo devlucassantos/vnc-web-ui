@@ -38,7 +38,6 @@ export const AdsComponent: FC<Props> = memo(function AdsComponent({
            data-ad-slot={dataAdSlot}
            data-ad-format="auto"
            data-full-width-responsive="true"
-           data-adtest="on"
       >
       </ins>
     </>
