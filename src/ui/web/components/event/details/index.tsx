@@ -97,18 +97,7 @@ export const EventDetailsCard: FC<Props> = memo(function EventDetailsCard({
           <div className={styles.ratingContainer}>
             <RowContainer>
               <ViewLaterButton onViewLaterSubmit={handleViewLaterSubmit} initialSelected={event.viewLater}/>
-              {!isNaN(event.averageRating) && (
-                <RatingContainer>
-                  <Tooltip title="Média das avaliações">
-                    <div className={styles.ratingDiv}>
-                      <CustomStarIcon aria-label="Ícone de estrela representando a média das avaliações"/>
-                      <RatingText>{event.averageRating.toFixed(1)}</RatingText>
-                    </div>
-                  </Tooltip>
-                </RatingContainer>
-              )}
             </RowContainer>
-            <StarRating onSubmitRating={handleRatingSubmit} initialRating={event.userRating ?? 0}/>
           </div>
         </div>
       </div>

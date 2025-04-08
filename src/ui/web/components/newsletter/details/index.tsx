@@ -64,23 +64,12 @@ export const NewsletterDetailsCard: FC<Props> = memo(function NewsletterDetailsC
                 <div className={styles.line}/>
                 <div className={styles.title}>{newsletter.title}</div>
               </div>
-              <StarRating onSubmitRating={handleRatingSubmit} initialRating={newsletter.userRating ?? 0 } />
             </div>
             <RowContainer>
                 <div className={styles.createdAt}>
                     {newsletter.createdAt}{newsletter.createdAt != newsletter.updatedAt && " - Atualizado em " + newsletter.updatedAt}
                 </div>
                 <ViewLaterButton onViewLaterSubmit={handleViewLaterSubmit} initialSelected={newsletter.viewLater} />
-                {!isNaN(newsletter.averageRating) && (
-                    <RatingContainer>
-                        <Tooltip title="Média das avaliações">
-                            <div className={styles.ratingContainer}>
-                                <CustomStarIcon aria-label="Ícone de estrela representando a média das avaliações" />
-                                <RatingText>{newsletter.averageRating.toFixed(1)}</RatingText>
-                            </div>
-                        </Tooltip>
-                    </RatingContainer>
-                )}
             </RowContainer>
             <div className={styles.propositionsColumn}>
                 {newsletter.propositions && (

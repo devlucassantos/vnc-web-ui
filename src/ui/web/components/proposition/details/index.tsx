@@ -77,7 +77,7 @@ export const PropositionDetailsCard: FC<Props> = memo(function PropositionDetail
       </div>
       <RowContainer>
         <div className={styles.labelContainer} style={{backgroundColor: proposition.type.specificType.color}}>
-          <div className={styles.label}>{proposition.type.description}</div>
+          <div className={styles.label}>{proposition.type.specificType.description}</div>
         </div>
         <ViewLaterButton onViewLaterSubmit={handleViewLaterSubmit} initialSelected={proposition.viewLater}/>
         {!isNaN(proposition.averageRating) && (
