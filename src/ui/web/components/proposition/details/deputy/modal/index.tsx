@@ -44,7 +44,7 @@ class DeputyModal extends React.Component<{ deputy: Deputy, closeModal: any }> {
                                     <label className={styles.nameLabel}>{deputy.party.acronym}</label>
                                 </div>
                                 <div className={styles.imageContainer}>
-                                    <img className={styles.partyImage} src={deputy.party.imageUrl} alt={`Imagem do partido ${deputy.party.imageUrl} do deputado.`}  />
+                                    <img className={styles.partyImage} src={deputy.party.imageUrl} alt={deputy.party.imageDescription ?? `Imagem do partido ${deputy.party.imageUrl} do deputado.`}  />
                                 </div>
                             </div>
                             {deputy.previousParty && deputy.party.id != deputy.previousParty.id &&
@@ -57,7 +57,7 @@ class DeputyModal extends React.Component<{ deputy: Deputy, closeModal: any }> {
                                         <label className={styles.nameLabel}>{deputy.previousParty.acronym}</label>
                                     </div>
                                     <div className={styles.imageContainer}>
-                                        <img className={styles.partyImage} src={deputy.previousParty.imageUrl} alt={`Imagem do partido ${deputy.previousParty.name} do deputado na proposição.`} />
+                                        <img className={styles.partyImage} src={deputy.previousParty.imageUrl} alt={deputy.previousParty.imageDescription ?? `Imagem do partido ${deputy.previousParty.name} do deputado na proposição.`} />
                                     </div>
                                 </div>
                             }
