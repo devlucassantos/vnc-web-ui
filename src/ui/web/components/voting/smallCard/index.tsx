@@ -25,14 +25,15 @@ const RatingContainer = styled.div`
   flex-grow: 1;
 `;
 
-const RatingText = styled.span`
+const RatingText = styled.span<{ $color: string }>`
   font-size: 1.2rem;
   margin-left: 4px;
   margin-top: 2px;
+  color: ${(props) => props.$color};
 `;
 
-const CustomStarIcon = styled(StarIcon)`
-  color: #0047AB;
+const CustomStarIcon = styled(StarIcon)<{ $color: string }>`
+  color: ${(props) => props.$color};
   font-size: 28px;
 `;
 
@@ -54,8 +55,8 @@ export const SmallVotingCard: FC<Props> = memo(function SmallVotingCard({
               <RatingContainer>
                 <Tooltip title="Média das avaliações">
                   <div className={styles.ratingContainer}>
-                    <CustomStarIcon aria-label="Ícone de estrela representando a média das avaliações"/>
-                    <RatingText>{article.averageRating.toFixed(1)}</RatingText>
+                    <CustomStarIcon $color={article.type.color} aria-label="Ícone de estrela representando a média das avaliações"/>
+                    <RatingText $color={article.type.color}>{article.averageRating.toFixed(1)}</RatingText>
                   </div>
                 </Tooltip>
               </RatingContainer>

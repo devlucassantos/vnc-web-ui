@@ -82,10 +82,19 @@ export const EventDetailsCard: FC<Props> = memo(function EventDetailsCard({
             <div className={styles.title}>{event.title}</div>
           </div>
           <div className={styles.titleContainerRow}>
-            <div className={styles.subTitle} style={{color: event.type.specificType.color}}>{event.type.specificType.description}</div>
+            <div className={styles.subTitle}
+                 style={{color: event.type.specificType.color}}>{event.type.specificType.description}</div>
           </div>
           <div className={styles.dateRow}>
             <div className={styles.eventDate}>{formatEventDate(event.startsAt, event.endsAt)}</div>
+          </div>
+          {event.legislativeBodies && event.legislativeBodies.length > 0 && (
+            <div className={styles.titleContainerRow}>
+              <div className={styles.subTitle}>{"Órgão Responsável: "}{event.legislativeBodies.at(0)!.name}{` (${event.legislativeBodies.at(0)!.acronym})`}</div>
+            </div>
+          )}
+          <div className={styles.titleContainerRow}>
+            <div className={styles.subTitle}>{"Local: "}{event.location}</div>
           </div>
           <div className={styles.titleContainerRow}>
             <div className={styles.content}>{event.descriptionContent}</div>
@@ -104,20 +113,21 @@ export const EventDetailsCard: FC<Props> = memo(function EventDetailsCard({
     );
   }
 
-  const agendaItem = (agendaItem : EventAgendaItem) => {
+  const agendaItem = (agendaItem: EventAgendaItem) => {
     return (
       <div className={styles.agendaItem}>
         <div className={styles.titleContainer}>
-          <div className={styles.title}>{agendaItem.title}</div>
-          <div className={styles.content}>{agendaItem.topic}</div>
-          <div className={styles.content}>{agendaItem.regime}</div>
-        </div>
-        {agendaItem.rapporteur && (
-          <div className={styles.rapporteurContainer}>
-            <div className={styles.rapporteurTitle}>{'Relator: '}</div>
-            <DeputyCard deputy={agendaItem.rapporteur} noMarginTop={true} removeTrace={true}/>
+          <div className={styles.titleContainer}>
+            <div className={styles.agendaItemTitle}>{agendaItem.topic}</div>
+            <div className={styles.agendaItemTitle}>{agendaItem.regime}</div>
           </div>
-        )}
+          {agendaItem.rapporteur && (
+            <div className={styles.rapporteurContainer}>
+              <div className={styles.agendaItemTitle}>{'Relator: '}</div>
+              <DeputyCard deputy={agendaItem.rapporteur} noMarginTop={true} removeTrace={true}/>
+            </div>
+          )}
+        </div>
         { agendaItem.situation && (
           <div className={styles.titleContainer}>
             <div className={styles.content}>{agendaItem.situation}</div>
@@ -154,7 +164,9 @@ export const EventDetailsCard: FC<Props> = memo(function EventDetailsCard({
           <div className={styles.agendaTitle}>Pautas</div>
           {event.agendaItems.map((item, index) => (
             <div key={item.id} className={styles.agendaColumn}>
-              {agendaItem(item)}
+              <AccordionItem title={item.title}>
+                {agendaItem(item)}
+              </AccordionItem>
             </div>
           ))}
         </div>
