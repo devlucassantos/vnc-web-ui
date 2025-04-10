@@ -49,7 +49,7 @@ export const PropositionDetailsCard: FC<Props> = memo(function PropositionDetail
   proposition,
   ...props
 }) {
-  const handleRatingSubmit = async (rating: number) => {
+  const handleRatingSubmit = async (rating: number | null) => {
     await articleService.saveArticleRating(proposition.id, rating);
   };
 
@@ -61,15 +61,23 @@ export const PropositionDetailsCard: FC<Props> = memo(function PropositionDetail
 
   return (
     <div className={styles.card}>
-      <div className={styles.titleContainer}>
-        <div className={styles.titleContainerRow}>
-          <div className={styles.line}/>
-          <Link className={styles.title} to={"/original-proposition/" + codteor}
-                aria-label="Ir para a página de exibição da proposição original">
-            <div>{proposition.title}</div>
-          </Link>
+      <div className={styles.titleViewContainer}>
+        {proposition.imageUrl !== 'undefined' && (
+          <div className={styles.imageContainer}>
+            <div className={styles.image} style={{backgroundImage: `url(${proposition.imageUrl})`}} role="img"
+                 aria-label={`${proposition.imageDescription ?? "Imagem gerada por Inteligência Artificial representando o conteúdo da proposição."}`}/>
+          </div>
+        )}
+        <div className={styles.titleContainer}>
+          <div className={styles.titleContainerRow}>
+            <div className={styles.line}/>
+            <Link className={styles.title} to={"/original-proposition/" + codteor}
+                  aria-label="Ir para a página de exibição da proposição original">
+              <div>{proposition.title}</div>
+            </Link>
+          </div>
+          <StarRating onSubmitRating={handleRatingSubmit} initialRating={proposition.userRating ?? 0}/>
         </div>
-        <StarRating onSubmitRating={handleRatingSubmit} initialRating={proposition.userRating ?? 0}/>
       </div>
       <div className={styles.createdAt}>
         {proposition.createdAt}

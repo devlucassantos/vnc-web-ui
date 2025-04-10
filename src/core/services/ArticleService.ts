@@ -19,7 +19,7 @@ export class ArticleService implements ArticleUsecase {
         return this.articleAdapter.getSavedArticlesToViewLater(queryFilters);
     }
 
-    async saveArticleRating(articleId: string, rating: number): Promise<void> {
+    async saveArticleRating(articleId: string, rating: number | null): Promise<void> {
         return this.articleAdapter.saveArticleRating(articleId, rating);
     }
 

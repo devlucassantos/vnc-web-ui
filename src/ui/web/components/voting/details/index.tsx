@@ -49,7 +49,7 @@ export const VotingDetailsCard: FC<Props> = memo(function VotingDetailsCard({
   voting,
   ...props
 }) {
-  const handleRatingSubmit = async (rating: number) => {
+  const handleRatingSubmit = async (rating: number | null) => {
     await articleService.saveArticleRating(voting.id, rating);
   };
 

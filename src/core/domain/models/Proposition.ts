@@ -12,6 +12,7 @@ class Proposition extends Model {
     private _title: string;
     private _content: string;
     private _imageUrl: string;
+    private _imageDescription: string;
     private _viewLater: boolean;
     private _numberOfRatings: number;
     private _averageRating: number;
@@ -29,7 +30,7 @@ class Proposition extends Model {
 
     constructor() {
         super();
-        this._id = this._title = this._content = this._imageUrl = this._originalTextUrl = this._referenceDateTime = this._submittedAt = this._createdAt = this._updatedAt = '';
+        this._id = this._title = this._content = this._imageUrl = this._imageDescription = this._originalTextUrl = this._referenceDateTime = this._submittedAt = this._createdAt = this._updatedAt = '';
         this._deputies = this._externalAuthors = [];
         this._newsletter = null;
         this._viewLater = false;
@@ -82,6 +83,10 @@ class Proposition extends Model {
         return this._imageUrl;
     }
 
+    get imageDescription(): string {
+        return this._imageDescription;
+    }
+
     get viewLater(): boolean {
         return this._viewLater;
     }
@@ -121,6 +126,7 @@ class Proposition extends Model {
         dto['title'] = this._title;
         dto['content'] = this._content;
         dto['image_url'] = this._imageUrl;
+        dto['image_description'] = this._imageDescription;
         dto['view_later'] = this._viewLater;
         dto['number_of_ratings'] = this._numberOfRatings;
         dto['average_rating'] = this._averageRating;
@@ -142,6 +148,7 @@ class Proposition extends Model {
         obj._title = String(json['title']);
         obj._content = String(json['content']);
         obj._imageUrl = String(json['image_url']);
+        obj._imageDescription = String(json['image_description']);
         obj._viewLater = Boolean(json['view_later']);
         obj._numberOfRatings = Number(json['number_of_ratings']);
         obj._averageRating = Number(json['average_rating']);
