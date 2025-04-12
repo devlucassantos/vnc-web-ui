@@ -118,8 +118,8 @@ export const EventDetailsCard: FC<Props> = memo(function EventDetailsCard({
       <div className={styles.agendaItem}>
         <div className={styles.titleContainer}>
           <div className={styles.titleContainer}>
-            <div className={styles.agendaItemTitle}>{agendaItem.topic}</div>
-            <div className={styles.agendaItemTitle}>{agendaItem.regime}</div>
+            <div className={styles.agendaItemTitle}>{'Regime: ' + agendaItem.regime}</div>
+            <div className={styles.agendaItemTitle}>{'Tópico: ' + agendaItem.topic}</div>
           </div>
           {agendaItem.rapporteur && (
             <div className={styles.rapporteurContainer}>
@@ -130,7 +130,7 @@ export const EventDetailsCard: FC<Props> = memo(function EventDetailsCard({
         </div>
         { agendaItem.situation && (
           <div className={styles.titleContainer}>
-            <div className={styles.content}>{agendaItem.situation}</div>
+            <div className={styles.content}>{'Situação: ' + agendaItem.situation}</div>
           </div>
         )}
         {agendaItem.proposition && (
@@ -164,7 +164,7 @@ export const EventDetailsCard: FC<Props> = memo(function EventDetailsCard({
           <div className={styles.agendaTitle}>Pautas</div>
           {event.agendaItems.map((item, index) => (
             <div key={item.id} className={styles.agendaColumn}>
-              <AccordionItem title={item.title}>
+              <AccordionItem title={item.title} startOpen={true}>
                 {agendaItem(item)}
               </AccordionItem>
             </div>
