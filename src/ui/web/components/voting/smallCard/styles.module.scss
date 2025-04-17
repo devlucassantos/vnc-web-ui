@@ -172,6 +172,17 @@
   padding-right: 2%;
 }
 
+.undefinedMessageContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: #FFFBEA;
+  color: #E6B800;
+  border-left: 4px solid #E6B800;
+  padding: 0 16px;
+  gap: 8px;
+}
+
 .approvedMessageContainer {
   display: flex;
   flex-direction: row;
@@ -276,11 +287,7 @@
     font-size: calc(0.8rem + 0.1vw);
   }
 
-  .approvedMessageContainer {
-    padding: 0 8px;
-  }
-
-  .rejectedMessageContainer {
+  .approvedMessageContainer, .rejectedMessageContainer, .undefinedMessageContainer {
     padding: 0 8px;
   }
 }

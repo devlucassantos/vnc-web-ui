@@ -6,9 +6,17 @@ export interface ArticleFilters {
     content?: string;
     startDate?: string;
     endDate?: string;
-    partyId?: string;
-    deputyId?: string;
-    externalAuthorId?: string;
+    votingStartDate?: string;
+    votingEndDate?: string;
+    votingLegislativeBodyId?: string;
+    eventStartDate?: string;
+    eventEndDate?: string;
+    eventSituationId?: string;
+    eventLegislativeBodyId?: string;
+    eventRapporteurId?: string;
+    propositionPartyId?: string;
+    propositionDeputyId?: string;
+    propositionExternalAuthorId?: string;
     removeEventsInTheFuture?: boolean;
 }
 

@@ -31,6 +31,8 @@ export const VotingListPage: FC<Props> = memo(function VotingListPage(props = {}
     const [content, setContent] = useState<string>('');
     const [startDate, setStartDate] = useState<Date | null>(null);
     const [endDate, setEndDate] = useState<Date | null>(null);
+    const [votingStartDate, setVotingStartDate] = useState<Date | null>(null);
+    const [votingEndDate, setVotingEndDate] = useState<Date | null>(null);
     const [loading, setLoading] = useState(true);
     const [currentPage, setCurrentPage] = useState(1);
     const resourceContext = useContext(ResourceContext);
@@ -50,6 +52,8 @@ export const VotingListPage: FC<Props> = memo(function VotingListPage(props = {}
                 content: content,
                 startDate: startDate ? format(startDate, 'yyyy-MM-dd') : '',
                 endDate: endDate ? format(endDate, 'yyyy-MM-dd') : '',
+                votingStartDate: votingStartDate ? format(votingStartDate, 'yyyy-MM-dd') : '',
+                votingEndDate: votingEndDate ? format(votingEndDate, 'yyyy-MM-dd') : '',
             };
 
             const pagination = await articleService.getArticles(queryFilters);
@@ -57,6 +61,7 @@ export const VotingListPage: FC<Props> = memo(function VotingListPage(props = {}
             setMaxPageCount(pagination.maxPageCount);
         } catch (error) {
             console.log(error)
+            setArticle([]);
         } finally {
             setLoading(false);
         }
@@ -95,9 +100,13 @@ export const VotingListPage: FC<Props> = memo(function VotingListPage(props = {}
                 showFilter={true}
                 startDate={startDate}
                 endDate={endDate}
+                // votingStartDate={votingStartDate}
+                // votingEndDate={votingEndDate}
                 onContentChange={(value) => setContent(value)}
                 onStartDateChange={(value) => setStartDate(value)}
                 onEndDateChange={(value) => setEndDate(value)}
+                // onVotingStartDateChange={(value) => setVotingStartDate(value)}
+                // onVotingEndDateChange={(value) => setVotingEndDate(value)}
                 onFilterClick={handleFilterClick}
             />
             <ArticleNavigationBar />

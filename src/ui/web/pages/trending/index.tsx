@@ -19,6 +19,8 @@ import styles from "@pages/trending/styles.module.scss";
 import LongVerticalRectangularAnnouncement from "@components/base/announcement/longRectangular/vertical";
 import Footer from "@components/base/footer";
 import CustomCircularProgress from "@components/base/customCircularProgress";
+import ArticleType from "@models/ArticleType";
+import SpecificType from "@models/SpecificType";
 
 interface Props {
     className?: string;
@@ -32,6 +34,8 @@ export const TrendingPage: FC<Props> = memo(function TrendingPage(props = {}) {
     const [content, setContent] = useState<string>('');
     const [startDate, setStartDate] = useState<Date | null>(null);
     const [endDate, setEndDate] = useState<Date | null>(null);
+    const [articleType, setArticleType] = useState<ArticleType | null>(null);
+    const [specificType, setSpecificType] = useState<SpecificType | null>(null);
     const [party, setParty] = useState<Party | null>(null);
     const [deputy, setDeputy] = useState<Deputy | null>(null);
     const [externalAuthor, setExternalAuthor] = useState<ExternalAuthor | null>(null);
@@ -48,9 +52,11 @@ export const TrendingPage: FC<Props> = memo(function TrendingPage(props = {}) {
                 content: content,
                 startDate: startDate ? format(startDate, 'yyyy-MM-dd') : '',
                 endDate: endDate ? format(endDate, 'yyyy-MM-dd') : '',
-                partyId: party ? party.id : '',
-                deputyId: deputy ? deputy.id : '',
-                externalAuthorId: externalAuthor ? externalAuthor.id : '',
+                typeId: articleType ? articleType.id : '',
+                specificTypeId: specificType ? specificType.id : '',
+                propositionPartyId: party ? party.id : '',
+                propositionDeputyId: deputy ? deputy.id : '',
+                propositionExternalAuthorId: externalAuthor ? externalAuthor.id : '',
             };
 
             const pagination = await articleService.getTrendingArticles(queryFilters);
@@ -58,6 +64,7 @@ export const TrendingPage: FC<Props> = memo(function TrendingPage(props = {}) {
             setMaxPageCount(pagination.maxPageCount);
         } catch (error) {
             console.log(error)
+            setTrendingArticle([]);
         } finally {
             setLoading(false);
         }
@@ -81,15 +88,23 @@ export const TrendingPage: FC<Props> = memo(function TrendingPage(props = {}) {
                 showFilter={true}
                 startDate={startDate}
                 endDate={endDate}
-                party={party}
-                deputy={deputy}
-                externalAuthor={externalAuthor}
+                articleType={articleType}
+                specificType={specificType}
+                // party={party}
+                // deputy={deputy}
+                // externalAuthor={externalAuthor}
                 onContentChange={(value) => setContent(value)}
                 onStartDateChange={(value) => setStartDate(value)}
                 onEndDateChange={(value) => setEndDate(value)}
-                onPartyChange={(value) => setParty(value)}
-                onDeputyChange={(value) => setDeputy(value)}
-                onExternalAuthorChange={(value) => setExternalAuthor(value)}
+                onArticleTypeChange={(value) => {
+                    setArticleType(value)
+                    setSpecificType(null)
+                }}
+                onSpecificTypeChange={(value) => setSpecificType(value)}
+                // onPartyChange={(value) => setParty(value)}
+                // onDeputyChange={(value) => setDeputy(value)}
+                // onExternalAuthorChange={(value) => setExternalAuthor(value)}
+                useAllSpecificTypes={true}
                 onFilterClick={handleFilterClick}
             />
             <div className={style.body}>

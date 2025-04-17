@@ -11,7 +11,7 @@ class Voting extends Model {
     private _content: string;
     private _createdAt: string;
     private _updatedAt: string;
-    private _isApproved: boolean;
+    private _isApproved: boolean | null;
     private _averageRating: number;
     private _numberOfRatings: number;
     private _userRating: number;
@@ -29,7 +29,8 @@ class Voting extends Model {
     constructor() {
         super();
         this._id = this._title = this._content = this._result = this._resultAnnouncedAt = this._createdAt = this._updatedAt = "";
-        this._isApproved = this._viewLater = false;
+        this._isApproved = null;
+        this._viewLater = false;
         this._averageRating = this._numberOfRatings = this._userRating = 0;
         this._legislativeBody = new LegislativeBody();
         this._type = new ArticleType();
@@ -57,7 +58,7 @@ class Voting extends Model {
         return this._updatedAt;
     }
 
-    get isApproved(): boolean {
+    get isApproved(): boolean | null {
         return this._isApproved;
     }
 
@@ -144,7 +145,7 @@ class Voting extends Model {
         obj._content = String(json['content']);
         obj._createdAt = formatCustomDateTime(String(json['created_at']));
         obj._updatedAt = formatCustomDateTime(String(json['updated_at']));
-        obj._isApproved = Boolean(json['is_approved']);
+        obj._isApproved = json['is_approved'] !== undefined ? Boolean(json['is_approved']) : null;
         obj._averageRating = Number(json['average_rating']);
         obj._numberOfRatings = Number(json['number_of_ratings']);
         obj._userRating = Number(json['user_rating']);

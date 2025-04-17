@@ -19,6 +19,7 @@ import LongVerticalRectangularAnnouncement from "@components/base/announcement/l
 import Footer from "@components/base/footer";
 import CustomCircularProgress from "@components/base/customCircularProgress";
 import ArticleType from "@models/ArticleType";
+import SpecificType from "@models/SpecificType";
 
 interface Props {
     className?: string;
@@ -34,6 +35,7 @@ export const ViewLaterListPage: FC<Props> = memo(function ViewLaterListPage(prop
     const [startDate, setStartDate] = useState<Date | null>(null);
     const [endDate, setEndDate] = useState<Date | null>(null);
     const [articleType, setArticleType] = useState<ArticleType | null>(null);
+    const [specificType, setSpecificType] = useState<SpecificType | null>(null);
     const [party, setParty] = useState<Party | null>(null);
     const [deputy, setDeputy] = useState<Deputy | null>(null);
     const [externalAuthor, setExternalAuthor] = useState<ExternalAuthor | null>(null);
@@ -51,9 +53,10 @@ export const ViewLaterListPage: FC<Props> = memo(function ViewLaterListPage(prop
                 startDate: startDate ? format(startDate, 'yyyy-MM-dd') : '',
                 endDate: endDate ? format(endDate, 'yyyy-MM-dd') : '',
                 typeId: articleType ? articleType.id : '',
-                partyId: party ? party.id : '',
-                deputyId: deputy ? deputy.id : '',
-                externalAuthorId: externalAuthor ? externalAuthor.id : '',
+                specificTypeId: specificType ? specificType.id : '',
+                propositionPartyId: party ? party.id : '',
+                propositionDeputyId: deputy ? deputy.id : '',
+                propositionExternalAuthorId: externalAuthor ? externalAuthor.id : '',
             };
 
             const pagination = await articleService.getSavedArticlesToViewLater(queryFilters);
@@ -61,6 +64,7 @@ export const ViewLaterListPage: FC<Props> = memo(function ViewLaterListPage(prop
             setMaxPageCount(pagination.maxPageCount);
         } catch (error) {
             console.log(error)
+            setArticle([]);
         } finally {
             setLoading(false);
         }
@@ -99,15 +103,22 @@ export const ViewLaterListPage: FC<Props> = memo(function ViewLaterListPage(prop
                 startDate={startDate}
                 endDate={endDate}
                 articleType={articleType}
-                party={party}
-                deputy={deputy}
-                externalAuthor={externalAuthor}
+                specificType={specificType}
+                // party={party}
+                // deputy={deputy}
+                // externalAuthor={externalAuthor}
                 onContentChange={(value) => setContent(value)}
                 onStartDateChange={(value) => setStartDate(value)}
                 onEndDateChange={(value) => setEndDate(value)}
-                onPartyChange={(value) => setParty(value)}
-                onDeputyChange={(value) => setDeputy(value)}
-                onExternalAuthorChange={(value) => setExternalAuthor(value)}
+                onArticleTypeChange={(value) => {
+                    setArticleType(value)
+                    setSpecificType(null)
+                }}
+                onSpecificTypeChange={(value) => setSpecificType(value)}
+                // onPartyChange={(value) => setParty(value)}
+                // onDeputyChange={(value) => setDeputy(value)}
+                // onExternalAuthorChange={(value) => setExternalAuthor(value)}
+                useAllSpecificTypes={true}
                 onFilterClick={handleFilterClick}
             />
             <div className={styles.body}>

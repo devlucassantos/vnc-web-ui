@@ -51,9 +51,9 @@ export const PropositionListPage: FC<Props> = memo(function PropositionListPage(
                 startDate: startDate ? format(startDate, 'yyyy-MM-dd') : '',
                 endDate: endDate ? format(endDate, 'yyyy-MM-dd') : '',
                 typeId: articleType ? articleType.id : '',
-                partyId: party ? party.id : '',
-                deputyId: deputy ? deputy.id : '',
-                externalAuthorId: externalAuthor ? externalAuthor.id : '',
+                propositionPartyId: party ? party.id : '',
+                propositionDeputyId: deputy ? deputy.id : '',
+                propositionExternalAuthorId: externalAuthor ? externalAuthor.id : '',
             };
 
             const pagination = await articleService.getArticles(queryFilters);

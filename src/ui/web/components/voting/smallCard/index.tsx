@@ -5,7 +5,7 @@ import {Link} from "react-router-dom";
 import styled from "styled-components";
 import {Tooltip} from "@mui/material";
 import StarIcon from "@mui/icons-material/Star";
-import { Check, Close } from '@mui/icons-material';
+import {Check, Close, Help, QuestionMark, CheckCircle, Cancel} from '@mui/icons-material';
 
 interface Props {
   className?: string;
@@ -55,7 +55,8 @@ export const SmallVotingCard: FC<Props> = memo(function SmallVotingCard({
               <RatingContainer>
                 <Tooltip title="Média das avaliações">
                   <div className={styles.ratingContainer}>
-                    <CustomStarIcon $color={article.type.color} aria-label="Ícone de estrela representando a média das avaliações"/>
+                    <CustomStarIcon $color={article.type.color}
+                                    aria-label="Ícone de estrela representando a média das avaliações"/>
                     <RatingText $color={article.type.color}>{article.averageRating.toFixed(1)}</RatingText>
                   </div>
                 </Tooltip>
@@ -72,8 +73,31 @@ export const SmallVotingCard: FC<Props> = memo(function SmallVotingCard({
           {article.createdAt != article.updatedAt &&
               <div className={styles.updatedAt}>{"Atualizado em " + article.updatedAt}</div>}
         </div>
-        <div className={article.situation.isApproved ? styles.approvedMessageContainer : styles.rejectedMessageContainer}>
-          {article.situation.isApproved ? <Check /> : <Close />}
+        <div
+          className={article.situation.isApproved != null ? article.situation.isApproved ? styles.approvedMessageContainer : styles.rejectedMessageContainer : styles.undefinedMessageContainer}>
+          {article.situation.isApproved !== null ? article.situation.isApproved ?
+              <Tooltip
+                style={{cursor: "pointer"}}
+                title="Proposição avaliada aprovada."
+                placement="bottom-start"
+              >
+                <CheckCircle />
+              </Tooltip> :
+              <Tooltip
+                style={{cursor: "pointer"}}
+                title="Proposição avaliada rejeitada."
+                placement="bottom-start"
+              >
+                <Cancel />
+              </Tooltip> :
+              <Tooltip
+                style={{cursor: "pointer"}}
+                title="Não foi possível, sem a leitura humana da descrição do resultado, afirmar se a proposição avaliada foi aprovada ou não. Isso ocorreu porque a votação foi detectada pelos efeitos que causou sobre o texto de uma outra proposição, como supressão ou manutenção de um trecho."
+                placement="bottom-start"
+              >
+                <Help />
+              </Tooltip>
+          }
           <p className={styles.situationMessageText}>
             {article.situation.result}
           </p>

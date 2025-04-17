@@ -27,6 +27,7 @@ import {ResourceContext, ResourceContextType} from "@web/providers/resourceProvi
 import VideoCard from "@components/base/videoCard";
 import BigCard from "@components/event/largeCard";
 import LargeEventCard from "@components/event/largeCard";
+import SpecificType from "@models/SpecificType";
 
 interface Props {
     className?: string;
@@ -45,7 +46,7 @@ export const Home: FC<Props> = memo(function Home(props = {}) {
     const [content, setContent] = useState<string>('');
     const [startDate, setStartDate] = useState<Date | null>(null);
     const [endDate, setEndDate] = useState<Date | null>(null);
-    const [articleType, setArticleType] = useState<ArticleType | null>(null);
+    const [specificType, setSpecificType] = useState<SpecificType | null>(null);
     const [party, setParty] = useState<Party | null>(null);
     const [deputy, setDeputy] = useState<Deputy | null>(null);
     const [externalAuthor, setExternalAuthor] = useState<ExternalAuthor | null>(null);
@@ -79,18 +80,20 @@ export const Home: FC<Props> = memo(function Home(props = {}) {
                 content: content,
                 startDate: startDate ? format(startDate, 'yyyy-MM-dd') : '',
                 endDate: endDate ? format(endDate, 'yyyy-MM-dd') : '',
-                typeId: propositionArticleTypeId ? propositionArticleTypeId : articleType ? articleType.id : '',
-                partyId: party ? party.id : '',
-                deputyId: deputy ? deputy.id : '',
-                externalAuthorId: externalAuthor ? externalAuthor.id : '',
+                typeId: propositionArticleTypeId ? propositionArticleTypeId : '',
+                specificTypeId: specificType ? specificType.id : '',
+                propositionPartyId: party ? party.id : '',
+                propositionDeputyId: deputy ? deputy.id : '',
+                propositionExternalAuthorId: externalAuthor ? externalAuthor.id : '',
             };
 
             const pagination = await articleService.getArticles(queryFilters);
-            setIsAnyFilterApplied(!!(content || startDate || endDate || articleType || party || deputy || externalAuthor))
+            setIsAnyFilterApplied(!!(content || startDate || endDate || specificType || party || deputy || externalAuthor))
             setArticle(pagination.data);
             setMaxPageCount(pagination.maxPageCount);
         } catch (error) {
             console.log(error)
+            setArticle([]);
         } finally {
             setLoading(false);
         }
@@ -162,17 +165,17 @@ export const Home: FC<Props> = memo(function Home(props = {}) {
                 showFilter={true}
                 startDate={startDate}
                 endDate={endDate}
-                articleType={articleType}
-                party={party}
-                deputy={deputy}
-                externalAuthor={externalAuthor}
+                specificType={specificType}
+                // party={party}
+                // deputy={deputy}
+                // externalAuthor={externalAuthor}
                 onContentChange={(value) => setContent(value)}
                 onStartDateChange={(value) => setStartDate(value)}
                 onEndDateChange={(value) => setEndDate(value)}
-                onArticleTypeChange={(value) => setArticleType(value)}
-                onPartyChange={(value) => setParty(value)}
-                onDeputyChange={(value) => setDeputy(value)}
-                onExternalAuthorChange={(value) => setExternalAuthor(value)}
+                onSpecificTypeChange={(value) => setSpecificType(value)}
+                // onPartyChange={(value) => setParty(value)}
+                // onDeputyChange={(value) => setDeputy(value)}
+                // onExternalAuthorChange={(value) => setExternalAuthor(value)}
                 onFilterClick={handleFilterClick}
             />
             { user && <BannerActivation roles={user.roles} /> }

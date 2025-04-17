@@ -12,12 +12,12 @@ class ArticleSituation extends Model {
     private _endsAt: string;
     private _result: string;
     private _resultAnnouncedAt: string;
-    private _isApproved: boolean;
+    private _isApproved: boolean | null;
 
     constructor() {
         super();
         this._id = this._description = this._color = this._startsAt = this._endsAt = this._result = this._resultAnnouncedAt = '';
-        this._isApproved = false;
+        this._isApproved = null;
     }
 
     get id() {
@@ -74,7 +74,7 @@ class ArticleSituation extends Model {
         obj._endsAt = json['ends_at'] ? formatCustomDateTime(String(json['ends_at'])) : '';
         obj._result = String(json['result']);
         obj._resultAnnouncedAt = json['result_announced_at'] ? formatCustomDateTime(String(json['result_announced_at'])) : '';
-        obj._isApproved = Boolean(json['is_approved']);
+        obj._isApproved = json['is_approved'] !== undefined ? Boolean(json['is_approved']) : null;
         return obj;
     }
 }

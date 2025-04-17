@@ -64,9 +64,9 @@ export const PropositionListByTypePage: FC<Props> = memo(function PropositionLis
                 content: content,
                 startDate: startDate ? format(startDate, 'yyyy-MM-dd') : '',
                 endDate: endDate ? format(endDate, 'yyyy-MM-dd') : '',
-                partyId: party ? party.id : '',
-                deputyId: deputy ? deputy.id : '',
-                externalAuthorId: externalAuthor ? externalAuthor.id : '',
+                propositionPartyId: party ? party.id : '',
+                propositionDeputyId: deputy ? deputy.id : '',
+                propositionExternalAuthorId: externalAuthor ? externalAuthor.id : '',
             };
 
             const pagination = await articleService.getArticles(queryFilters);
@@ -74,6 +74,7 @@ export const PropositionListByTypePage: FC<Props> = memo(function PropositionLis
             setMaxPageCount(pagination.maxPageCount);
         } catch (error) {
             console.log(error)
+            setArticleList([]);
         } finally {
             setLoading(false);
         }
@@ -114,15 +115,15 @@ export const PropositionListByTypePage: FC<Props> = memo(function PropositionLis
                 showFilter={true}
                 startDate={startDate}
                 endDate={endDate}
-                party={party}
-                deputy={deputy}
-                externalAuthor={externalAuthor}
+                // party={party}
+                // deputy={deputy}
+                // externalAuthor={externalAuthor}
                 onContentChange={(value) => setContent(value)}
                 onStartDateChange={(value) => setStartDate(value)}
                 onEndDateChange={(value) => setEndDate(value)}
-                onPartyChange={(value) => setParty(value)}
-                onDeputyChange={(value) => setDeputy(value)}
-                onExternalAuthorChange={(value) => setExternalAuthor(value)}
+                // onPartyChange={(value) => setParty(value)}
+                // onDeputyChange={(value) => setDeputy(value)}
+                // onExternalAuthorChange={(value) => setExternalAuthor(value)}
                 onFilterClick={handleFilterClick}
             />
             <ArticleNavigationBar />

@@ -33,3 +33,9 @@
   margin-top: 8px;
   background-color: #99b5e3;
 }
+
+@media screen and (max-width: 500px) {
+  .accordionHeader {
+    font-size: 1.2rem;
+  }
+}

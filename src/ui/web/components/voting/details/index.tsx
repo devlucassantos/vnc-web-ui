@@ -8,7 +8,7 @@ import StarIcon from "@mui/icons-material/Star";
 import ViewLaterButton from "@components/base/viewLater";
 import {Tooltip} from "@mui/material";
 import Voting from "@models/Voting";
-import {Check, Close} from "@mui/icons-material";
+import {Cancel, Check, CheckCircle, Close, Help} from "@mui/icons-material";
 import AccordionItem from "@components/base/accordionItem";
 import TimeLine from "@components/base/timeLine";
 
@@ -46,8 +46,8 @@ const RowContainer = styled.div`
 const articleService = DIContainer.getArticleUseCase();
 
 export const VotingDetailsCard: FC<Props> = memo(function VotingDetailsCard({
-  voting,
-  ...props
+    voting,
+    ...props
 }) {
   const handleRatingSubmit = async (rating: number | null) => {
     await articleService.saveArticleRating(voting.id, rating);
@@ -90,8 +90,30 @@ export const VotingDetailsCard: FC<Props> = memo(function VotingDetailsCard({
         {voting.createdAt !== voting.updatedAt && " - Atualizado em " + voting.updatedAt}
       </div>
       <div
-        className={voting.isApproved ? styles.approvedMessageContainer : styles.rejectedMessageContainer}>
-        {voting.isApproved ? <Check className={styles.iconContainer}/> : <Close className={styles.iconContainer}/>}
+        className={voting.isApproved != null ? voting.isApproved ? styles.approvedMessageContainer : styles.rejectedMessageContainer : styles.undefinedMessageContainer}>
+        {voting.isApproved !== null ? voting.isApproved ?
+            <Tooltip
+              style={{cursor: "pointer"}}
+              title="Proposição avaliada aprovada."
+              placement="bottom-start"
+            >
+              <CheckCircle className={styles.iconContainer}/>
+            </Tooltip> :
+            <Tooltip
+              style={{cursor: "pointer"}}
+              title="Proposição avaliada rejeitada."
+              placement="bottom-start"
+            >
+              <Cancel className={styles.iconContainer}/>
+            </Tooltip> :
+            <Tooltip
+              style={{cursor: "pointer"}}
+              title="Não foi possível, sem a leitura humana da descrição do resultado, afirmar se a proposição avaliada foi aprovada ou não. Isso ocorreu porque a votação foi detectada pelos efeitos que causou sobre o texto de uma outra proposição, como supressão ou manutenção de um trecho."
+              placement="bottom-start"
+            >
+              <Help className={styles.iconContainer}/>
+            </Tooltip>
+        }
         <p className={styles.situationMessageText}>
           {voting.result}
         </p>

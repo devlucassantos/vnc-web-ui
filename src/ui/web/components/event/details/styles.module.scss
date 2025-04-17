@@ -24,6 +24,7 @@
   flex-direction: column;
   width: 60%;
   min-height: 40vh;
+  max-height: 60vh;
 }
 
 .cardColumn {
@@ -508,5 +509,9 @@
 
   .ratingContainer {
     flex-direction: row;
+  }
+
+  .agendaTitle {
+    font-size: 1.3rem;
   }
 }

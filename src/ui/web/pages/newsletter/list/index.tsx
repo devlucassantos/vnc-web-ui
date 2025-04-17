@@ -57,6 +57,7 @@ export const NewsletterListPage: FC<Props> = memo(function NewsletterListPage(pr
             setMaxPageCount(pagination.maxPageCount);
         } catch (error) {
             console.log(error)
+            setArticle([]);
         } finally {
             setLoading(false);
         }

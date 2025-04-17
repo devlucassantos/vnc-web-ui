@@ -314,6 +314,21 @@
   background-color: #f0f0f0;
 }
 
+.undefinedMessageContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: #FFFBEA;
+  color: #E6B800;
+  border-left: 4px solid #E6B800;
+  padding: 8px 16px;
+  width: 94%;
+  gap: 8px;
+  margin-left: 3%;
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
 .approvedMessageContainer {
   display: flex;
   flex-direction: row;
