@@ -32,9 +32,16 @@ export const Footer: FC<Props> = memo(function Footer(props = {}) {
                 </div>
                 <div className={styles.rightContainer}>
                     <div className={`${styles.labelText} ${styles.vncLabel}`}>VNC NAS REDES</div>
-                    <FaFacebook color="white" className={styles.icon} aria-label="Ícone do facebook da plataforma."/>
-                    <FaInstagram color="white" className={styles.icon} aria-label="Ícone do instragram da plataforma." />
-                    <FaXTwitter color="white" className={styles.icon} aria-label="Ícone do Twitter da plataforma." />
+                    <a className={styles.iconLink} href="https://www.instagram.com/vocenacamara_" target="_blank"
+                       rel="noopener noreferrer"
+                       aria-label="Visitar o Instagram da plataforma">
+                        <FaInstagram color="white" className={styles.icon} aria-label="Ícone do instragram da plataforma." />
+                    </a>
+                    <a className={styles.iconLink} href="https://x.com/vocenacamara_" target="_blank"
+                       rel="noopener noreferrer"
+                       aria-label="Visitar o Twitter da plataforma">
+                        <FaXTwitter color="white" className={styles.icon}/>
+                    </a>
                 </div>
             </div>
         </div>

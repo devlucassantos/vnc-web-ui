@@ -39,6 +39,7 @@
   flex-direction: row;
   margin-left: auto;
   align-items: center;
+  justify-content: end;
   gap: 6%;
 }
 
@@ -77,8 +78,16 @@
   height: 24px;
 }
 
+.iconLink {
+  width: 28px;
+  height: 100%;
+}
+
 .icon {
-  width: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 25px;
   height: 100%;
   overflow: visible;
   cursor: pointer;
@@ -144,6 +153,10 @@
 
   .vncLabel {
     display: none;
+  }
+
+  .rightContainer {
+    gap: 8px;
   }
 
   .icon {
