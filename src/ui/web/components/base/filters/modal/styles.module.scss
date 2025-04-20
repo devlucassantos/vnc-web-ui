@@ -1,14 +1,16 @@
 .modal {
   position: fixed;
-  top: 40%;
+  top: 5%;
   left: 50%;
-  transform: translate(-50%, -50%);
-  width: 30%;
+  transform: translateX(-50%);
+  width: 35%;
   height: auto;
   max-width: 50%;
+  max-height: 90vh;
   padding-top: 1%;
   padding-left: 1%;
   padding-right: 1%;
+  overflow-y: auto;
   z-index: 1000;
   text-align: center;
   transition: visibility 0s, opacity 0.5s linear;
@@ -38,7 +40,12 @@
 .modalFields {
   display: flex;
   flex-direction: column;
-  gap: 1.2em;
+  gap: 1em;
+  height: 100%;
+  width: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-top: 8px;
 }
 
 .row {
@@ -139,9 +146,25 @@
   padding-top: 2px;
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1100px) {
   .modal {
     width: 50%;
+    height: auto;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .modal {
+    max-width: 70%;
+    width: 70%;
+    height: auto;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .modal {
+    max-width: 80%;
+    width: 80%;
     height: auto;
   }
 }
@@ -149,9 +172,6 @@
 
 @media screen and (max-width: 500px) {
   .modal {
-    max-width: 70%;
-    width: 70%;
-    height: auto;
     padding-top: 2%;
     padding-left: 2%;
     padding-right: 2%;

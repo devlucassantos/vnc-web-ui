@@ -40,10 +40,11 @@ interface Props {
     eventEndDate?: Date | null;
     articleType?: ArticleType | null;
     specificType?: SpecificType | null;
-    party?: Party | null;
-    deputy?: Deputy | null;
+    propositionParty?: Party | null;
+    propositionDeputy?: Deputy | null;
     eventRapporteur?: Deputy | null;
-    externalAuthor?: ExternalAuthor | null;
+    propositionExternalAuthor?: ExternalAuthor | null;
+    votingResult?: string | null;
     votingLegislativeBody?: LegislativeBody | null;
     eventLegislativeBody?: LegislativeBody | null;
     eventSituation?: ArticleSituation | null;
@@ -57,10 +58,11 @@ interface Props {
     onEventEndDateChange?: (value: Date | null) => void;
     onArticleTypeChange?: (value: ArticleType | null) => void;
     onSpecificTypeChange?: (value: SpecificType | null) => void;
-    onPartyChange?: (value: Party | null) => void;
-    onDeputyChange?: (value: Deputy | null) => void;
+    onPropositionPartyChange?: (value: Party | null) => void;
+    onPropositionDeputyChange?: (value: Deputy | null) => void;
     onEventRapporteurChange?: (value: Deputy | null) => void;
-    onExternalAuthorChange?: (value: ExternalAuthor | null) => void;
+    onPropositionExternalAuthorChange?: (value: ExternalAuthor | null) => void;
+    onVotingResultChange?: (value: string | null) => void;
     onVotingLegislativeBodyChange?: (value: LegislativeBody | null) => void;
     onEventLegislativeBodyChange?: (value: LegislativeBody | null) => void;
     onEventSituationChange?: (value: ArticleSituation | null) => void;
@@ -79,12 +81,13 @@ export const Navbar: FC<Props> = memo(function Navbar({
     votingEndDate,
     eventStartDate,
     eventEndDate,
-    party,
+    propositionParty,
     articleType,
     specificType,
-    deputy,
+    propositionDeputy,
     eventRapporteur,
-    externalAuthor,
+    propositionExternalAuthor,
+    votingResult,
     votingLegislativeBody,
     eventLegislativeBody,
     eventSituation,
@@ -96,12 +99,13 @@ export const Navbar: FC<Props> = memo(function Navbar({
     onVotingEndDateChange,
     onEventStartDateChange,
     onEventEndDateChange,
-    onPartyChange,
+    onPropositionPartyChange,
     onArticleTypeChange,
     onSpecificTypeChange,
-    onDeputyChange,
+    onPropositionDeputyChange,
     onEventRapporteurChange,
-    onExternalAuthorChange,
+    onPropositionExternalAuthorChange,
+    onVotingResultChange,
     onVotingLegislativeBodyChange,
     onEventLegislativeBodyChange,
     onEventSituationChange,
@@ -242,10 +246,11 @@ export const Navbar: FC<Props> = memo(function Navbar({
                                 eventEndDate={eventEndDate || null}
                                 articleType={articleType}
                                 specificType={specificType}
-                                party={party}
-                                deputy={deputy}
+                                propositionParty={propositionParty}
+                                propositionDeputy={propositionDeputy}
                                 eventRapporteur={eventRapporteur}
-                                externalAuthor={externalAuthor}
+                                propositionExternalAuthor={propositionExternalAuthor}
+                                votingResult={votingResult}
                                 votingLegislativeBody={votingLegislativeBody}
                                 eventLegislativeBody={eventLegislativeBody}
                                 eventSituation={eventSituation}
@@ -259,10 +264,11 @@ export const Navbar: FC<Props> = memo(function Navbar({
                                 onEventEndDateChange={onEventEndDateChange}
                                 onArticleTypeChange={onArticleTypeChange}
                                 onSpecificTypeChange={onSpecificTypeChange}
-                                onPartyChange={onPartyChange}
-                                onDeputyChange={onDeputyChange}
+                                onPropositionPartyChange={onPropositionPartyChange}
+                                onPropositionDeputyChange={onPropositionDeputyChange}
                                 onEventRapporteurChange={onEventRapporteurChange}
-                                onExternalAuthorChange={onExternalAuthorChange}
+                                onPropositionExternalAuthorChange={onPropositionExternalAuthorChange}
+                                onVotingResultChange={onVotingResultChange}
                                 onVotingLegislativeBodyChange={onVotingLegislativeBodyChange}
                                 onEventLegislativeBodyChange={onEventLegislativeBodyChange}
                                 onEventSituationChange={onEventSituationChange}

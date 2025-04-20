@@ -2,6 +2,7 @@ import React, {FC, memo} from "react";
 import styles from "./styles.module.scss";
 import { FaInstagram } from "react-icons/fa";
 import { FaXTwitter, FaFacebook } from "react-icons/fa6";
+import {Link} from "react-router-dom";
 
 interface Props {
     className?: string;
@@ -14,8 +15,16 @@ export const Footer: FC<Props> = memo(function Footer(props = {}) {
         <div className={styles.footer}>
             <div className={styles.footerContainer}>
                 <div className={styles.termsContainer}>
-                    <div className={styles.labelText}>Política de privacidade</div>
-                    <div className={styles.labelText}>Termo de uso</div>
+                    <Link className={styles.labelText}
+                          to={"/privacy-policy"}
+                          aria-label="Ir para a página de política de privacidade">
+                        <div>Política de privacidade</div>
+                    </Link>
+                    <Link className={styles.labelText}
+                          to={"/terms-of-use"}
+                          aria-label="Ir para a página de termos de uso">
+                        <div>Termos de uso</div>
+                    </Link>
                 </div>
                 <div className={styles.copyrightContainer}>
                     <div className={styles.logo} role="img" aria-label="Logo do Você na Câmara"/>

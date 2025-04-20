@@ -8,6 +8,7 @@ export interface ArticleFilters {
     endDate?: string;
     votingStartDate?: string;
     votingEndDate?: string;
+    votingResult?: string;
     votingLegislativeBodyId?: string;
     eventStartDate?: string;
     eventEndDate?: string;

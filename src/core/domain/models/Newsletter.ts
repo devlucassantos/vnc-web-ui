@@ -2,6 +2,7 @@ import Model from './model';
 import DTO from "../types/http/DTO";
 import {formatCustomDate, formatCustomDateTime} from "../../utils/dateUtils";
 import Article from "@models/Article";
+import ArticleType from "@models/ArticleType";
 
 class Newsletter extends Model {
     private _id: string;
@@ -13,6 +14,7 @@ class Newsletter extends Model {
     private _userRating: number;
     private _referenceDate: string;
     private _referenceDateTime: string;
+    private _type: ArticleType;
     private _propositions: Article[];
     private _events: Article[];
     private _votes: Article[];
@@ -25,6 +27,7 @@ class Newsletter extends Model {
         this._propositions = this._events = this._votes = [];
         this._viewLater = false;
         this._numberOfRatings = this._averageRating = this._userRating = 0;
+        this._type = new ArticleType()
     }
 
     get id() {
@@ -84,6 +87,10 @@ class Newsletter extends Model {
         return this._referenceDateTime;
     }
 
+    get type(): ArticleType {
+        return this._type;
+    }
+
     toJSON(): DTO {
         let dto = {} as DTO;
         dto['id'] = this._id;
@@ -95,6 +102,7 @@ class Newsletter extends Model {
         dto['user_rating'] = this._userRating;
         dto['reference_date'] = this._referenceDate;
         dto['reference_date_time'] = this._referenceDateTime;
+        dto['type'] = this._type?.toJSON();
         dto['propositions'] = this._propositions?.map(proposition => proposition.toJSON());
         dto['events'] = this._events?.map(event => event.toJSON());
         dto['votes'] = this._votes?.map(voting => voting.toJSON());
@@ -112,6 +120,7 @@ class Newsletter extends Model {
         obj._userRating = Number(json['user_rating']);
         obj._referenceDate = json['reference_date'] ? formatCustomDate(String(json['reference_date'])) : '';
         obj._referenceDateTime = json['reference_date_time'] ? formatCustomDateTime(String(json['reference_date_time'])) : '';
+        obj._type = ArticleType.fromJSON(json['type']);
         obj._propositions = json['propositions']?.map((propositionJSON: DTO) => Article.fromJSON(propositionJSON));
         obj._events = json['events']?.map((eventJSON: DTO) => Article.fromJSON(eventJSON));
         obj._votes = json['votes']?.map((votingJSON: DTO) => Article.fromJSON(votingJSON));

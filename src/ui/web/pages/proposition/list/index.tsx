@@ -100,15 +100,15 @@ export const PropositionListPage: FC<Props> = memo(function PropositionListPage(
                 startDate={startDate}
                 endDate={endDate}
                 articleType={articleType}
-                party={party}
-                deputy={deputy}
-                externalAuthor={externalAuthor}
+                propositionParty={party}
+                propositionDeputy={deputy}
+                propositionExternalAuthor={externalAuthor}
                 onContentChange={(value) => setContent(value)}
                 onStartDateChange={(value) => setStartDate(value)}
                 onEndDateChange={(value) => setEndDate(value)}
-                onPartyChange={(value) => setParty(value)}
-                onDeputyChange={(value) => setDeputy(value)}
-                onExternalAuthorChange={(value) => setExternalAuthor(value)}
+                onPropositionPartyChange={(value) => setParty(value)}
+                onPropositionDeputyChange={(value) => setDeputy(value)}
+                onPropositionExternalAuthorChange={(value) => setExternalAuthor(value)}
                 onFilterClick={handleFilterClick}
             />
             <div className={styles.body}>

@@ -16,6 +16,9 @@ import {EventListPage} from "@pages/event/list";
 import {VotingListPage} from "@pages/voting/list";
 import {VotingDetailsPage} from "@pages/voting/details";
 import {EventDetailsPage} from "@pages/event/details";
+import {SearchPage} from "@pages/search";
+import PrivacyPolicy from "@pages/privacyPolicy";
+import TermsOfUse from "@pages/termsOfUse";
 
 interface Props {
     className?: string;
@@ -40,6 +43,9 @@ export const NavigationRoutes: FC<Props> = memo(function NavigationRoutes(props 
                 <Route path="/sign-up" element={<SignUpPage />} />
                 <Route path="/activate-account" element={<ActivateAccountPage />} />
                 <Route path="/view-later" element={<ViewLaterListPage />} />
+                <Route path="/search" element={<SearchPage />} />
+                <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+                <Route path="/terms-of-use" element={<TermsOfUse />} />
                 <Route path="*" element={<NotFoundPage />} />
             </Routes>
         </BrowserRouter>
