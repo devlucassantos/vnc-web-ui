@@ -7,8 +7,8 @@ import DIContainer from "@web/dicontainer";
 import {Link} from "react-router-dom";
 
 interface StarRatingProps {
-    onSubmitRating: (rating: number) => Promise<void>;
-    initialRating?: number;
+    onSubmitRating: (rating: number | null) => Promise<void>;
+    initialRating: number;
 }
 
 const RatingContainer = styled.div`
@@ -94,7 +94,7 @@ const StarRating: React.FC<StarRatingProps> = ({ onSubmitRating, initialRating =
             return;
         }
 
-        if (value !== null && !isSubmitting) {
+        if (!isSubmitting) {
             setIsSubmitting(true);
             setRating(value);
             try {
@@ -122,6 +122,7 @@ const StarRating: React.FC<StarRatingProps> = ({ onSubmitRating, initialRating =
     return (
         <RatingContainer>
             <Rating
+                key={authDialogOpen ? 'authOpen' : 'authClosed'}
                 name="proposition-rating"
                 value={rating}
                 onChange={handleRatingChange}

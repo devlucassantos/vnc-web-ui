@@ -39,6 +39,7 @@
   flex-direction: row;
   margin-left: auto;
   align-items: center;
+  justify-content: end;
   gap: 6%;
 }
 
@@ -54,6 +55,7 @@
   white-space: nowrap;
   flex-direction: column;
   cursor: pointer;
+  text-decoration: none;
 }
 
 .copyrightLabel {
@@ -76,8 +78,16 @@
   height: 24px;
 }
 
+.iconLink {
+  width: 28px;
+  height: 100%;
+}
+
 .icon {
-  width: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 25px;
   height: 100%;
   overflow: visible;
   cursor: pointer;
@@ -94,14 +104,13 @@
 }
 
 .logo {
-  width: 40px;
-  height: 30px;
-  background-image: url('/src/ui/web/assets/yellow-logo-icon.png');
+  width: 60px;
+  height: 28px;
+  background-image: url('/src/ui/web/assets/white-logo-icon.png');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
 }
-
 
 @media screen and (max-width: 1500px) {
   .footerContainer {
@@ -144,6 +153,10 @@
 
   .vncLabel {
     display: none;
+  }
+
+  .rightContainer {
+    gap: 8px;
   }
 
   .icon {

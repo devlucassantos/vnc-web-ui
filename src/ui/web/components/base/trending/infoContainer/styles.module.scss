@@ -5,6 +5,7 @@
   align-items: center;
   padding-bottom: 4%;
   gap: 16px;
+  text-decoration: none;
 }
 
 .borderTop {
@@ -25,6 +26,12 @@
   gap: 8px;
 }
 
+.titleViewColumn {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
 .title {
   color: #000000;
   font-size: 16px;
@@ -40,6 +47,28 @@
 
 .title:hover {
   color: #0047ab;
+}
+
+.titleContainerRow {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.content {
+  color: #000;
+  font-size: calc(0.7rem + 0.3vw);
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+  'Liberation Sans', sans-serif;
+  letter-spacing: -0.017em;
+  width: 97%;
+  height: auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  text-align: justify;
 }
 
 .line {

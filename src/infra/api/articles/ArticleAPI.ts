@@ -37,9 +37,15 @@ class ArticleAPI implements ArticleAdapter {
         }
     }
 
-    async saveArticleRating(articleId: string, rating: number): Promise<void> {
+    async saveArticleRating(articleId: string, rating: number | null): Promise<void> {
         try {
-            await BackendClient.put(`/articles/${articleId}/rating`, { rating: rating});
+            const payload: any = {};
+
+            if (rating !== null) {
+                payload.rating = rating;
+            }
+
+            await BackendClient.put(`/articles/${articleId}/rating`, { ...payload });
         } catch (error) {
             throw error;
         }

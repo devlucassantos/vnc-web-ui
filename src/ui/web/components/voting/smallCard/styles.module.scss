@@ -1,0 +1,319 @@
+.smallCard {
+  display: flex;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.leftCardColumn {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  min-height: 30vh;
+}
+
+.cardColumn {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  width: 100%;
+  gap: 8px;
+}
+
+.cardRow {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+}
+
+.imageView {
+  width: 40%;
+  height: 20vh;
+  border-radius: 10px;
+  margin-right: 1%;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  justify-content: normal;
+  width: 100%;
+  height: auto;
+  gap: 8px;
+}
+
+.titleRow {
+  display: flex;
+  width: 100%;
+  text-decoration: none;
+}
+
+.titleView {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  gap: 4px;
+}
+
+.ratingContainer {
+  display: flex;
+  align-items: center;
+}
+
+.line {
+  margin-top: 0.5%;
+  height: auto;
+  max-height: 100%;
+  width: 4px;
+}
+
+.title {
+  color: #000;
+  font-size: calc(0.9rem + 0.3vw);
+  font-weight: bold;
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+  'Liberation Sans', sans-serif;
+  letter-spacing: -0.017em;
+  text-align: justify;
+  height: auto;
+  width: 90%;
+  margin-left: 4px;
+}
+
+.titleContainer {
+  display: flex;
+  width: 100%;
+  text-decoration: none;
+}
+
+.titleContainerRow {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.subTitle {
+  color: gray;
+  font-size: calc(0.7rem + 0.3vw);
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+  'Liberation Sans', sans-serif;
+  letter-spacing: -0.017em;
+  text-align: justify;
+  height: auto;
+  width: 100%;
+  margin-left: 4px;
+}
+
+.content {
+  color: #000;
+  font-size: calc(0.7rem + 0.3vw);
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+  'Liberation Sans', sans-serif;
+  letter-spacing: -0.017em;
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  text-align: justify;
+}
+
+.dateRow {
+  display: flex;
+  flex-direction: row;
+  align-self: flex-end;
+  align-items: end;
+  width: 100%;
+  height: auto;
+}
+
+.votingDate {
+  color: black;
+  font-size: calc(0.7rem + 0.3vw);
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+  'Liberation Sans', sans-serif;
+  letter-spacing: -0.017em;
+  text-align: justify;
+  height: auto;
+  width: 100%;
+}
+
+.createdAt {
+  color: #000;
+  font-size: calc(0.8rem + 0.1vw);
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+  'Liberation Sans', sans-serif;
+  letter-spacing: -0.017em;
+  width: 100%;
+  height: auto;
+}
+
+.updatedAt {
+  color: #000;
+  font-size: 0.9rem;
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+  'Liberation Sans', sans-serif;
+  letter-spacing: -0.017em;
+  width: 100%;
+  height: auto;
+  padding-right: 2%;
+}
+
+.undefinedMessageContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: #FFFBEA;
+  color: #E6B800;
+  border-left: 4px solid #E6B800;
+  padding: 0 16px;
+  gap: 8px;
+}
+
+.approvedMessageContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: #EAFFF2;
+  color: #06AA48;
+  border-left: 4px solid #06AA48;
+  padding: 0 16px;
+  gap: 8px;
+}
+
+.rejectedMessageContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: #FFF5F5;
+  color: #C4170C;
+  border-left: 4px solid #C4170C;
+  padding: 0 16px;
+  gap: 8px;
+}
+
+.situationMessageText {
+  font-size: 14px;
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+  'Liberation Sans', sans-serif;
+}
+
+@media screen and (max-width: 1000px) {
+  .smallCard {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .title {
+    font-size: calc(0.9rem + 0.6vw);
+  }
+
+  .content {
+    font-size: calc(0.8rem + 0.4vw);
+  }
+
+  .votingDate {
+    font-size: calc(0.8rem + 0.2vw);
+  }
+
+  .createdAt {
+    font-size: calc(0.7rem + 0.2vw);
+  }
+
+  .updatedAt {
+    font-size: calc(0.7rem + 0.2vw);
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .imageView {
+    width: 30%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .imageView {
+    width: 40%;
+  }
+
+  .line {
+    margin-top: 1%;
+  }
+}
+
+
+@media screen and (max-width: 500px) {
+  .content {
+    display: none;
+  }
+
+  .column {
+    width: 100%;
+    gap: 0.5rem;
+    justify-content: normal;
+    padding: 0;
+  }
+
+  .imageView {
+    min-width: 30%;
+  }
+
+  .title {
+    font-size: calc(1rem + 0.5vw);
+  }
+
+  .votingDate {
+    font-size: calc(0.9rem + 0.1vw);
+  }
+
+  .createdAt {
+    font-size: calc(0.8rem + 0.1vw);
+  }
+
+  .updatedAt {
+    font-size: calc(0.8rem + 0.1vw);
+  }
+
+  .approvedMessageContainer, .rejectedMessageContainer, .undefinedMessageContainer {
+    padding: 0 8px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .imageView {
+    min-width: 45%;
+  }
+
+  .title {
+    font-size: calc(0.8rem + 0.5vw);
+  }
+
+  .votingDate {
+    font-size: calc(0.8rem + 0.1vw);
+  }
+
+  .createdAt {
+    font-size: calc(0.7rem + 0.1vw);
+  }
+
+  .updatedAt {
+    font-size: calc(0.7rem + 0.1vw);
+  }
+
+  .line {
+    margin-top: 1%;
+  }
+}

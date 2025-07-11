@@ -309,14 +309,6 @@
     gap: 8px;
   }
 
-  .mainGridContainer {
-    height: 30vh;
-  }
-
-  .mainGridCarousel {
-    height: auto;
-  }
-
   .gridBigCarousel {
     height: auto;
   }
@@ -330,12 +322,21 @@
   }
 }
 
+@media screen and (max-width: 600px) {
+  .mainGridContainer {
+    height: 40vh;
+  }
+
+  .mainGridCarousel {
+    height: auto;
+  }
+}
+
 @media screen and (max-width: 400px) {
   .bigCardTitle, .mediumCardTitle {
     font-size: calc(0.8rem + 0.6vw);
   }
 }
-
 
 @media screen and (max-width: 300px) {
   .bigCardTitle, .mediumCardTitle {

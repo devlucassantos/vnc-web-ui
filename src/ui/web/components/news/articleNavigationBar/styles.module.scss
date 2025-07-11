@@ -1,0 +1,164 @@
+.articleNavigationBar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  top: 0;
+  width: 100%;
+  height: 40px;
+  outline-offset: -1px;
+  border-bottom: 2px solid #EFEFEF;
+}
+
+.propositionNavigationBar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  top: 0;
+  width: 100%;
+  height: 40px;
+  outline-offset: -1px;
+  border-bottom: 2px solid #EFEFEF;
+}
+
+.articleNavigationBarRow {
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  left: 15%;
+  right: 15%;
+  top: 50%;
+  transform: translate(0%, -50%);
+  gap: 4%;
+}
+
+.navigationBarRow {
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  left: 15%;
+  right: 15%;
+  top: 50%;
+  transform: translate(0%, -50%);
+  gap: 1.5%;
+}
+
+.articleContainer {
+  width: auto;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.articleLabel {
+  font-size: calc(0.6rem + 0.4vw);
+  font-weight: bold;
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+  'Liberation Sans', sans-serif;
+  height: auto;
+  width: auto;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.propositionLabel {
+  font-size: calc(0.5rem + 0.3vw);
+  font-weight: bold;
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+  'Liberation Sans', sans-serif;
+  height: auto;
+  width: auto;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.accordionItem {
+
+
+}
+
+.accordionIcon {
+  transition: transform 0.3s ease;
+  font-size: 32px !important;
+}
+
+.accordionHeader {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0;
+  font-size: calc(0.6rem + 0.4vw);
+  font-weight: bold;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+  'Liberation Sans', sans-serif;
+}
+
+@media screen and (max-width: 1500px) {
+  .navigationBarRow, .articleNavigationBarRow {
+    left: 10%;
+    right: 10%;
+  }
+}
+
+@media screen and (max-width: 1300px) {
+  .navigationBarRow, .articleNavigationBarRow {
+    left: 3%;
+    right: 3%;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .navigationBarRow, .articleNavigationBarRow {
+    left: 2%;
+    right: 2%;
+  }
+
+  .articleNavigationBar {
+    height: 50px;
+  }
+
+  .propositionNavigationBar {
+    height: 50px;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .navigationBarRow {
+    flex-wrap: wrap;
+    justify-content: left;
+    gap: 8px;
+  }
+
+  .articleNavigationBarRow {
+    flex-wrap: wrap;
+    justify-content: left;
+  }
+
+  .propositionNavigationBar {
+    height: 80px;
+  }
+}
+
+@media screen and (max-width: 300px) {
+  .articleNavigationBar {
+    height: 60px;
+  }
+
+  .articleContainer {
+    height: 24px;
+  }
+
+  .accordionIcon {
+    font-size: 24px !important;
+  }
+
+  .propositionNavigationBar {
+    height: 120px;
+  }
+}

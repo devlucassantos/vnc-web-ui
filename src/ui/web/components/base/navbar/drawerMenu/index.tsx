@@ -1,7 +1,7 @@
 import {memo, useState} from 'react';
 import type { FC } from 'react';
 import { Drawer, IconButton, List, ListItem, ListItemIcon, ListItemText } from '@mui/material';
-import { Home, Description, TrendingUp, Close, BookmarkBorder } from '@mui/icons-material';
+import { Home, Description, TrendingUp, Close, BookmarkBorder, Event, ThumbsUpDown } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import styles from "./styles.module.scss";
@@ -88,6 +88,30 @@ export const DrawerMenu: FC<Props> = memo(function DrawerMenu({
                             <ListItemText
                                 primary="Boletins"
                                 primaryTypographyProps={{ style: { color: 'black', fontSize: '18px', fontWeight: 'bold' } }}
+                            />
+                        </ListItem>
+                    </Link>
+
+                    <Link to="/events" style={{ textDecoration: 'none', color: 'inherit' }} aria-label="Ir para a página de listagem dos eventos">
+                        <ListItem button>
+                            <ListItemIcon>
+                                <Event aria-label="Ícone de eventos" style={{ color: 'black', fontSize: '32px' }} />
+                            </ListItemIcon>
+                            <ListItemText
+                              primary="Eventos"
+                              primaryTypographyProps={{ style: { color: 'black', fontSize: '18px', fontWeight: 'bold' } }}
+                            />
+                        </ListItem>
+                    </Link>
+
+                    <Link to="/votes" style={{ textDecoration: 'none', color: 'inherit' }} aria-label="Ir para a página de listagem das votações">
+                        <ListItem button>
+                            <ListItemIcon>
+                                <ThumbsUpDown aria-label="Ícone de votações" style={{ color: 'black', fontSize: '32px' }} />
+                            </ListItemIcon>
+                            <ListItemText
+                              primary="Votações"
+                              primaryTypographyProps={{ style: { color: 'black', fontSize: '18px', fontWeight: 'bold' } }}
                             />
                         </ListItem>
                     </Link>

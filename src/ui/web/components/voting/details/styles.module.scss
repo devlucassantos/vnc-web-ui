@@ -1,0 +1,390 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1),
+  0px 4px 8px rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.3s ease;
+}
+
+.titleContainer {
+  margin-left: 3%;
+  margin-right: 3%;
+  margin-top: 16px;
+  display: flex;
+  justify-content: space-between;
+  width: 94%;
+  gap: 16px;
+}
+
+.titleContainerRow {
+  display: flex;
+  flex-direction: row;
+  width: auto;
+}
+
+.line {
+  max-width: 100%;
+  height: auto;
+  max-height: 100%;
+  outline: solid 2px #0047ab;
+}
+
+.title {
+  color: #000;
+  font-size: 1.5rem;
+  font-weight: bold;
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+  'Liberation Sans', sans-serif;
+  letter-spacing: -0.017em;
+  text-align: justify;
+  height: auto;
+  width: 105%;
+  margin-left: 5px;
+  text-decoration: none;
+}
+
+.authors {
+  color: #000;
+  font-size: 1.4rem;
+  font-weight: bold;
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+  'Liberation Sans', sans-serif;
+  letter-spacing: -0.017em;
+  text-align: justify;
+  height: auto;
+  width: 105%;
+  padding-left: 3%;
+  margin-bottom: 4px;
+  margin-top: 16px;
+}
+
+.dateRow {
+  display: flex;
+  flex-direction: row;
+  align-self: flex-end;
+  align-items: end;
+  width: 100%;
+  height: auto;
+  margin-left: 3%;
+  margin-top: 16px;
+}
+
+.votingDate {
+  color: #6A6A6A;
+  font-size: 1.2rem;
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+  'Liberation Sans', sans-serif;
+  letter-spacing: -0.017em;
+  text-align: justify;
+  height: auto;
+  width: 100%;
+  margin-left: 3%;
+}
+
+.viewOriginalProposition {
+  color: #0047ab;
+  font-size: 1rem;
+  font-weight: bold;
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+  'Liberation Sans', sans-serif;
+  letter-spacing: -0.017em;
+  width: auto;
+  height: auto;
+  margin-left: 3%;
+  margin-top: 16px;
+  text-decoration: none;
+}
+
+.viewOriginalProposition:hover {
+  text-decoration: underline;
+}
+
+.labelContainer {
+  border-radius: 10px;
+  display: inline-block;
+  width: max-content;
+  margin-right: 8px;
+}
+
+.label {
+  color: #FFFFFF;
+  font-size: 1rem;
+  font-weight: bold;
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+  'Liberation Sans', sans-serif;
+  padding: 8px 16px;
+}
+
+.legislativeBody {
+  display: flex;
+  color: #6A6A6A;
+  font-size: 1.2rem;
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+  'Liberation Sans', sans-serif;
+  letter-spacing: -0.017em;
+  width: 94%;
+  height: auto;
+  text-align: justify;
+  margin-left: 3%;
+  margin-top: 16px;
+  overflow-y: auto;
+}
+
+.content {
+  display: flex;
+  color: #000;
+  font-size: 1.2rem;
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+  'Liberation Sans', sans-serif;
+  letter-spacing: -0.017em;
+  width: 94%;
+  height: auto;
+  text-align: justify;
+  margin-left: 3%;
+  margin-top: 16px;
+  overflow-y: auto;
+}
+
+.createdAt {
+  color: #6A6A6A;
+  font-size: 1rem;
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+  'Liberation Sans', sans-serif;
+  letter-spacing: -0.017em;
+  width: auto;
+  height: auto;
+  padding-left: 3%;
+  margin-top: 16px;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 3%;
+  margin-right: 3%;
+  margin-top: 16px;
+}
+
+.ratingContainer {
+  display: flex;
+  align-items: center;
+}
+
+.submittedAt {
+  color: #767575;
+  font-size: 1rem;
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+  'Liberation Sans', sans-serif;
+  letter-spacing: -0.017em;
+  width: auto;
+  height: auto;
+  padding-left: 3%;
+  margin-top: 16px;
+}
+
+.authorsRow {
+  display: flex;
+  flex-direction: row;
+  align-self: flex-end;
+  align-items: start;
+  width: 100%;
+  height: auto;
+  margin-top: 16px;
+  margin-bottom: 16px;
+  padding-left: 3%;
+  padding-right: 3%;
+}
+
+.deputiesColumn, .externalAuthorsColumn {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  height: auto;
+}
+
+.fullWidthColumn {
+  width: 100%;
+}
+
+.deputiesLabel {
+  color: #000;
+  font-size: 1.1rem;
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+  'Liberation Sans', sans-serif;
+  font-weight: bold;
+  letter-spacing: -0.017em;
+  width: auto;
+  height: auto;
+}
+
+.externalAuthorsLabel {
+  color: #000;
+  font-size: 1.1rem;
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+  'Liberation Sans', sans-serif;
+  font-weight: bold;
+  letter-spacing: -0.017em;
+  width: auto;
+  height: auto;
+  text-align: left;
+}
+
+.externalAuthorNameLabel {
+  color: #1976D2;
+  font-size: 1.1rem;
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+  'Liberation Sans', sans-serif;
+  letter-spacing: -0.017em;
+  width: auto;
+  height: auto;
+  text-align: left;
+  margin-top: 16px;
+}
+
+.newsletterTitleLabel {
+  color: #1976D2;
+  font-size: 1.1rem;
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+  'Liberation Sans', sans-serif;
+  text-align: justify;
+  letter-spacing: -0.017em;
+  width: auto;
+  height: auto;
+  margin-top: 16px;
+  margin-bottom: 16px;
+  margin-right: 3%;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.newsletterTitleLabel:hover {
+  text-decoration: underline;
+}
+
+.followArticleLabel {
+  color: #000;
+  font-size: 1.4rem;
+  font-weight: bold;
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+  'Liberation Sans', sans-serif;
+  letter-spacing: -0.017em;
+  text-align: justify;
+  height: auto;
+  margin-bottom: 4px;
+}
+
+.newsletterColumn {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: auto;
+  padding-left: 3%;
+  padding-right: 3%;
+  margin-bottom: 16px;
+}
+
+.accordionItems {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: auto;
+  padding-left: 3%;
+  padding-right: 3%;
+  margin-bottom: 16px;
+  gap: 16px;
+}
+
+.deputyCard {
+  cursor: pointer;
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  transition: background-color 0.3s;
+}
+
+.deputyCard:hover {
+  background-color: #f0f0f0;
+}
+
+.undefinedMessageContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: #FFFBEA;
+  color: #E6B800;
+  border-left: 4px solid #E6B800;
+  padding: 8px 16px;
+  width: 94%;
+  gap: 8px;
+  margin-left: 3%;
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
+.approvedMessageContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: #EAFFF2;
+  color: #06AA48;
+  border-left: 4px solid #06AA48;
+  padding: 8px 16px;
+  width: 94%;
+  gap: 8px;
+  margin-left: 3%;
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
+.rejectedMessageContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: #FFF5F5;
+  color: #C4170C;
+  border-left: 4px solid #C4170C;
+  padding: 8px 16px;
+  width: 94%;
+  gap: 8px;
+  margin-left: 3%;
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
+.iconContainer {
+  font-size: 2rem !important;
+}
+
+.situationMessageText {
+  font-size: 16px;
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+  'Liberation Sans', sans-serif;
+}
+
+@media screen and (max-width: 500px) {
+  .titleContainerRow {
+    width: 95%;
+  }
+
+  .titleContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .title, .followArticleLabel, .authors {
+    font-size: 1.2rem;
+  }
+
+  .content, .votingDate, .legislativeBody {
+    font-size: 1rem;
+  }
+}

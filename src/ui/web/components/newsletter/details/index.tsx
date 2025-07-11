@@ -8,6 +8,8 @@ import DIContainer from "@web/dicontainer";
 import StarRating from "@components/base/startRating";
 import ViewLaterButton from "@components/base/viewLater";
 import {Tooltip} from "@mui/material";
+import AccordionItem from "@components/base/accordionItem";
+import TimeLine from "@components/base/timeLine";
 
 interface Props {
     className?: string;
@@ -62,33 +64,38 @@ export const NewsletterDetailsCard: FC<Props> = memo(function NewsletterDetailsC
                 <div className={styles.line}/>
                 <div className={styles.title}>{newsletter.title}</div>
               </div>
-              <StarRating onSubmitRating={handleRatingSubmit} initialRating={newsletter.userRating ?? 0 } />
             </div>
             <RowContainer>
                 <div className={styles.createdAt}>
                     {newsletter.createdAt}{newsletter.createdAt != newsletter.updatedAt && " - Atualizado em " + newsletter.updatedAt}
                 </div>
                 <ViewLaterButton onViewLaterSubmit={handleViewLaterSubmit} initialSelected={newsletter.viewLater} />
-                {!isNaN(newsletter.averageRating) && (
-                    <RatingContainer>
-                        <Tooltip title="Média das avaliações">
-                            <div className={styles.ratingContainer}>
-                                <CustomStarIcon aria-label="Ícone de estrela representando a média das avaliações" />
-                                <RatingText>{newsletter.averageRating.toFixed(1)}</RatingText>
-                            </div>
-                        </Tooltip>
-                    </RatingContainer>
-                )}
             </RowContainer>
             <div className={styles.propositionsColumn}>
-                {newsletter.propositionArticles?.map((propositionArticle, index) => (
-                    <React.Fragment key={index}>
-                        <Link className={styles.propositionArticleTitleLabel} to={"/proposition-details/" + propositionArticle.id} aria-label="Ir para a página de detalhes da proposição">
+                {newsletter.propositions && (
+                  <AccordionItem title={'Proposições'} startOpen={true}>
+                    <div className={styles.propositionContainer}>
+                      {newsletter.propositions?.map((propositionArticle, index) => (
+                        <React.Fragment key={index}>
+                          <Link className={styles.propositionArticleTitleLabel} to={"/proposition-details/" + propositionArticle.id} aria-label="Ir para a página de detalhes da proposição">
                             {propositionArticle.title}
-                        </Link>
-                        <div className={styles.propositionArticleContent}>{propositionArticle.content}</div>
-                    </React.Fragment>
-                ))}
+                          </Link>
+                          <div className={styles.propositionArticleContent}>{propositionArticle.content}</div>
+                        </React.Fragment>
+                      ))}
+                    </div>
+                  </AccordionItem>
+                )}
+              {newsletter.events && (
+                <AccordionItem title={'Eventos'} startOpen={true}>
+                  <TimeLine articleList={newsletter.events}/>
+                </AccordionItem>
+              )}
+              {newsletter.votes && (
+                <AccordionItem title={'Votações'} startOpen={true}>
+                  <TimeLine articleList={newsletter.votes}/>
+                </AccordionItem>
+              )}
             </div>
         </div>
     );

@@ -22,10 +22,10 @@ export const SmallCard: FC<Props> = memo(function SmallCard({
 }) {
     return (
         <div className={styles.smallCard}>
-            { (article.type.description === "Boletins" || article.imageUrl !== 'undefined') && (
+            { (article.type.description === "Boletins" || article.multimediaUrl !== 'undefined') && (
               <div className={styles.imageView}>
                   {article.type.description !== "Boletins" ? (
-                    <div className={styles.image} style={{backgroundImage: `url(${article.imageUrl})`}} role="img" aria-label="Imagem gerada por Inteligência Artificial representando o conteúdo da proposição." />
+                    <div className={styles.image} style={{backgroundImage: `url(${article.multimediaUrl})`}} role="img" aria-label={`${article.multimediaDescription ?? "Imagem gerada por Inteligência Artificial representando o conteúdo da proposição."}`} />
                   ) : (
                     <NewsletterImageCard title={article.title}/>
                   )}
@@ -35,8 +35,8 @@ export const SmallCard: FC<Props> = memo(function SmallCard({
                 <Link className={styles.titleRow}
                       to={(article.type.description !== "Boletins" ? "/proposition-details/" : "/newsletter-details/") + article.id} aria-label="Ir para a página de detalhes da matéria">
                     <div className={styles.titleView}>
-                        <div className={styles.line} style={{backgroundColor: `${article.type.color}` }}/>
-                        <TitleDiv className={styles.title} $hoverColor={article.type.color}>{article.title}</TitleDiv>
+                        <div className={styles.line} style={{backgroundColor: `${article.type.specificType.color !== '' ? article.type.specificType.color : article.type.color}` }}/>
+                        <TitleDiv className={styles.title} $hoverColor={article.type.specificType.color}>{article.title}</TitleDiv>
                     </div>
                 </Link>
                 <div className={styles.content}>{article.content}</div>

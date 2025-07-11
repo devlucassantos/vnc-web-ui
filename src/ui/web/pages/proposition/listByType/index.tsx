@@ -16,14 +16,17 @@ import ExternalAuthor from "@models/ExternalAuthor";
 import {format} from "date-fns";
 import style from "./styles.module.scss";
 import {TitleTopic} from "@components/base/titleTopic";
-import PropositionNavigationBar from "@components/proposition/propositionNavigationBar";
+import ArticleNavigationBar from "ui/web/components/news/articleNavigationBar";
 import BigCard from "@components/news/cards/bigCard";
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import LongVerticalRectangularAnnouncement from "@components/base/announcement/longRectangular/vertical";
 import Footer from "@components/base/footer";
 import CustomCircularProgress from "@components/base/customCircularProgress";
 import ArticleType from "@models/ArticleType";
 import {ResourceContext, ResourceContextType} from "@web/providers/resourceProvider";
+import SpecificType from "@models/SpecificType";
+import LegislativeBody from "@models/LegislativeBody";
+import ArticleSituation from "@models/ArticleSituation";
 
 interface Props {
     className?: string;
@@ -39,9 +42,22 @@ export const PropositionListByTypePage: FC<Props> = memo(function PropositionLis
     const [content, setContent] = useState<string>('');
     const [startDate, setStartDate] = useState<Date | null>(null);
     const [endDate, setEndDate] = useState<Date | null>(null);
-    const [party, setParty] = useState<Party | null>(null);
-    const [deputy, setDeputy] = useState<Deputy | null>(null);
-    const [externalAuthor, setExternalAuthor] = useState<ExternalAuthor | null>(null);
+    const [articleType, setArticleType] = useState<ArticleType | null>(null);
+    const [specificType, setSpecificType] = useState<SpecificType | null>(null);
+    const [propositionParty, setPropositionParty] = useState<Party | null>(null);
+    const [propositionDeputy, setPropositionDeputy] = useState<Deputy | null>(null);
+    const [propositionExternalAuthor, setPropositionExternalAuthor] = useState<ExternalAuthor | null>(null);
+    const [votingResult, setVotingResult] = useState<string | null>(null);
+    const [votingLegislativeBody, setVotingLegislativeBody] = useState<LegislativeBody | null>(null);
+    const [votingStartDate, setVotingStartDate] = useState<Date | null>(null);
+    const [votingEndDate, setVotingEndDate] = useState<Date | null>(null);
+    const [eventStartDate, setEventStartDate] = useState<Date | null>(null);
+    const [eventEndDate, setEventEndDate] = useState<Date | null>(null);
+    const [eventSituation, setEventSituation] = useState<ArticleSituation | null>(null);
+    const [eventLegislativeBody, setEventLegislativeBody] = useState<LegislativeBody | null>(null);
+    const [eventRapporteur, setEventRapporteur] = useState<Deputy | null>(null);
+    const [removeEventsInTheFuture, setRemoveEventsInTheFuture] = useState<boolean>(true);
+    const navigate = useNavigate();
     const {id} = useParams();
     const [loading, setLoading] = useState(true);
     const resourceContext = useContext(ResourceContext);
@@ -49,24 +65,22 @@ export const PropositionListByTypePage: FC<Props> = memo(function PropositionLis
         resource: null,
         fetchResources: () => {},
     } as ResourceContextType;
-    const articleTypeColor : string = resource?.articleTypes?.find((articleType, index) => articleType.id == id)?.color ?? "#0047AB"
-    const articleTypeDescription : string = resource?.articleTypes?.find((articleType, index) => articleType.id == id)?.description ?? ""
+    const propositionArticleType = resource?.articleTypes?.find((articleType, index) => articleType.codes == 'proposition')
+    const articleTypeColor : string = resource?.propositionTypes?.find((articleType, index) => articleType.id == id)?.color ?? "#0047AB"
+    const articleTypeDescription : string = resource?.propositionTypes?.find((articleType, index) => articleType.id == id)?.description ?? ""
     const [currentPage, setCurrentPage] = useState(1);
 
     const fetchArticles = async (page?: number) => {
         try {
             setLoading(true);
             setCurrentPage(page ?? 1)
+            if (propositionArticleType) setArticleType(propositionArticleType)
+            const specificArticleType = resource?.propositionTypes?.find((type) => type.id == id)
+            if (specificArticleType) setSpecificType(specificArticleType)
             const queryFilters: ArticleFilters = {
                 page: page,
-                typeId: id,
+                specificTypeId: id,
                 itemsPerPage: 15,
-                content: content,
-                startDate: startDate ? format(startDate, 'yyyy-MM-dd') : '',
-                endDate: endDate ? format(endDate, 'yyyy-MM-dd') : '',
-                partyId: party ? party.id : '',
-                deputyId: deputy ? deputy.id : '',
-                externalAuthorId: externalAuthor ? externalAuthor.id : '',
             };
 
             const pagination = await articleService.getArticles(queryFilters);
@@ -74,6 +88,7 @@ export const PropositionListByTypePage: FC<Props> = memo(function PropositionLis
             setMaxPageCount(pagination.maxPageCount);
         } catch (error) {
             console.log(error)
+            setArticleList([]);
         } finally {
             setLoading(false);
         }
@@ -83,7 +98,7 @@ export const PropositionListByTypePage: FC<Props> = memo(function PropositionLis
         try {
             const queryFilters: ArticleTypeFilters = {
                 itemsPerPage: 5,
-                articleTypeIds: `${id}`
+                articleSpecificTypeIds: `${id}`
             };
 
             const articleTypes = await ArticleTypeService.getTrendingArticlesByType(queryFilters);
@@ -105,27 +120,100 @@ export const PropositionListByTypePage: FC<Props> = memo(function PropositionLis
     };
 
     const handleFilterClick = () => {
-        fetchArticles();
+        if (!!(content || startDate || endDate || (articleType && articleType.codes !== 'proposition') || (specificType && specificType.id !== id) || propositionParty || propositionDeputy || propositionExternalAuthor)) {
+            const queryParams = buildQueryParams();
+
+            const filteredParams = Object.entries(queryParams)
+              .filter(([_, value]) => value !== '' && value !== null && value !== undefined)
+              .reduce((acc, [key, value]) => {
+                  acc[key] = value;
+                  return acc;
+              }, {} as Record<string, string | boolean>);
+
+            const searchParams = new URLSearchParams(filteredParams as Record<string, string>).toString();
+            navigate(`/search?${searchParams}`);
+        }
     };
+
+    const buildQueryParams = () => {
+        const queryParams: ArticleFilters = {
+            content: content,
+            startDate: startDate ? format(startDate, 'yyyy-MM-dd') : '',
+            endDate: endDate ? format(endDate, 'yyyy-MM-dd') : '',
+        };
+
+        if (articleType) {
+            queryParams.typeId = articleType ? articleType.id : '';
+            if ( articleType.codes == 'proposition') {
+                queryParams.specificTypeId = specificType ? specificType.id : '';
+                queryParams.propositionPartyId = propositionParty ? propositionParty.id : '';
+                queryParams.propositionDeputyId = propositionDeputy ? propositionDeputy.id : '';
+                queryParams.propositionExternalAuthorId = propositionExternalAuthor ? propositionExternalAuthor.id : '';
+            } else if ( articleType.codes == 'voting') {
+                queryParams.votingStartDate = votingStartDate ? format(votingStartDate, 'yyyy-MM-dd') : '';
+                queryParams.votingEndDate = votingEndDate ? format(votingEndDate, 'yyyy-MM-dd') : '';
+                queryParams.votingResult = votingResult ? votingResult : '';
+                queryParams.votingLegislativeBodyId = votingLegislativeBody ? votingLegislativeBody.id : '';
+            } else if ( articleType.codes == 'event') {
+                queryParams.specificTypeId = specificType ? specificType.id : '';
+                queryParams.eventStartDate = eventStartDate ? format(eventStartDate, 'yyyy-MM-dd') : '';
+                queryParams.eventEndDate = eventEndDate ? format(eventEndDate, 'yyyy-MM-dd') : '';
+                queryParams.eventLegislativeBodyId = eventLegislativeBody ? eventLegislativeBody.id : '';
+                queryParams.eventRapporteurId = eventRapporteur ? eventRapporteur.id : '';
+                queryParams.eventSituationId = eventSituation ? eventSituation.id : '';
+                queryParams.removeEventsInTheFuture = removeEventsInTheFuture;
+            }
+        }
+
+        return queryParams;
+    }
 
     return (
         <div className={`${styles.resets} ${styles.root} ${styles.background}`}>
             <Navbar
-                showFilter={true}
-                startDate={startDate}
-                endDate={endDate}
-                party={party}
-                deputy={deputy}
-                externalAuthor={externalAuthor}
-                onContentChange={(value) => setContent(value)}
-                onStartDateChange={(value) => setStartDate(value)}
-                onEndDateChange={(value) => setEndDate(value)}
-                onPartyChange={(value) => setParty(value)}
-                onDeputyChange={(value) => setDeputy(value)}
-                onExternalAuthorChange={(value) => setExternalAuthor(value)}
-                onFilterClick={handleFilterClick}
+              showFilter={true}
+              startDate={startDate}
+              endDate={endDate}
+              articleType={articleType}
+              specificType={specificType}
+              propositionParty={propositionParty}
+              propositionDeputy={propositionDeputy}
+              propositionExternalAuthor={propositionExternalAuthor}
+              votingResult={votingResult}
+              votingLegislativeBody={votingLegislativeBody}
+              votingStartDate={votingStartDate}
+              votingEndDate={votingEndDate}
+              eventStartDate={eventStartDate}
+              eventEndDate={eventEndDate}
+              eventSituation={eventSituation}
+              eventLegislativeBody={eventLegislativeBody}
+              eventRapporteur={eventRapporteur}
+              removeEventsInTheFuture={removeEventsInTheFuture}
+              onContentChange={(value) => setContent(value)}
+              onStartDateChange={(value) => setStartDate(value)}
+              onEndDateChange={(value) => setEndDate(value)}
+              onArticleTypeChange={(value) => {
+                  setArticleType(value)
+                  setSpecificType(null)
+              }}
+              onSpecificTypeChange={(value) => setSpecificType(value)}
+              onPropositionPartyChange={(value) => setPropositionParty(value)}
+              onPropositionDeputyChange={(value) => setPropositionDeputy(value)}
+              onPropositionExternalAuthorChange={(value) => setPropositionExternalAuthor(value)}
+              onVotingResultChange={(value) => setVotingResult(value)}
+              onVotingLegislativeBodyChange={(value) => setVotingLegislativeBody(value)}
+              onVotingStartDateChange={(value) => setVotingStartDate(value)}
+              onVotingEndDateChange={(value) => setVotingEndDate(value)}
+              onEventStartDateChange={(value) => setEventStartDate(value)}
+              onEventEndDateChange={(value) => setEventEndDate(value)}
+              onEventSituationChange={(value) => setEventSituation(value)}
+              onEventLegislativeBodyChange={(value) => setEventLegislativeBody(value)}
+              onEventRapporteurChange={(value) => setEventRapporteur(value)}
+              onRemoveEventsInTheFuture={(value) => setRemoveEventsInTheFuture(value)}
+              useAllSpecificTypes={true}
+              onFilterClick={handleFilterClick}
             />
-            <PropositionNavigationBar />
+            <ArticleNavigationBar />
             <div className={styles.body}>
                 {loading ? (
                     <div className={style.loadingContainer}>
@@ -134,16 +222,16 @@ export const PropositionListByTypePage: FC<Props> = memo(function PropositionLis
                 ) : (
                     articleList?.length > 0 ? (
                         <>
-                            {trendingArticleListByType && trendingArticleListByType[0]?.propositionArticles?.length >= 3 && trendingArticleListByType[0]?.description !== "Outras Proposições" &&
+                            {trendingArticleListByType && trendingArticleListByType[0]?.specificTypes && trendingArticleListByType[0]?.specificTypes[0].articles?.length >= 3 && trendingArticleListByType[0]?.specificTypes[0]?.description !== "Outras Proposições" &&
                                 <>
                                     <TitleTopic titleViewStyle={style.propositionTypeTitleView} label={articleTypeDescription} color={articleTypeColor} />
                                     <div className={style.gridContainer}>
-                                        <BigCard article={trendingArticleListByType[0]?.propositionArticles[0]} typePropositionLabel={articleTypeDescription} cardStyle={style.bigCard}
+                                        <BigCard article={trendingArticleListByType[0]?.specificTypes[0]?.articles[0]} typePropositionLabel={articleTypeDescription} cardStyle={style.bigCard}
                                                  imageContainerStyle={style.bigCardImageContainer} titleStyle={style.bigCardTitle} isHidden={false}/>
                                         <div className={style.gridColumn}>
-                                            <BigCard article={trendingArticleListByType[0]?.propositionArticles[1]} typePropositionLabel={articleTypeDescription} cardStyle={style.mediumCard}
+                                            <BigCard article={trendingArticleListByType[0]?.specificTypes[0]?.articles[1]} typePropositionLabel={articleTypeDescription} cardStyle={style.mediumCard}
                                                      imageContainerStyle={style.gridMediumCardImageContainer} titleStyle={style.mediumCardTitle} isHidden={false}/>
-                                            <BigCard article={trendingArticleListByType[0]?.propositionArticles[2]} typePropositionLabel={articleTypeDescription} cardStyle={style.mediumCard}
+                                            <BigCard article={trendingArticleListByType[0]?.specificTypes[0]?.articles[2]} typePropositionLabel={articleTypeDescription} cardStyle={style.mediumCard}
                                                      imageContainerStyle={style.gridMediumCardImageContainer} titleStyle={style.mediumCardTitle} isHidden={false}/>
                                         </div>
                                     </div>
@@ -156,12 +244,12 @@ export const PropositionListByTypePage: FC<Props> = memo(function PropositionLis
                                     {maxPageCount != 0 && <CustomPagination currentPage={currentPage} count={maxPageCount} actionOnChange={actionOnChangePagination} color={articleTypeColor} />}
                                 </div>
                                 <div className={styles.propositionsRightColumn}>
-                                    {trendingArticleListByType[0]?.propositionArticles?.length > 0 &&
+                                    {trendingArticleListByType[0]?.specificTypes[0]?.articles?.length > 0 &&
                                         <>
                                             <TitleTopic titleViewStyle={style.trendingTitleView} label="Em Destaque" color={articleTypeColor} />
                                         </>
                                     }
-                                    <TrendingContainer trendingArticleList={trendingArticleListByType[0]?.propositionArticles} color={articleTypeColor}/>
+                                    <TrendingContainer trendingArticleList={trendingArticleListByType[0]?.specificTypes[0]?.articles} color={articleTypeColor}/>
                                     <LongVerticalRectangularAnnouncement/>
                                 </div>
                             </div>

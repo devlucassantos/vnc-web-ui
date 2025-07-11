@@ -24,23 +24,49 @@ import ArticleType from "@models/ArticleType";
 import User from "@models/User";
 import DIContainer from "@web/dicontainer";
 import LogoutIcon from '@mui/icons-material/Logout';
+import SpecificType from "@models/SpecificType";
+import LegislativeBody from "@models/LegislativeBody";
+import ArticleSituation from "@models/ArticleSituation";
 
 interface Props {
     className?: string;
     showFilter?: boolean;
+    useAllSpecificTypes?: boolean;
     startDate?: Date | null;
     endDate?: Date | null;
+    votingStartDate?: Date | null;
+    votingEndDate?: Date | null;
+    eventStartDate?: Date | null;
+    eventEndDate?: Date | null;
     articleType?: ArticleType | null;
-    party?: Party | null;
-    deputy?: Deputy | null;
-    externalAuthor?: ExternalAuthor | null;
+    specificType?: SpecificType | null;
+    propositionParty?: Party | null;
+    propositionDeputy?: Deputy | null;
+    eventRapporteur?: Deputy | null;
+    propositionExternalAuthor?: ExternalAuthor | null;
+    votingResult?: string | null;
+    votingLegislativeBody?: LegislativeBody | null;
+    eventLegislativeBody?: LegislativeBody | null;
+    eventSituation?: ArticleSituation | null;
+    removeEventsInTheFuture?: boolean;
     onContentChange?: (value: string) => void;
     onStartDateChange?: (value: Date | null) => void;
     onEndDateChange?: (value: Date | null) => void;
+    onVotingStartDateChange?: (value: Date | null) => void;
+    onVotingEndDateChange?: (value: Date | null) => void;
+    onEventStartDateChange?: (value: Date | null) => void;
+    onEventEndDateChange?: (value: Date | null) => void;
     onArticleTypeChange?: (value: ArticleType | null) => void;
-    onPartyChange?: (value: Party | null) => void;
-    onDeputyChange?: (value: Deputy | null) => void;
-    onExternalAuthorChange?: (value: ExternalAuthor | null) => void;
+    onSpecificTypeChange?: (value: SpecificType | null) => void;
+    onPropositionPartyChange?: (value: Party | null) => void;
+    onPropositionDeputyChange?: (value: Deputy | null) => void;
+    onEventRapporteurChange?: (value: Deputy | null) => void;
+    onPropositionExternalAuthorChange?: (value: ExternalAuthor | null) => void;
+    onVotingResultChange?: (value: string | null) => void;
+    onVotingLegislativeBodyChange?: (value: LegislativeBody | null) => void;
+    onEventLegislativeBodyChange?: (value: LegislativeBody | null) => void;
+    onEventSituationChange?: (value: ArticleSituation | null) => void;
+    onRemoveEventsInTheFuture?: (value: boolean) => void;
     onFilterClick?: () => void;
 }
 
@@ -48,19 +74,42 @@ const authenticationService = DIContainer.getAuthenticationUseCase();
 
 export const Navbar: FC<Props> = memo(function Navbar({
     showFilter = true,
+    useAllSpecificTypes = false,
     startDate,
     endDate,
-    party,
+    votingStartDate,
+    votingEndDate,
+    eventStartDate,
+    eventEndDate,
+    propositionParty,
     articleType,
-    deputy,
-    externalAuthor,
+    specificType,
+    propositionDeputy,
+    eventRapporteur,
+    propositionExternalAuthor,
+    votingResult,
+    votingLegislativeBody,
+    eventLegislativeBody,
+    eventSituation,
+    removeEventsInTheFuture,
     onContentChange,
     onStartDateChange,
     onEndDateChange,
-    onPartyChange,
+    onVotingStartDateChange,
+    onVotingEndDateChange,
+    onEventStartDateChange,
+    onEventEndDateChange,
+    onPropositionPartyChange,
     onArticleTypeChange,
-    onDeputyChange,
-    onExternalAuthorChange,
+    onSpecificTypeChange,
+    onPropositionDeputyChange,
+    onEventRapporteurChange,
+    onPropositionExternalAuthorChange,
+    onVotingResultChange,
+    onVotingLegislativeBodyChange,
+    onEventLegislativeBodyChange,
+    onEventSituationChange,
+    onRemoveEventsInTheFuture,
     onFilterClick
 }) {
     const [user, setUser] = useState<User | null>(
@@ -191,17 +240,40 @@ export const Navbar: FC<Props> = memo(function Navbar({
                                 closeModal={handleFilterModalClose}
                                 startDate={startDate || null}
                                 endDate={endDate || null}
+                                votingStartDate={votingStartDate || null}
+                                votingEndDate={votingEndDate || null}
+                                eventStartDate={eventStartDate || null}
+                                eventEndDate={eventEndDate || null}
                                 articleType={articleType}
-                                party={party}
-                                deputy={deputy}
-                                externalAuthor={externalAuthor}
+                                specificType={specificType}
+                                propositionParty={propositionParty}
+                                propositionDeputy={propositionDeputy}
+                                eventRapporteur={eventRapporteur}
+                                propositionExternalAuthor={propositionExternalAuthor}
+                                votingResult={votingResult}
+                                votingLegislativeBody={votingLegislativeBody}
+                                eventLegislativeBody={eventLegislativeBody}
+                                eventSituation={eventSituation}
+                                removeEventsInTheFuture={removeEventsInTheFuture}
                                 onFilterClick={onFilterClick || (() => {})}
-                                onStartDateChange={onStartDateChange || (() => {})}
-                                onEndDateChange={onEndDateChange || (() => {})}
+                                onStartDateChange={onStartDateChange}
+                                onEndDateChange={onEndDateChange}
+                                onVotingStartDateChange={onVotingStartDateChange}
+                                onVotingEndDateChange={onVotingEndDateChange}
+                                onEventStartDateChange={onEventStartDateChange}
+                                onEventEndDateChange={onEventEndDateChange}
                                 onArticleTypeChange={onArticleTypeChange}
-                                onPartyChange={onPartyChange}
-                                onDeputyChange={onDeputyChange}
-                                onExternalAuthorChange={onExternalAuthorChange}
+                                onSpecificTypeChange={onSpecificTypeChange}
+                                onPropositionPartyChange={onPropositionPartyChange}
+                                onPropositionDeputyChange={onPropositionDeputyChange}
+                                onEventRapporteurChange={onEventRapporteurChange}
+                                onPropositionExternalAuthorChange={onPropositionExternalAuthorChange}
+                                onVotingResultChange={onVotingResultChange}
+                                onVotingLegislativeBodyChange={onVotingLegislativeBodyChange}
+                                onEventLegislativeBodyChange={onEventLegislativeBodyChange}
+                                onEventSituationChange={onEventSituationChange}
+                                onRemoveEventsInTheFuture={onRemoveEventsInTheFuture}
+                                useAllSpecificTypes={useAllSpecificTypes}
                             />
                         }
                     </>

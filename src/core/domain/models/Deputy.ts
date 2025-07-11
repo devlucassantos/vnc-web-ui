@@ -8,16 +8,19 @@ class Deputy extends Model {
     private _name: string;
     private _electoralName: string;
     private _imageUrl: string;
+    private _imageDescription: string;
+    private _federatedUnit: string;
+    private _previousFederatedUnit: string;
     private _party: Party;
-    private _partyInTheProposal: Party | null;
+    private _previousParty: Party | null;
     private _createdAt: string;
     private _updatedAt: string;
 
     constructor() {
         super();
-        this._id = this._name = this._electoralName = this._imageUrl = this._createdAt = this._updatedAt = '';
+        this._id = this._name = this._electoralName = this._imageUrl = this._imageDescription = this._federatedUnit = this._previousFederatedUnit = this._createdAt = this._updatedAt = '';
         this._party = new Party();
-        this._partyInTheProposal = new Party();
+        this._previousParty = new Party();
     }
 
     get id() {
@@ -36,32 +39,24 @@ class Deputy extends Model {
         return this._imageUrl;
     }
 
+    get imageDescription() {
+        return this._imageDescription;
+    }
+
+    get federatedUnit() {
+        return this._federatedUnit;
+    }
+
+    get previousFederatedUnit() {
+        return this._previousFederatedUnit;
+    }
+
     get party() {
         return this._party;
     }
 
-    get partyInTheProposal() {
-        return this._partyInTheProposal;
-    }
-
-    set setName(name: string) {
-        this._name = name;
-    }
-
-    set setElectoralName(electoralName: string) {
-        this._electoralName = electoralName;
-    }
-
-    set setImageUrl(imageUrl: string) {
-        this._imageUrl = imageUrl;
-    }
-
-    set setParty(party: Party) {
-        this._party = party;
-    }
-
-    set setPartyInTheProposal(partyInTheProposal: Party) {
-        this._partyInTheProposal = partyInTheProposal;
+    get previousParty() {
+        return this._previousParty;
     }
 
     get createdAt(): string {
@@ -72,20 +67,17 @@ class Deputy extends Model {
         return this._updatedAt;
     }
 
-    set updatedAt(value: string) {
-        this._updatedAt = value;
-    }
-
     toJSON(): DTO {
         let dto = {} as DTO;
         dto['id'] = this._id;
         dto['name'] = this._name;
         dto['electoral_name'] = this._electoralName;
         dto['image_url'] = this._imageUrl;
+        dto['image_description'] = this._imageDescription;
+        dto['federated_unit'] = this._federatedUnit;
+        dto['previous_federated_unit'] = this._previousFederatedUnit;
         dto['party'] = this._party.toJSON();
-        dto['party_in_the_proposal'] = this._partyInTheProposal?.toJSON();
-        dto['created_at'] = convertToISODate(this._createdAt);
-        dto['updated_at'] = convertToISODate(this._updatedAt);
+        dto['previous_party'] = this._previousParty?.toJSON();
         return dto;
     }
 
@@ -95,10 +87,11 @@ class Deputy extends Model {
         obj._name = String(json['name']);
         obj._electoralName = String(json['electoral_name']);
         obj._imageUrl = String(json['image_url']);
+        obj._imageDescription = String(json['image_description']);
+        obj._federatedUnit = String(json['federated_unit']);
+        obj._previousFederatedUnit = String(json['previous_federated_unit']);
         obj._party = Party.fromJSON(json['party']);
-        obj._partyInTheProposal = json['party_in_the_proposal'] ? Party.fromJSON(json['party_in_the_proposal']) : null;
-        obj._createdAt = formatCustomDateTime(String(json['created_at']));
-        obj._updatedAt = formatCustomDateTime(String(json['updated_at']));
+        obj._previousParty = json['previous_party'] ? Party.fromJSON(json['previous_party']) : null;
         return obj;
     }
 }

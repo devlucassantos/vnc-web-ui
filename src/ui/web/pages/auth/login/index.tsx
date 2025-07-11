@@ -109,7 +109,7 @@ export const LoginPage: FC<Props> = memo(function LoginPage(props = {}) {
             <Grid item xs={12} md={6}>
                 <Logo>
                     <LogoImage
-                        src="/src/ui/web/assets/vnc-circular-logo.png"
+                        src="/src/ui/web/assets/white-vertical-logo.png"
                         alt="Logo da Plataforma Você na Câmara"
                     />
                 </Logo>

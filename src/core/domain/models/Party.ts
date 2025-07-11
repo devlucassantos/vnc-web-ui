@@ -7,12 +7,13 @@ class Party extends Model {
     private _name: string;
     private _acronym: string;
     private _imageUrl: string;
+    private _imageDescription: string;
     private _createdAt: string;
     private _updatedAt: string;
 
     constructor() {
         super();
-        this._id = this._name = this._acronym = this._imageUrl = this._createdAt = this._updatedAt = '';
+        this._id = this._name = this._acronym = this._imageUrl = this._imageDescription = this._createdAt = this._updatedAt = '';
     }
 
     get id() {
@@ -31,16 +32,8 @@ class Party extends Model {
         return this._imageUrl;
     }
 
-    set setName(name: string) {
-        this._name = name;
-    }
-
-    set setAcronym(acronym: string) {
-        this._acronym = acronym;
-    }
-
-    set setImageUrl(imageUrl: string) {
-        this._imageUrl = imageUrl;
+    get imageDescription() {
+        return this._imageDescription;
     }
 
     get createdAt(): string {
@@ -51,20 +44,13 @@ class Party extends Model {
         return this._updatedAt;
     }
 
-    set updatedAt(value: string) {
-        this._updatedAt = value;
-    }
-
-
-
     toJSON(): DTO {
         let dto = {} as DTO;
         dto['id'] = this._id;
         dto['name'] = this._name;
         dto['acronym'] = this._acronym;
         dto['image_url'] = this._imageUrl;
-        dto['created_at'] = convertToISODate(this._createdAt);
-        dto['updated_at'] = convertToISODate(this._updatedAt);
+        dto['image_description'] = this._imageDescription;
         return dto;
     }
 
@@ -74,8 +60,7 @@ class Party extends Model {
         obj._name = String(json['name']);
         obj._acronym = String(json['acronym']);
         obj._imageUrl = String(json['image_url']);
-        obj._createdAt = formatCustomDateTime(String(json['created_at']));
-        obj._updatedAt = formatCustomDateTime(String(json['updated_at']));
+        obj._imageDescription = String(json['image_description']);
         return obj;
     }
 }

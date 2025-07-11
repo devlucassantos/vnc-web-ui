@@ -55,34 +55,6 @@ class User extends Model {
         return this._roles;
     }
 
-    set setEmail(email: string) {
-        this._email = email;
-    }
-
-    set setFirstName(firstName: string) {
-        this._firstName = firstName;
-    }
-
-    set setLastName(lastName: string) {
-        this._lastName = lastName;
-    }
-
-    set setImageUrl(accessToken: string) {
-        this._accessToken = accessToken;
-    }
-
-    set setRefreshToken(refreshToken: string) {
-        this._refreshToken = refreshToken;
-    }
-
-    set setRoles(roles: string[]) {
-        this._roles = roles;
-    }
-
-    set updatedAt(value: string) {
-        this._updatedAt = value;
-    }
-
     toJSON(): DTO {
         let dto = {} as DTO;
         dto['id'] = this._id;
