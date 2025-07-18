@@ -2,23 +2,50 @@
 
 🌍 *[English](README.md) ∙ [Português](README_pt.md)*
 
-`vnc-web-ui` é o repositório dedicado a fornecer uma interface de usuário web para interagir com os dados da plataforma
-[Você na Câmara (VNC)](#você-na-câmara-vnc). Neste repositório, você terá acesso ao código-fonte da aplicação web, que utiliza
-a arquitetura hexagonal e é projetada para consumir a API de leitura fornecida pelo repositório [vnc-read-api](https://github.com/devlucassantos/vnc-read-api).
+`vnc-web-ui` é o repositório responsável por fornecer a interface web da plataforma
+[Você na Câmara (VNC)](#você-na-câmara). Neste repositório, você encontrará o código-fonte da aplicação web da VNC,
+que utiliza tecnologias como TypeScript, SCSS, React e Vite. Além disso, está disponível o container Docker responsável
+por executar este código, permitindo que você execute o projeto de forma simples e rápida.
 
 ## Como Executar
 
-> Observe que para executar corretamente o `vnc-web-ui` você precisará ter a ferramenta node.js instalada (caso não tenha, clique [aqui](https://nodejs.org/en/download/) para ir para a documentação de instalação).
+### Executando via Docker
 
-Para executar as configurações apropriadas da aplicação você precisará seguir os seguintes passos:
+Para executar a aplicação, você precisará ter o [Docker](https://www.docker.com) instalado na sua máquina e executar o
+seguinte comando no diretório raiz deste projeto:
 
-1. Execute o comando `npm install` para baixar as dependências do projeto;
-2. No arquivo (`.env`), que pode ser encontrado na raiz do projeto, defina o valor da variável `VITE_API_URL="<url-do-backend>"`, onde `<url-do-backend>` será a URL do backend a ser utilizada no desenvolvimento.
+````shell
+docker compose up --build
+````
 
-Pronto! O projeto está configurado. A partir de agora, toda vez que quiser iniciar o projeto basta executar o comando `npm run dev`. Dessa forma, o projeto estará disponível no endereço `http://localhost:3000`.
+### Documentação
 
-## Você na Câmara (VNC)
+Após a execução do projeto, a interface gráfica pode ser acessada através do link:
 
-Você na Câmara (VNC) é uma plataforma de notícias que busca simplificar as proposições que tramitam pela Câmara dos
-Deputados do Brasil visando sintetizar as ideias destas proposições por meio do uso da Inteligência Artificial (IA)
-de modo que estes documentos possam ter suas ideias expressas de maneira simples e objetiva para a população em geral.
+> [http://localhost:8090](http://localhost:8090)
+
+## Você na Câmara
+
+Você na Câmara (VNC) é uma plataforma de notícias desenvolvida para simplificar e tornar acessíveis às proposições
+legislativas que tramitam na Câmara dos Deputados do Brasil. Por meio do uso de Inteligência Artificial, a plataforma
+sintetiza o conteúdo desses documentos legislativos, transformando informações técnicas e complexas em resumos objetivos
+e claros para a população em geral.
+
+Este projeto integra o Trabalho de Conclusão de Curso dos desenvolvedores da plataforma e foi concebido com base
+em arquiteturas como a hexagonal e a de microsserviços. A solução foi organizada em diversos repositórios, cada um com
+responsabilidades específicas dentro do sistema:
+
+* [`vnc-databases`](https://github.com/devlucassantos/vnc-databases): Responsável por gerenciar a infraestrutura de
+  dados da plataforma. Principais tecnologias utilizadas: PostgreSQL, Redis, Liquibase e Docker.
+* [`vnc-pdf-content-extractor-api`](https://github.com/devlucassantos/vnc-pdf-content-extractor-api): Responsável por
+  realizar a extração de conteúdo dos PDFs utilizados pela plataforma. Principais tecnologias utilizadas: Python,
+  FastAPI e Docker.
+* [`vnc-domains`](https://github.com/devlucassantos/vnc-domains): Responsável por centralizar os domínios e regras de
+  negócio da plataforma. Principal tecnologia utilizada: Go.
+* [`vnc-summarizer`](https://github.com/devlucassantos/vnc-summarizer): Responsável pelo software que extrai os dados e
+  sumariza as proposições disponibilizadas na plataforma. Principais tecnologias utilizadas: Go, PostgreSQL, Amazon Web
+  Services (AWS) e Docker.
+* [`vnc-api`](https://github.com/devlucassantos/vnc-api): Responsável por disponibilizar os dados para o frontend da
+  plataforma. Principais tecnologias utilizadas: Go, Echo, PostgreSQL, Redis e Docker.
+* [`vnc-web-ui`](https://github.com/devlucassantos/vnc-web-ui): Responsável por fornecer a interface web da plataforma.
+  Principais tecnologias utilizadas: TypeScript, SCSS, React, Vite e Docker.

@@ -2,23 +2,49 @@
 
 🌍 *[English](README.md) ∙ [Português](README_pt.md)*
 
-`vnc-web-ui` is the repository dedicated to providing a web user interface to interact with the data of the platform [Você na Câmara (VNC)](#você-na-câmara-vnc).
-In this repository, you will have access to the source code of the web application, which uses the hexagonal architecture and is designed to consume the reading API 
-provided by the [vnc-read-api](https://github.com/devlucassantos/vnc-read-api) repository.
+`vnc-web-ui` is the repository responsible for providing the web interface of the [Você na Câmara (VNC)](#você-na-câmara)
+platform. In this repository, you will find the source code for the VNC web application, which uses technologies such as
+TypeScript, SCSS, React, and Vite. Additionally, the Docker container responsible for running this code is available,
+allowing you to execute the project quickly and easily.
 
-## How to Run
+## How to run
 
-> Note that to correctly run `vnc-web-ui`, you will need to have the node.js tool installed (if you don't have it, click [here](https://nodejs.org/en/download/) to go to the installation documentation).
+### Running via Docker
 
-To execute the proper settings of the application, you will need to follow these steps:
+To run the application, you will need to have [Docker](https://www.docker.com) installed on your machine and run the
+following command in the root directory of this project:
 
-1. Run the `npm install` command to download the project dependencies;
-2. In the file (`.env`), which can be found at the root of the project, set the value of the variable `VITE_API_URL="<backend-url>"`, where `<backend-url>` will be the URL of the backend to be used in development.
+````shell
+docker compose up --build
+````
 
-Ready! The project is configured. From now on, every time you want to start the project, just run the `npm run dev` command. This way, the project will be available at the address `http://localhost:3000`.
+### Documentation
 
-## Você na Câmara (VNC)
+After running the project, the graphical interface can be accessed through the link:
 
-Você na Câmara (VNC) is a news platform that seeks to simplify the propositions under debate in the Chamber of Deputies of Brazil aiming to 
-synthesize the ideas of these propositions through the use of Artificial Intelligence (AI) so that these documents can have their ideas expressed
-in a simple and objective way for the general population.
+> [http://localhost:8090](http://localhost:8090)
+
+## Você na Câmara
+
+Você na Câmara (VNC) is a news platform developed to simplify and make accessible the legislative propositions being
+processed in the Chamber of Deputies of Brazil. Through the use of Artificial Intelligence, the platform synthesizes the
+content of these legislative documents, transforming technical and complex information into clear and objective
+summaries for the general public.
+
+This project is part of the Final Paper of the platform's developers and was conceived based on architectures such as
+hexagonal and microservices. The solution was organized into several repositories, each with specific responsibilities
+within the system:
+
+* [`vnc-databases`](https://github.com/devlucassantos/vnc-databases): Responsible for managing the platform's data
+  infrastructure. Main technologies used: PostgreSQL, Redis, Liquibase, and Docker.
+* [`vnc-pdf-content-extractor-api`](https://github.com/devlucassantos/vnc-pdf-content-extractor-api): Responsible for
+  extracting content from the PDFs used by the platform. Main technologies used: Python, FastAPI, and Docker.
+* [`vnc-domains`](https://github.com/devlucassantos/vnc-domains): Responsible for centralizing the platform's domains
+  and business logic. Main technology used: Go.
+* [`vnc-summarizer`](https://github.com/devlucassantos/vnc-summarizer): Responsible for the software that extracts data
+  and summarizes the propositions available on the platform. Main technologies used: Go, PostgreSQL,
+  Amazon Web Services (AWS), and Docker.
+* [`vnc-api`](https://github.com/devlucassantos/vnc-api): Responsible for providing data to the platform's frontend.
+  Main technologies used: Go, Echo, PostgreSQL, Redis, and Docker.
+* [`vnc-web-ui`](https://github.com/devlucassantos/vnc-web-ui): Responsible for providing the platform's web interface.
+  Main technologies used: TypeScript, SCSS, React, Vite, and Docker.
