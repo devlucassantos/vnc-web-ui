@@ -58,7 +58,7 @@ export const DrawerMenu: FC<Props> = memo(function DrawerMenu({
             <DrawerContent>
                 <Header>
                     <div className={styles.imageFrame}>
-                        <div className={styles.vncLogo} role="img" aria-label="Logo do Você na Câmara"></div>
+                        <div className={styles.vncLogo} role="img" aria-label="Logo da Você na Câmara"></div>
                     </div>
                     <IconButton onClick={onClose}>
                         <Close style={{ color: 'black', fontSize: '28px' }} />

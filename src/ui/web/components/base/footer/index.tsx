@@ -27,7 +27,7 @@ export const Footer: FC<Props> = memo(function Footer(props = {}) {
                     </Link>
                 </div>
                 <div className={styles.copyrightContainer}>
-                    <div className={styles.logo} role="img" aria-label="Logo do Você na Câmara"/>
+                    <div className={styles.logo} role="img" aria-label="Logo da Você na Câmara"/>
                     <div className={styles.copyrightLabel}>© Copyright {currentYear} Você na Câmara</div>
                 </div>
                 <div className={styles.rightContainer}>

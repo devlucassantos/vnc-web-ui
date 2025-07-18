@@ -149,7 +149,7 @@ export const Navbar: FC<Props> = memo(function Navbar({
                 <MenuIcon className={styles.icon} />
             </div>
             <Link to="/" aria-label="Ir para a página inicial">
-                <div className={styles.logoWhite} role="img" aria-label="Logo do Você na Câmara" />
+                <div className={styles.logoWhite} role="img" aria-label="Logo da Você na Câmara" />
             </Link>
 
             <div className={styles.rightSection}>

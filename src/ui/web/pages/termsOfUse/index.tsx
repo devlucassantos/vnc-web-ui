@@ -144,11 +144,11 @@ const TermsOfUsePage = () => {
           e pela segurança da sua senha.
         </p>
 
-        <h2>3. Uso Permitido</h2>
+        <h2>3. Regras de Uso</h2>
         <ul>
           <li>Não usar a plataforma de forma fraudulenta ou ilegal;</li>
           <li>Não fazer engenharia reversa ou extração massiva de dados;</li>
-          <li>Não distorcer os conteúdos gerados pela IA.</li>
+          <li>Não distorcer os conteúdos gerados pela Inteligência Artificial.</li>
         </ul>
 
         <h2>4. Direitos Autorais e Conteúdo</h2>
