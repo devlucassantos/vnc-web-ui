@@ -23,6 +23,7 @@ docker compose up --build
 After running the project, the graphical interface can be accessed through the link:
 
 > [http://localhost:8090](http://localhost:8090)
+<img width="2880" height="1800" alt="image" src="https://github.com/user-attachments/assets/addc2769-0d16-4af4-8220-8ec38db7b06b" />
 
 ## Você na Câmara
 
